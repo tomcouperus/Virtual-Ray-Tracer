@@ -11,9 +11,10 @@ public class InteractableMesh : MonoBehaviour
     void Start()
     {
         Mesh mesh = GetComponent<MeshFilter>().mesh;
-        for (int i = 0; i < mesh.vertices.Length;i++) {
-            ClickableVertex vertex = Instantiate(clickableVertexPrefab, transform);
-            vertex.Set(mesh, i);
+        HashSet<Vector3> vertices = new HashSet<Vector3>(mesh.vertices);
+        foreach(Vector3 vertex in vertices) {
+            ClickableVertex clickVert = Instantiate(clickableVertexPrefab, transform);
+            clickVert.SetPosition(vertex);
         }
     }
 }
