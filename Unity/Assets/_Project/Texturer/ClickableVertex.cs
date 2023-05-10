@@ -4,16 +4,14 @@ using UnityEngine;
 
 public class ClickableVertex : MonoBehaviour {
 
+    Mesh mesh;
     public int vertexIndex;
-    public Vector3 vertex;
-    public Vector2 uv;
     private void OnMouseDown() {
-        Debug.Log(name+": "+vertex+"; uv: "+uv);
+        Debug.Log("Vertex "+vertexIndex+": "+mesh.vertices[vertexIndex]+"; uv: "+mesh.uv[vertexIndex]);
     }
 
-    public void SetVertex(int vertexIndex, Vector3 vertex, Vector2 uv) {
-        this.vertexIndex = vertexIndex;
-        this.vertex = vertex;
-        this.uv = uv;
+    public void Set(Mesh mesh, int vertexIndex) {
+        this.mesh = mesh;
+        transform.position = mesh.vertices[vertexIndex];
     }
 }
