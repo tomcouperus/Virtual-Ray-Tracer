@@ -12,6 +12,6 @@ public class ClickableVertex : MonoBehaviour {
 
     public void Set(Mesh mesh, int vertexIndex) {
         this.mesh = mesh;
-        transform.position = mesh.vertices[vertexIndex];
+        transform.position = mesh.vertices[vertexIndex] + transform.parent.position;
     }
 }
