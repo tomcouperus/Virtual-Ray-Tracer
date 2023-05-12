@@ -11,10 +11,9 @@ GameObject:
   - component: {fileID: 2615240164896742047}
   - component: {fileID: 8570084509439717868}
   - component: {fileID: 9013129309949208965}
-  - component: {fileID: 2070821414278184816}
   - component: {fileID: 1304065879001045446}
   m_Layer: 0
-  m_Name: Clickable Vertex
+  m_Name: Vertex
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -85,19 +84,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &2070821414278184816
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3874388138834715414}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1304065879001045446
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,6 +96,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76201b07e55a84aa8a81b39bc1957df1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vertexIndex: 0
-  vertex: {x: 0, y: 0, z: 0}
-  uv: {x: 0, y: 0}
