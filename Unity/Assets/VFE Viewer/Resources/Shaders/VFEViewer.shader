@@ -1,10 +1,10 @@
-Shader "Custom/FaceView"
+Shader "Custom/VFEViewer"
 {
     Properties
     {
         [Slider(3.0)]
         _WireframeWidth ("Wireframe width", Range(0., 0.2)) = 0.05
-        _Color ("Color", Color) = (1., 0., 0., 1.)
+        _Color ("Color", color) = (1., 0., 0., 1.)
     }
     SubShader
     {
@@ -32,6 +32,7 @@ Shader "Custom/FaceView"
             #pragma vertex vert
             #pragma fragment frag
             #pragma geometry geom
+            #pragma multi_compile_fragment VERTEX EDGE FACE
 
             #include "UnityCG.cginc"
 
@@ -68,11 +69,18 @@ Shader "Custom/FaceView"
             fixed4 _Color;
 
             fixed4 frag(g2f i) : SV_Target {
-                float3 dist = abs(i.bary - float3(1./3., 1./3., 1./3.));
-                float maxDist = max(max(dist.x, dist.y), dist.z);
-                if(maxDist > _WireframeWidth)
-                    discard;
-
+#if defined (VERTEX)
+                    if(!any(bool3(i.bary.x > 1-_WireframeWidth, i.bary.y > 1-_WireframeWidth, i.bary.z > 1-_WireframeWidth)))
+                        discard;
+#elif defined (EDGE)
+                    if(!any(bool3(i.bary.x < _WireframeWidth, i.bary.y < _WireframeWidth, i.bary.z < _WireframeWidth)))
+                        discard;
+#else 
+                    float3 dist = abs(i.bary - float3(1./3., 1./3., 1./3.));
+                    float maxDist = max(max(dist.x, dist.y), dist.z);
+                    if(maxDist > _WireframeWidth)
+                        discard;
+#endif
                 return _Color;
             }
 

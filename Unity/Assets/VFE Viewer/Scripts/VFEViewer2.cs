@@ -20,7 +20,7 @@ TODO:
     - Create Objects to represent vertices, edges, and faces
 */
 
-public class VFEViewer : MonoBehaviour
+public class VFEViewer2 : MonoBehaviour
 {
     public enum Mode
     {
@@ -60,9 +60,7 @@ public class VFEViewer : MonoBehaviour
     private Renderer[] renderers;
 
     private Material vfeMaterial;
-    private Shader vertexView; 
-    private Shader edgeView; 
-    private Shader faceView; 
+    private Shader vfeShader;
 
     private bool needsUpdate;
 
@@ -71,10 +69,10 @@ public class VFEViewer : MonoBehaviour
         renderers = GetComponentsInChildren<Renderer>();
 
         vfeMaterial = Instantiate(Resources.Load<Material>(@"Materials/VFEView"));
-        vertexView = Instantiate(Resources.Load<Shader>(@"Shaders/VertexView"));
-        edgeView = Instantiate(Resources.Load<Shader>(@"Shaders/EdgeView"));
-        faceView = Instantiate(Resources.Load<Shader>(@"Shaders/FaceView"));
-        vfeMaterial.shader = vertexView;
+        vfeShader = Instantiate(Resources.Load<Shader>(@"Shaders/VFEViewer"));
+        vfeMaterial.shader = vfeShader;
+        vfeMaterial.EnableKeyword("VERTEX");
+        Debug.Log("toupper".ToUpper());
 
         needsUpdate = true;
     }
@@ -108,12 +106,14 @@ public class VFEViewer : MonoBehaviour
     
     void UpdateMaterialProperties()
     {
-        vfeMaterial.shader = viewMode switch {
-            Mode.Vertex => vertexView,
-            Mode.Edge => edgeView,
-            Mode.Face => faceView,
-            _ => vertexView
-        };
+        foreach (string mode in System.Enum.GetNames(typeof(Mode))){
+            if (mode == viewMode.ToString()){
+                vfeMaterial.EnableKeyword(mode.ToUpper());
+            } else {
+                vfeMaterial.DisableKeyword(mode.ToUpper());
+            }
+        }
+        
         vfeMaterial.SetFloat("_WireframeWidth", wireframeWidth);
     }
 
