@@ -17,14 +17,21 @@ namespace _Project.UI.Scripts.Control_Panel
     public class MeshProperties : MonoBehaviour
     {
         private RTMesh mesh;
+        private InteractableMesh iMesh;
 
+        [Header("Model settings")]
         [SerializeField]
         private Vector3Edit positionEdit;
         [SerializeField]
         private Vector3Edit rotationEdit;
         [SerializeField]
         private Vector3Edit scaleEdit;
+        [SerializeField]
+        private BoolEdit showVerticesToggle;
+        [SerializeField]
+        private BoolEdit showEdgesToggle;
         
+        [Header("Material settings")]
         [SerializeField]
         private ColorEdit colorEdit;
         [SerializeField]
@@ -61,6 +68,9 @@ namespace _Project.UI.Scripts.Control_Panel
             rotationEdit.Value = mesh.Rotation;
             scaleEdit.Value = mesh.Scale;
 
+            this.iMesh = mesh.GetComponent<InteractableMesh>();
+            ShowInteractibleMesh();
+
             colorEdit.Color = mesh.Color;
             ambientEdit.Value = mesh.Ambient;
             diffuseEdit.Value = mesh.Diffuse;
@@ -72,6 +82,19 @@ namespace _Project.UI.Scripts.Control_Panel
             refractiveIndexEdit.Value = mesh.RefractiveIndex;
         }
 
+        private void ShowInteractibleMesh() {
+            if (!iMesh) {
+                showVerticesToggle.gameObject.SetActive(false);
+                showEdgesToggle.gameObject.SetActive(false);
+                return;
+            }
+            showVerticesToggle.gameObject.SetActive(true);
+            showEdgesToggle.gameObject.SetActive(true);
+
+            showVerticesToggle.IsOn = iMesh.ShowVertices;
+            showEdgesToggle.IsOn = iMesh.ShowEdges;
+        }
+
         /// <summary>
         /// Hide the shown mesh properties.
         /// </summary>
@@ -79,6 +102,7 @@ namespace _Project.UI.Scripts.Control_Panel
         {
             gameObject.SetActive(false);
             mesh = null;
+            iMesh = null;
         }
 
         private void ChangeObjectType(RTMesh.ObjectType type)
@@ -94,6 +118,9 @@ namespace _Project.UI.Scripts.Control_Panel
             positionEdit.OnValueChanged.AddListener((value) => { mesh.Position = value; });
             rotationEdit.OnValueChanged.AddListener((value) => { mesh.Rotation = value; });
             scaleEdit.OnValueChanged.AddListener((value) => { mesh.Scale = value; });
+
+            showVerticesToggle.OnValueChanged.AddListener((value) => {iMesh.ShowVertices = value; });
+            showEdgesToggle.OnValueChanged.AddListener((value) => {iMesh.ShowEdges = value; });
 
             colorEdit.OnValueChanged.AddListener((value) => { mesh.Color = value; });
             ambientEdit.OnValueChanged.AddListener((value) => { mesh.Ambient = value; });

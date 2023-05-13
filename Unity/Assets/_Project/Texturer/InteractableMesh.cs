@@ -10,8 +10,25 @@ public class InteractableMesh : MonoBehaviour
     public Edge edgePrefab;
 
     GameObject vertices;
+    private bool _showVertices;
+    public bool ShowVertices {
+        get {return _showVertices;}
+        set {
+            _showVertices = value;
+            vertices.SetActive(_showVertices);
+        }
+    }
+
     GameObject edges;
-    // Start is called before the first frame update
+    private bool _showEdges;
+    public bool ShowEdges {
+        get {return _showEdges;}
+        set {
+            _showEdges = value;
+            edges.SetActive(_showEdges);
+        }
+    }
+
     void Start()
     {
         GenerateVertices();
@@ -20,6 +37,7 @@ public class InteractableMesh : MonoBehaviour
 
     void GenerateVertices() {
         vertices = new GameObject("vertices");
+        ShowVertices = true;
         vertices.transform.parent = transform;
         vertices.transform.localPosition = Vector3.zero;
         vertices.transform.Rotate(transform.localEulerAngles, Space.Self);
@@ -33,6 +51,7 @@ public class InteractableMesh : MonoBehaviour
 
     void GenerateEdges() {
         edges = new GameObject("edges");
+        ShowEdges = false;
         edges.transform.parent = transform;
         edges.transform.localPosition = Vector3.zero;
         edges.transform.Rotate(transform.localEulerAngles, Space.Self);
