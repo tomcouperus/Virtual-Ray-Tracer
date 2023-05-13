@@ -8,8 +8,8 @@ Shader "Custom/EdgeView"
     }
     SubShader
     {
+        Tags{ "Queue" = "Transparent-1" "IgnoreProjector" = "True" }
         Pass {
-            Tags{ "Queue" = "Transparent-1" "IgnoreProjector" = "True" }
             ZWrite Off
             Stencil {
                 Ref 1

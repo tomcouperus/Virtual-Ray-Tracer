@@ -74,6 +74,11 @@ namespace _Project.UI.Scripts
             return instance;
         }
 
+        public ControlPanel getControlPanel()
+        {
+            return controlPanel;
+        }
+
         /// <summary>
         /// Enable a blocker panel that block all input except for the main menu and introduction panel.
         /// </summary>
