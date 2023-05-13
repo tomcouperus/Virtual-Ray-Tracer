@@ -1084,47 +1084,46 @@ MonoBehaviour:
         you can enable "Cheat Mode" in the settings.
       skippable: 0
       points: 0
-  - optionalTasksStart: 10
+  - optionalTasksStart: 6
     tasks:
-    - identifier: 3DObjects_Intro
-      name: Introduction
+    - identifier: 
+      name: Attention to detail
       description: "This is the texturing tutorial. If you\u2019ve worked through
         the ray tracer tutorial, you\u2019ll recall that we only used solid colors
         so far. However, the real world is much more detailed than solid colors.
         That is why we use something called textures on our 3D objects."
       skippable: 1
       points: 0
-    - identifier: 3DObjects_3DObj
+    - identifier: 
       name: 3D Objects
       description: "Before we explain how this detail is added, we will first go
         over how a 3D object is made. As an example, we\u2019ll use the cube you
         can see on screen."
       skippable: 1
       points: 0
-    - identifier: 3DObjects_VertEdgeFace
+    - identifier: 3DObjects_verticesEdgesFaces
       name: Vertices, edges and faces
       description: A 3D object is made of points (vertices), connected by lines (edges),
         to form triangles (faces). If you do this in specific ways, you can make
-        any shape you desire. Our cube has 8 corners and each corner is a vertex,
-        represented by a sphere.* Click on one of these vertices.
+        any shape you desire. Our cube has 8 corners and each corner is a vertex.
+        Select the cube and check the Show Vertices checkmark.
       skippable: 0
       points: 0
-    - identifier: 3DObjects_Vert
+    - identifier: 3DObjects_vertex
       name: Vertex
-      description: "This menu specifies the 3D coordinates of the vertex. You can
-        also see its ID, which makes it easier to say which vertex you\u2019re talking
-        about. Select one of the highlighted edges."
+      description: These spheres represent a vertex. Each of these vertices is connected
+        to at least 2 others by edges. Check the Show Edges checkmark.
       skippable: 0
       points: 0
-    - identifier: 3DObjects_Edge
+    - identifier: 
       name: Edge
-      description: "The edge\u2019s menu shows which 2 vertices it connects. Select
-        one of the triangles that make up the cube."
-      skippable: 0
+      description: 'The lines now visible show the edges between the vertices. Three
+        such edges make up a face. '
+      skippable: 1
       points: 0
-    - identifier: 3DObjects_Face
-      name: Face
-      description: "The face\u2019s menu shows which 3 vertices have created it. "
+    - identifier: 
+      name: 
+      description: 
       skippable: 1
       points: 0
   Badges:

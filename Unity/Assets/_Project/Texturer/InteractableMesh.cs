@@ -37,7 +37,7 @@ public class InteractableMesh : MonoBehaviour
 
     void GenerateVertices() {
         vertices = new GameObject("vertices");
-        ShowVertices = true;
+        ShowVertices = false;
         vertices.transform.parent = transform;
         vertices.transform.localPosition = Vector3.zero;
         vertices.transform.Rotate(transform.localEulerAngles, Space.Self);
