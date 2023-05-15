@@ -1,7 +1,9 @@
 using _Project.Ray_Tracer.Scripts.RT_Scene;
+using _Project.Texturer.Scripts;
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
@@ -12,23 +14,25 @@ namespace _Project.UI.Scripts.Control_Panel
     /// </summary>
     public class TextureProperties : MonoBehaviour
     {
+        private TextureManager textureManager;
         private RTMesh mesh;
-        public enum Mode
-        {
-            Vertex,
-            Edge,
-            Face
-        }
 
         [SerializeField]
         private TMP_Dropdown viewModeDropdown;
+        [SerializeField]
+        private FloatEdit wireframeWidthEdit;
+        [SerializeField]
+        private BoolEdit toggleUVEdit;
+        [SerializeField]
+        private FloatEdit UVScaleEdit;
 
-        private Mode viewMode = Mode.Vertex;
-        public Mode ViewMode { get; set; }
 
 
         void Awake() {
-            viewModeDropdown.onValueChanged.AddListener(mode => {viewMode = (Mode) mode;});
+            viewModeDropdown.onValueChanged.AddListener(mode => {textureManager.VFEViewer.ViewMode = (VFEViewer.Mode) mode;});
+            wireframeWidthEdit.OnValueChanged.AddListener(width => {textureManager.VFEViewer.WireframeWidth = width;});
+            toggleUVEdit.OnValueChanged.AddListener((value) => {textureManager.UVProjection.DisplayUV = value; UVScaleEdit.gameObject.SetActive(value);});
+            UVScaleEdit.OnValueChanged.AddListener(width => {textureManager.UVProjection.UVScale = width;});
         }
         /// <summary>
         /// Hide the shown mesh properties.
@@ -37,6 +41,11 @@ namespace _Project.UI.Scripts.Control_Panel
         {
             gameObject.SetActive(false);
             mesh = null;
+            if (textureManager != null)
+            {
+                textureManager.DeleteEnvironment();
+                textureManager = null;
+            }
         }
 
         public void Show(RTMesh mesh)
@@ -44,8 +53,18 @@ namespace _Project.UI.Scripts.Control_Panel
             gameObject.SetActive(true);
             this.mesh = mesh;
             mesh.transform.hasChanged = false;
+            if (mesh == null)
+                Debug.LogError("Mesh is null");
+            
+            textureManager = TextureManager.Get();
+            if (textureManager == null)
+                Debug.LogError("TextureManager is null");
+            textureManager.InstantiateEnvironment(mesh);
 
-            viewModeDropdown.value = viewModeDropdown.options.FindIndex(option => option.text == viewMode.ToString());
+            viewModeDropdown.value = viewModeDropdown.options.FindIndex(option => option.text == textureManager.VFEViewer.ViewMode.ToString());
+            wireframeWidthEdit.Value = textureManager.VFEViewer.WireframeWidth;
+            toggleUVEdit.IsOn = textureManager.UVProjection.DisplayUV;
+            UVScaleEdit.Value = textureManager.UVProjection.UVScale;
         }
     }
 }

@@ -20,7 +20,7 @@ TODO:
     - Create Objects to represent vertices, edges, and faces
 */
 
-public class VFEViewer2 : MonoBehaviour
+public class VFEViewer2_Deprecated : MonoBehaviour
 {
     public enum Mode
     {

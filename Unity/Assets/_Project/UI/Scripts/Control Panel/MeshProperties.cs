@@ -42,6 +42,8 @@ namespace _Project.UI.Scripts.Control_Panel
 
         [SerializeField]
         private Button texturePropertiesButton;
+        [SerializeField]
+        private TextureProperties textureProperties;
 
         [Serializable]
         public class ExternalChange : UnityEvent { };
@@ -79,6 +81,7 @@ namespace _Project.UI.Scripts.Control_Panel
         {
             gameObject.SetActive(false);
             mesh = null;
+            textureProperties.Hide();
         }
 
         private void ChangeObjectType(RTMesh.ObjectType type)
@@ -105,7 +108,11 @@ namespace _Project.UI.Scripts.Control_Panel
 
             refractiveIndexEdit.OnValueChanged.AddListener((value) => { mesh.RefractiveIndex = value; });
 
-            texturePropertiesButton.onClick.AddListener(() => UIManager.Get().getControlPanel().ShowTextureProperties(mesh));
+            texturePropertiesButton.onClick.AddListener(() => {
+                gameObject.SetActive(false);
+                textureProperties.Show(mesh);
+            });
+            // texturePropertiesButton.onClick.AddListener(() => UIManager.Get().ControlPanel.ShowRayTracerProperties());
         }
 
         private void FixedUpdate()

@@ -37,8 +37,6 @@ namespace _Project.UI.Scripts.Control_Panel
         [SerializeField]
         private MeshProperties meshProperties;
         [SerializeField]
-        private TextureProperties textureProperties;
-        [SerializeField]
         private TextMeshProUGUI emptyProperties;
         [SerializeField]
         private FolderButton rayTracerButton;
@@ -64,7 +62,6 @@ namespace _Project.UI.Scripts.Control_Panel
             cameraProperties.Hide();
             lightProperties.Hide();
             meshProperties.Hide();
-            textureProperties.Hide();
             emptyProperties.gameObject.SetActive(false);
             cameraButton.Conceal();
             objectButton.Conceal();
@@ -83,7 +80,6 @@ namespace _Project.UI.Scripts.Control_Panel
             rayTracerProperties.Hide();
             lightProperties.Hide();
             meshProperties.Hide();
-            textureProperties.Hide();
             emptyProperties.gameObject.SetActive(false);
             objectButton.Conceal();
             rayTracerButton.Conceal();
@@ -102,7 +98,6 @@ namespace _Project.UI.Scripts.Control_Panel
             rayTracerProperties.Hide();
             cameraProperties.Hide();
             meshProperties.Hide();
-            textureProperties.Hide(); 
             emptyProperties.gameObject.SetActive(false);
             rayTracerButton.Conceal();
             cameraButton.Conceal();
@@ -121,7 +116,6 @@ namespace _Project.UI.Scripts.Control_Panel
             rayTracerProperties.Hide();
             cameraProperties.Hide();
             lightProperties.Hide();
-            textureProperties.Hide();
             emptyProperties.gameObject.SetActive(false);
             cameraButton.Conceal();
             rayTracerButton.Conceal();
@@ -136,28 +130,13 @@ namespace _Project.UI.Scripts.Control_Panel
             rayTracerProperties.Hide();
             cameraProperties.Hide();
             lightProperties.Hide();
-            textureProperties.Hide();
+            meshProperties.Hide();
             cameraButton.Conceal();
             rayTracerButton.Conceal();
             
             Show();
             objectButton.Highlight();
             emptyProperties.gameObject.SetActive(true);
-        }
-
-        public void ShowTextureProperties(RTMesh mesh)
-        {
-            rayTracerProperties.Hide();
-            cameraProperties.Hide();
-            lightProperties.Hide();
-            meshProperties.Hide();
-            emptyProperties.gameObject.SetActive(false);
-            cameraButton.Conceal();
-            rayTracerButton.Conceal();
-            
-            Show();
-            objectButton.Highlight();
-            textureProperties.Show(mesh);
         }
 
         /// <summary>
@@ -169,7 +148,6 @@ namespace _Project.UI.Scripts.Control_Panel
             cameraProperties.Hide();
             lightProperties.Hide();
             meshProperties.Hide();
-            textureProperties.Hide();
             emptyProperties.gameObject.SetActive(false);
             gameObject.SetActive(false);
         }
