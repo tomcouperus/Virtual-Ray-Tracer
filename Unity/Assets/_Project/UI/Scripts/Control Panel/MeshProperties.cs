@@ -18,6 +18,7 @@ namespace _Project.UI.Scripts.Control_Panel
     {
         private RTMesh mesh;
         private InteractableMesh iMesh;
+        private TextureSampler texSampler;
 
         [Header("Model settings")]
         [SerializeField]
@@ -32,6 +33,8 @@ namespace _Project.UI.Scripts.Control_Panel
         private BoolEdit showEdgesToggle;
         
         [Header("Material settings")]
+        [SerializeField] 
+        private TextureEdit textureEdit;
         [SerializeField]
         private ColorEdit colorEdit;
         [SerializeField]
@@ -65,6 +68,9 @@ namespace _Project.UI.Scripts.Control_Panel
             rotationEdit.Value = mesh.Rotation;
             scaleEdit.Value = mesh.Scale;
 
+            this.texSampler = mesh.GetComponent<TextureSampler>();
+            ShowTextureEdit();
+
             this.iMesh = mesh.GetComponent<InteractableMesh>();
             ShowInteractibleMesh();
 
@@ -77,6 +83,15 @@ namespace _Project.UI.Scripts.Control_Panel
             typeDropdown.value = typeDropdown.options.FindIndex(option => option.text == mesh.Type.ToString());
             refractiveIndexEdit.gameObject.SetActive(mesh.Type == RTMesh.ObjectType.Transparent);
             refractiveIndexEdit.Value = mesh.RefractiveIndex;
+        }
+
+        private void ShowTextureEdit() {
+            if (!texSampler) {
+                textureEdit.gameObject.SetActive(false);
+                return;
+            }
+            textureEdit.gameObject.SetActive(true);
+            textureEdit.UpdateTexturePreview(texSampler);
         }
 
         private void ShowInteractibleMesh() {

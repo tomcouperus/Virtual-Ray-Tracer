@@ -21,12 +21,11 @@ public class TextureSampler : MonoBehaviour
     private void Awake() {
         Renderer renderer = GetComponent<Renderer>();
         texture = renderer.material.mainTexture as Texture2D;
-        texture.filterMode = _filterMode;
+        if (texture) texture.filterMode = _filterMode;
     }
 
     public Color SampleTexture(Vector2 uv) {
         Renderer renderer = GetComponent<Renderer>();
-        Texture2D texture = renderer.material.mainTexture as Texture2D;
         switch (texture.filterMode) {
             case FilterMode.Point:
                 uv.x *= texture.width;
@@ -38,6 +37,12 @@ public class TextureSampler : MonoBehaviour
                 Debug.LogError("Trilinear filtering not supported");
                 return Color.white;
         }
+    }
+
+    public Sprite CreateTexturePreview() {
+        if (!texture) return null;
+        Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero);
+        return sprite;
     }
 
     #if UNITY_EDITOR
