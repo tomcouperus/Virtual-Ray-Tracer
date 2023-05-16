@@ -21,6 +21,7 @@ public class TextureSampler : MonoBehaviour
     private void Awake() {
         MeshRenderer meshRenderer = GetComponent<MeshRenderer>();
         texture = meshRenderer.material.mainTexture as Texture2D;
+        texture.filterMode = _filterMode;
     }
 
     #if UNITY_EDITOR

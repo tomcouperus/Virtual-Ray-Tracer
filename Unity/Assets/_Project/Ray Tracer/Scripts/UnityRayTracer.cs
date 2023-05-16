@@ -173,7 +173,7 @@ namespace _Project.Ray_Tracer.Scripts
                 InversedNormal = false;
 
                 // Get the material's properties.
-                Color = mesh.Color;
+                Color = GetHitColor(ref hit, ref mesh);
                 Ambient = mesh.Ambient;
                 Diffuse = mesh.Diffuse;
                 Specular = mesh.Specular;
@@ -227,6 +227,26 @@ namespace _Project.Ray_Tracer.Scripts
                 interpolatedNormal = hitTransform.TransformDirection(interpolatedNormal);
 
                 return interpolatedNormal;
+            }
+
+            private static Color GetHitColor(ref RaycastHit hit, ref RTMesh mesh) {
+                Color color = mesh.Color;
+                Renderer renderer = hit.transform.GetComponent<Renderer>();
+                Texture2D texture = renderer.material.mainTexture as Texture2D;
+                Vector2 uv = hit.textureCoord;
+                switch (texture.filterMode) {
+                    case FilterMode.Point:
+                        uv.x *= texture.width;
+                        uv.y *= texture.height;
+                        color *= texture.GetPixel((int) uv.x, (int) uv.y);
+                        break;
+                    case FilterMode.Bilinear:
+                        color *= texture.GetPixelBilinear(uv.x, uv.y);
+                        break;
+                    default:
+                        throw new Exception("Trilinear filtering not supported");
+                }
+                return color;
             }
         }
 
