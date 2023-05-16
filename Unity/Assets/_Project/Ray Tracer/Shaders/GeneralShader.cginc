@@ -11,6 +11,8 @@
 uniform float4 _LightColor0;
 
 // The shader inputs are the properties defined above.
+uniform sampler2D _MainTex;
+uniform float4 _MainTex_ST;
 uniform float4 _Color;
 uniform float _Ambient;
 uniform float _Diffuse;
@@ -23,19 +25,32 @@ struct vertexInput
 {
     float4 vertex : POSITION;
     float3 normal : NORMAL;
+    float2 uv : TEXCOORD0;
+};
+
+struct v2f
+{
+    float4 vertex : SV_POSITION;
+    float2 uv : TEXCOORD0;
 };
 
 // Vertex shader output that is the input of the fragment shader. For acceptable fields see:
 // http://wiki.unity3d.com/index.php?title=Shader_Code.
 
 // The vertex shader.
-float4 vert(vertexInput input) : SV_POSITION
+v2f vert(vertexInput v)
 {
-    return UnityObjectToClipPos(input.vertex);
+    v2f o;
+    o.vertex = UnityObjectToClipPos(v.vertex);
+    o.uv = TRANSFORM_TEX(v.uv, _MainTex);
+    return o;
 }
 
 // The fragment shader.
-float4 frag() : COLOR
+float4 frag(v2f i) : COLOR
 {
-    return float4(_Ambient * _Color.rgb, _Color.a);
+    float4 color = tex2D(_MainTex, i.uv);
+    color.rgb *= _Ambient * _Color.rgb;
+    color.a *= _Color.a;
+    return color;
 }

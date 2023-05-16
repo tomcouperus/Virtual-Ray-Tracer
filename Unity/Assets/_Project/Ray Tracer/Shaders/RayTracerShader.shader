@@ -10,6 +10,7 @@ Shader "Custom/RayTracerShader"
 {
     Properties
     {
+        _MainTex("Texture", 2D) = "white" {}
         _Color("Color", Color) = (1,1,1,1)
         _Ambient("Ambient", Range(0, 1)) = 0.2
         _Diffuse("Diffuse", Range(0,1)) = 1.0

@@ -111,7 +111,6 @@ MonoBehaviour:
   shininessEdit: {fileID: 4230464289872872783}
   typeDropdown: {fileID: 6933101066988821734}
   refractiveIndexEdit: {fileID: 4564871298783847607}
-  texturePropertiesButton: {fileID: 0}
   OnExternalTranslationChange:
     m_PersistentCalls:
       m_Calls: []
