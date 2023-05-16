@@ -231,20 +231,9 @@ namespace _Project.Ray_Tracer.Scripts
 
             private static Color GetHitColor(ref RaycastHit hit, ref RTMesh mesh) {
                 Color color = mesh.Color;
-                Renderer renderer = hit.transform.GetComponent<Renderer>();
-                Texture2D texture = renderer.material.mainTexture as Texture2D;
-                Vector2 uv = hit.textureCoord;
-                switch (texture.filterMode) {
-                    case FilterMode.Point:
-                        uv.x *= texture.width;
-                        uv.y *= texture.height;
-                        color *= texture.GetPixel((int) uv.x, (int) uv.y);
-                        break;
-                    case FilterMode.Bilinear:
-                        color *= texture.GetPixelBilinear(uv.x, uv.y);
-                        break;
-                    default:
-                        throw new Exception("Trilinear filtering not supported");
+                TextureSampler sampler = hit.transform.GetComponent<TextureSampler>();
+                if (sampler) {
+                    color *= sampler.SampleTexture(hit.textureCoord);
                 }
                 return color;
             }

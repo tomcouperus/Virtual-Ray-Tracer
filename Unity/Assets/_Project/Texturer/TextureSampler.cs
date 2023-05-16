@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(MeshRenderer))]
+[RequireComponent(typeof(Renderer))]
 public class TextureSampler : MonoBehaviour
 {
     [SerializeField]
@@ -19,9 +19,25 @@ public class TextureSampler : MonoBehaviour
     }
 
     private void Awake() {
-        MeshRenderer meshRenderer = GetComponent<MeshRenderer>();
-        texture = meshRenderer.material.mainTexture as Texture2D;
+        Renderer renderer = GetComponent<Renderer>();
+        texture = renderer.material.mainTexture as Texture2D;
         texture.filterMode = _filterMode;
+    }
+
+    public Color SampleTexture(Vector2 uv) {
+        Renderer renderer = GetComponent<Renderer>();
+        Texture2D texture = renderer.material.mainTexture as Texture2D;
+        switch (texture.filterMode) {
+            case FilterMode.Point:
+                uv.x *= texture.width;
+                uv.y *= texture.height;
+                return texture.GetPixel((int) uv.x, (int) uv.y);
+            case FilterMode.Bilinear:
+                return texture.GetPixelBilinear(uv.x, uv.y);
+            default:
+                Debug.LogError("Trilinear filtering not supported");
+                return Color.white;
+        }
     }
 
     #if UNITY_EDITOR
