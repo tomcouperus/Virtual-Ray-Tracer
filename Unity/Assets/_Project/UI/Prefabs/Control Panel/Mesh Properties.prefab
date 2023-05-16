@@ -2278,6 +2278,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 3641045733115134028}
     m_Modifications:
     - target: {fileID: -8408966102784059295, guid: c187dcb58b1f9ff82b34253c7b41ce48, type: 3}
+      propertyPath: tooltip
+      value: Highlights the edges of the model.
+      objectReference: {fileID: 0}
+    - target: {fileID: -8408966102784059295, guid: c187dcb58b1f9ff82b34253c7b41ce48, type: 3}
       propertyPath: OnEnabled.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -2426,6 +2430,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3641045733115134028}
     m_Modifications:
+    - target: {fileID: -8408966102784059295, guid: c187dcb58b1f9ff82b34253c7b41ce48, type: 3}
+      propertyPath: tooltip
+      value: Highlights the vertices of the model.
+      objectReference: {fileID: 0}
     - target: {fileID: -8408966102784059295, guid: c187dcb58b1f9ff82b34253c7b41ce48, type: 3}
       propertyPath: OnEnabled.m_PersistentCalls.m_Calls.Array.size
       value: 1
