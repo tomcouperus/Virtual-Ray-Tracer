@@ -47,9 +47,6 @@ namespace _Project.UI.Scripts.Control_Panel
         [SerializeField]
         private FloatEdit refractiveIndexEdit;
 
-        [SerializeField]
-        private Button texturePropertiesButton;
-
         [Serializable]
         public class ExternalChange : UnityEvent { };
         public ExternalChange OnExternalTranslationChange, OnExternalRotationChange, OnExternalScaleChange;
@@ -131,8 +128,6 @@ namespace _Project.UI.Scripts.Control_Panel
             typeDropdown.onValueChanged.AddListener( type => ChangeObjectType( (RTMesh.ObjectType) type));
 
             refractiveIndexEdit.OnValueChanged.AddListener((value) => { mesh.RefractiveIndex = value; });
-
-            texturePropertiesButton.onClick.AddListener(() => UIManager.Get().getControlPanel().ShowTextureProperties(mesh));
         }
 
         private void FixedUpdate()
