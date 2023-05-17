@@ -91,7 +91,7 @@ namespace _Project.UI.Scripts.Control_Panel
                 return;
             }
             textureEdit.gameObject.SetActive(true);
-            textureEdit.UpdateTexturePreview(texSampler);
+            textureEdit.UpdateTexturePreview(texSampler.CreateTexturePreview());
         }
 
         private void ShowInteractibleMesh() {

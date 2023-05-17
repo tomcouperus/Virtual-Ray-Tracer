@@ -28,6 +28,7 @@ namespace _Project.UI.Scripts.Control_Panel
             objectButton.onClick.AddListener(() => function(SignalType.Object));
         }
         
+        [Header("Properties")]
         [SerializeField]
         private RayTracerProperties rayTracerProperties;
         [SerializeField]
@@ -37,13 +38,19 @@ namespace _Project.UI.Scripts.Control_Panel
         [SerializeField]
         private MeshProperties meshProperties;
         [SerializeField]
+        private TextureProperties textureProperties;
+        [SerializeField]
         private TextMeshProUGUI emptyProperties;
+
+        [Header("Buttons")]
         [SerializeField]
         private FolderButton rayTracerButton;
         [SerializeField]
         private FolderButton cameraButton;
         [SerializeField]
         private FolderButton objectButton;
+        [SerializeField]
+        private FolderButton textureButton;
 
         /// <summary>
         /// Show the control panel. By default this will not show any properties, just the panel background.
@@ -62,9 +69,12 @@ namespace _Project.UI.Scripts.Control_Panel
             cameraProperties.Hide();
             lightProperties.Hide();
             meshProperties.Hide();
+            textureProperties.Hide();
             emptyProperties.gameObject.SetActive(false);
+
             cameraButton.Conceal();
             objectButton.Conceal();
+            textureButton.gameObject.SetActive(false);
 
             Show();
             rayTracerButton.Highlight();
@@ -80,9 +90,12 @@ namespace _Project.UI.Scripts.Control_Panel
             rayTracerProperties.Hide();
             lightProperties.Hide();
             meshProperties.Hide();
+            textureProperties.Hide();
             emptyProperties.gameObject.SetActive(false);
+
             objectButton.Conceal();
             rayTracerButton.Conceal();
+            textureButton.gameObject.SetActive(false);
 
             Show();
             cameraButton.Highlight();
@@ -98,9 +111,12 @@ namespace _Project.UI.Scripts.Control_Panel
             rayTracerProperties.Hide();
             cameraProperties.Hide();
             meshProperties.Hide();
+            textureProperties.Hide();
             emptyProperties.gameObject.SetActive(false);
+
             rayTracerButton.Conceal();
             cameraButton.Conceal();
+            textureButton.gameObject.SetActive(false);
             
             Show();
             objectButton.Highlight();
@@ -117,12 +133,34 @@ namespace _Project.UI.Scripts.Control_Panel
             cameraProperties.Hide();
             lightProperties.Hide();
             emptyProperties.gameObject.SetActive(false);
+            
+            textureProperties.Hide();
+            textureProperties.TextureSampler = mesh.GetComponent<TextureSampler>();
+
             cameraButton.Conceal();
             rayTracerButton.Conceal();
+            textureButton.gameObject.SetActive(false);
             
             Show();
             objectButton.Highlight();
             meshProperties.Show(mesh);
+        }
+
+        public void ShowTextureProperties() {
+            rayTracerProperties.Hide();
+            cameraProperties.Hide();
+            lightProperties.Hide();
+            meshProperties.Hide();
+            emptyProperties.gameObject.SetActive(false);
+
+            rayTracerButton.Conceal();
+            cameraButton.Conceal();
+            objectButton.Conceal();
+
+            Show();
+            textureButton.gameObject.SetActive(true);
+            textureButton.Highlight();
+            textureProperties.Show();
         }
 
         public void ShowEmptyProperties()
@@ -130,12 +168,19 @@ namespace _Project.UI.Scripts.Control_Panel
             rayTracerProperties.Hide();
             cameraProperties.Hide();
             lightProperties.Hide();
+            textureProperties.Hide();
+
             cameraButton.Conceal();
             rayTracerButton.Conceal();
+            textureButton.gameObject.SetActive(false);
             
             Show();
             objectButton.Highlight();
             emptyProperties.gameObject.SetActive(true);
+        }
+
+        public bool TexturePropertiesActive {
+            get {return textureProperties.gameObject.activeSelf;}
         }
 
         /// <summary>

@@ -5,8 +5,19 @@ using UnityEngine;
 [RequireComponent(typeof(Renderer))]
 public class TextureSampler : MonoBehaviour
 {
+    public TextureManager textureManager;
+
     [SerializeField]
-    private Texture2D texture;
+    private Texture2D _texture;
+    public Texture2D Texture {
+        get {return _texture;}
+        set {
+            _texture = value;
+            if (_texture) _texture.filterMode = FilterMode;
+            Renderer renderer = GetComponent<Renderer>();
+            renderer.material.mainTexture = _texture;
+        }
+    }
 
     [SerializeField]
     private FilterMode _filterMode;
@@ -14,25 +25,23 @@ public class TextureSampler : MonoBehaviour
         get {return _filterMode;}
         set {
             _filterMode = value;
-            if (texture) texture.filterMode = _filterMode;
+            if (Texture) Texture.filterMode = _filterMode;
         }
     }
 
     private void Awake() {
         Renderer renderer = GetComponent<Renderer>();
-        texture = renderer.material.mainTexture as Texture2D;
-        if (texture) texture.filterMode = _filterMode;
+        Texture = renderer.material.mainTexture as Texture2D;
     }
 
     public Color SampleTexture(Vector2 uv) {
+        if (!Texture) return Color.white;
         Renderer renderer = GetComponent<Renderer>();
-        switch (texture.filterMode) {
+        switch (Texture.filterMode) {
             case FilterMode.Point:
-                uv.x *= texture.width;
-                uv.y *= texture.height;
-                return texture.GetPixel((int) uv.x, (int) uv.y);
+                return Texture.GetPixel((int) (uv.x*Texture.width), (int) (uv.y*Texture.height));
             case FilterMode.Bilinear:
-                return texture.GetPixelBilinear(uv.x, uv.y);
+                return Texture.GetPixelBilinear(uv.x, uv.y);
             default:
                 Debug.LogError("Trilinear filtering not supported");
                 return Color.white;
@@ -40,9 +49,8 @@ public class TextureSampler : MonoBehaviour
     }
 
     public Sprite CreateTexturePreview() {
-        if (!texture) return null;
-        Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero);
-        return sprite;
+        if (!Texture) return null;
+        return TextureManager.CreateTexturePreview(Texture);
     }
 
     #if UNITY_EDITOR

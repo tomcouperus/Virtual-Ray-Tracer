@@ -10,8 +10,7 @@ public class TextureEdit : MonoBehaviour {
     [SerializeField]
     private TMPro.TextMeshProUGUI noTextureLabel;
 
-    public void UpdateTexturePreview(TextureSampler textureSampler) {
-        Sprite preview = textureSampler.CreateTexturePreview();
+    public void UpdateTexturePreview(Sprite preview) {
         if (preview) {
             texturePreview.sprite = preview;
             texturePreview.gameObject.SetActive(true);

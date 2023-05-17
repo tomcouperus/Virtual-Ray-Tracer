@@ -225,7 +225,7 @@ namespace _Project.Ray_Tracer.Scripts
         {
 
             // Do nothing if what we selected is already the selected object.
-            if (selection.Transform == newSelection)
+            if (selection.Transform == newSelection && !ControlPanel.TexturePropertiesActive)
             {
                 selection.Mesh?.OnMeshSelected?.Invoke();
                 selection.Camera?.OnCameraSelected?.Invoke();
