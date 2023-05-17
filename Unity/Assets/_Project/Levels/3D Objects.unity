@@ -140,7 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bf3762c3cad748c48d2ce65ca012c2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vertexPrefab: {fileID: 1304065879001045446, guid: 611d48d1bcefb4dbaa250ad5c9286fe1, type: 3}
+  vertexPrefab: {fileID: 3874388138834715414, guid: 611d48d1bcefb4dbaa250ad5c9286fe1, type: 3}
   edgePrefab: {fileID: 2085330604685055533, guid: 2a0c59d221b454453b91349c119c44db, type: 3}
 --- !u!1001 &102200527
 PrefabInstance:
@@ -511,19 +511,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3379506522100200911, guid: aa7cec59df0025d4896ac99db41e4250, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.4579963
+      value: 0.5225329
       objectReference: {fileID: 0}
     - target: {fileID: 3379506522100200911, guid: aa7cec59df0025d4896ac99db41e4250, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.17048387
+      value: -0.15056181
       objectReference: {fileID: 0}
     - target: {fileID: 3379506522100200911, guid: aa7cec59df0025d4896ac99db41e4250, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.8176434
+      value: 0.806412
       objectReference: {fileID: 0}
     - target: {fileID: 3379506522100200911, guid: aa7cec59df0025d4896ac99db41e4250, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.30435836
+      value: 0.23235828
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa7cec59df0025d4896ac99db41e4250, type: 3}

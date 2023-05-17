@@ -6,7 +6,7 @@ using UnityEngine;
 public class InteractableMesh : MonoBehaviour
 {
 
-    public Vertex vertexPrefab;
+    public GameObject vertexPrefab;
     public Edge edgePrefab;
 
     GameObject vertices;
@@ -44,8 +44,8 @@ public class InteractableMesh : MonoBehaviour
         Mesh mesh = GetComponent<MeshFilter>().mesh;
         HashSet<Vector3> verts = new HashSet<Vector3>(mesh.vertices);
         foreach(Vector3 vertex in verts) {
-            Vertex vert = Instantiate(vertexPrefab, vertices.transform);
-            vert.transform.localPosition = vertex;
+            GameObject vertexObject = Instantiate(vertexPrefab, vertices.transform);
+            vertexObject.transform.localPosition = vertex;
         }
     }
 
