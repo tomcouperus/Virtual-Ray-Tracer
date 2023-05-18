@@ -25,6 +25,7 @@ public class TextureManager : ScriptableObject {
         Texture2D tex = textures[index];
         Texture2D copy = new Texture2D(tex.width, tex.height);
         copy.SetPixels(tex.GetPixels());
+        copy.wrapMode = TextureWrapMode.Clamp;
         copy.Apply();
         return copy;
     }
