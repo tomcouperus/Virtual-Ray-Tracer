@@ -134,10 +134,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ray Manager
       objectReference: {fileID: 0}
-    - target: {fileID: 3364825822907551461, guid: c271906e89fa0f342a70789873c17236, type: 3}
-      propertyPath: showRays
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3364825822907551462, guid: c271906e89fa0f342a70789873c17236, type: 3}
       propertyPath: m_RootOrder
       value: 6
