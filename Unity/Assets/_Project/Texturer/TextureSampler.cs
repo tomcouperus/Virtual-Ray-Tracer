@@ -45,7 +45,6 @@ public class TextureSampler : MonoBehaviour{
 
     public Color SampleTexture(Vector2 uv) {
         if (!Texture) return Color.white;
-        Renderer renderer = GetComponent<Renderer>();
         switch (Texture.filterMode) {
             case FilterMode.Point:
                 return Texture.GetPixel((int) (uv.x*Texture.width), (int) (uv.y*Texture.height));
@@ -64,6 +63,8 @@ public class TextureSampler : MonoBehaviour{
 
     #if UNITY_EDITOR
     private void OnValidate() {
+        Renderer renderer = GetComponent<Renderer>();
+        _texture = renderer.sharedMaterial.mainTexture as Texture2D;
         SamplingMode = _samplingMode;
     }
     #endif
