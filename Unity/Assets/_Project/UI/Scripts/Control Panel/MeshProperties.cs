@@ -2,6 +2,7 @@ using _Project.Ray_Tracer.Scripts;
 using _Project.Ray_Tracer.Scripts.RT_Scene;
 using _Project.UI.Scripts;
 using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -35,6 +36,8 @@ namespace _Project.UI.Scripts.Control_Panel
         [Header("Material settings")]
         [SerializeField] 
         private TextureEdit textureEdit;
+        [SerializeField]
+        private DropdownEdit samplingModeEdit;
         [SerializeField]
         private ColorEdit colorEdit;
         [SerializeField]
@@ -70,6 +73,7 @@ namespace _Project.UI.Scripts.Control_Panel
 
             this.texSampler = mesh.GetComponent<TextureSampler>();
             ShowTextureEdit();
+            ShowSamplingModeEdit();
 
             this.iMesh = mesh.GetComponent<InteractableMesh>();
             ShowInteractibleMesh();
@@ -90,8 +94,19 @@ namespace _Project.UI.Scripts.Control_Panel
                 textureEdit.gameObject.SetActive(false);
                 return;
             }
-            textureEdit.gameObject.SetActive(true);
             textureEdit.UpdateTexturePreview(texSampler.CreateTexturePreview());
+            textureEdit.gameObject.SetActive(true);
+            
+        }
+
+        private void ShowSamplingModeEdit() {
+            if (!texSampler || !texSampler.Texture) {
+                samplingModeEdit.gameObject.SetActive(false);
+                return;
+            }
+            samplingModeEdit.SetOptions(new List<string>(typeof(SamplingMode).GetEnumNames()));
+            samplingModeEdit.Select((int)texSampler.SamplingMode);
+            samplingModeEdit.gameObject.SetActive(true);
         }
 
         private void ShowInteractibleMesh() {
@@ -123,6 +138,10 @@ namespace _Project.UI.Scripts.Control_Panel
             refractiveIndexEdit.gameObject.SetActive(type == RTMesh.ObjectType.Transparent);
             mesh.ChangeObjectType(type);
             Show(mesh);
+        }
+
+        public void UpdateTextureSamplingMode() {
+            texSampler.SamplingMode = (SamplingMode)samplingModeEdit.Value;
         }
         
         private void Awake()

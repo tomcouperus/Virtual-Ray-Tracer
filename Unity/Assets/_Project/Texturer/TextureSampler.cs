@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Renderer))]
-public class TextureSampler : MonoBehaviour
-{
+public class TextureSampler : MonoBehaviour{
     public TextureManager textureManager;
 
     [SerializeField]
@@ -13,19 +12,29 @@ public class TextureSampler : MonoBehaviour
         get {return _texture;}
         set {
             _texture = value;
-            if (_texture) _texture.filterMode = FilterMode;
+            if (_texture) _texture.filterMode = filterMode;
             Renderer renderer = GetComponent<Renderer>();
             renderer.material.mainTexture = _texture;
         }
     }
 
     [SerializeField]
-    private FilterMode _filterMode;
-    public FilterMode FilterMode {
-        get {return _filterMode;}
+    private SamplingMode _samplingMode;
+    public SamplingMode SamplingMode {
+        get {return _samplingMode;}
         set {
-            _filterMode = value;
-            if (Texture) Texture.filterMode = _filterMode;
+            _samplingMode = value;
+            if (Texture) Texture.filterMode = filterMode;
+        }
+    }
+    
+    private FilterMode filterMode {
+        get {
+            return SamplingMode switch {
+                SamplingMode.Point => FilterMode.Point,
+                SamplingMode.Bilinear => FilterMode.Bilinear,
+                _ => FilterMode.Trilinear,
+            };
         }
     }
 
@@ -55,7 +64,9 @@ public class TextureSampler : MonoBehaviour
 
     #if UNITY_EDITOR
     private void OnValidate() {
-        FilterMode = _filterMode;
+        SamplingMode = _samplingMode;
     }
     #endif
 }
+
+public enum SamplingMode : int {Point, Bilinear};

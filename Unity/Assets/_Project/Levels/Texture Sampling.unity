@@ -134,6 +134,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ray Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 3364825822907551461, guid: c271906e89fa0f342a70789873c17236, type: 3}
+      propertyPath: showRays
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3364825822907551462, guid: c271906e89fa0f342a70789873c17236, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -272,7 +276,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textureManager: {fileID: 11400000, guid: 120c481d3398e42379525d0889f3076b, type: 2}
   _texture: {fileID: 0}
-  _filterMode: 0
+  _samplingMode: 1
 --- !u!1001 &502900167
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2214,6 +2218,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7449909581131666508, guid: 5fc8c8504cfcb20419ce26b1a6a38fe5, type: 3}
+      propertyPath: screenWidth
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7449909581131666508, guid: 5fc8c8504cfcb20419ce26b1a6a38fe5, type: 3}
+      propertyPath: screenHeight
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 7449909581131666509, guid: 5fc8c8504cfcb20419ce26b1a6a38fe5, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -2228,7 +2240,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7449909581131666509, guid: 5fc8c8504cfcb20419ce26b1a6a38fe5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5
+      value: -12
       objectReference: {fileID: 0}
     - target: {fileID: 7449909581131666509, guid: 5fc8c8504cfcb20419ce26b1a6a38fe5, type: 3}
       propertyPath: m_LocalRotation.w
