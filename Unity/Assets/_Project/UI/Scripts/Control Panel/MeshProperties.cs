@@ -39,6 +39,8 @@ namespace _Project.UI.Scripts.Control_Panel
         [SerializeField]
         private DropdownEdit samplingModeEdit;
         [SerializeField]
+        private BoolEdit samplingEdit;
+        [SerializeField]
         private ColorEdit colorEdit;
         [SerializeField]
         private FloatEdit ambientEdit;
@@ -73,7 +75,7 @@ namespace _Project.UI.Scripts.Control_Panel
 
             this.texSampler = mesh.GetComponent<TextureSampler>();
             ShowTextureEdit();
-            ShowSamplingModeEdit();
+            ShowSamplingEdits();
 
             this.iMesh = mesh.GetComponent<InteractableMesh>();
             ShowInteractibleMesh();
@@ -99,14 +101,19 @@ namespace _Project.UI.Scripts.Control_Panel
             
         }
 
-        private void ShowSamplingModeEdit() {
+        private void ShowSamplingEdits() {
             if (!texSampler || !texSampler.Texture) {
                 samplingModeEdit.gameObject.SetActive(false);
+                samplingEdit.gameObject.SetActive(false);
                 return;
             }
             samplingModeEdit.SetOptions(new List<string>(typeof(SamplingMode).GetEnumNames()));
             samplingModeEdit.Select((int)texSampler.SamplingMode);
             samplingModeEdit.gameObject.SetActive(true);
+
+            // TODO: better layout? For now we're just showing the sampled color.
+            samplingEdit.gameObject.SetActive(true);
+            samplingEdit.IsOn = texSampler.IsSampling;
         }
 
         private void ShowInteractibleMesh() {

@@ -14,6 +14,9 @@ namespace _Project.UI.Scripts.Control_Panel
     /// </summary>
     public class BoolEdit : MonoBehaviour
     {
+        public GameEvent OnEnableEvent;
+        public GameEvent OnDisableEvent;
+
         [Serializable]
         public class ValueChanged : UnityEvent<bool> { };
         [Serializable]
@@ -100,6 +103,10 @@ namespace _Project.UI.Scripts.Control_Panel
         {
             toggle.isOn = IsOn;
             toggle.onValueChanged.AddListener(delegate { CheckToggleValueChanged(); });
+            toggle.onValueChanged.AddListener(value => {
+                if (value) OnEnableEvent?.Raise(this, true);
+                else OnDisableEvent?.Raise(this, false);
+            });
 
 
             // Update interactability based on serialized value in inspector.

@@ -1126,6 +1126,47 @@ MonoBehaviour:
       description: 
       skippable: 1
       points: 0
+  - optionalTasksStart: 6
+    tasks:
+    - identifier: 
+      name: Introduction
+      description: "So far, we\u2019ve mapped the vertices of our cube to points
+        on a texture image. But how do we get this onto the screen? For the points
+        of our cube, this is quite simple: we simply tell the computer to render
+        this vertex on that pixel. But to get our texture onto the surface is more
+        difficult."
+      skippable: 1
+      points: 0
+    - identifier: 
+      name: Texture and screen pixels
+      description: "For our example, we have applied an 8x8 rainbow texture onto
+        this surface. But the screen you\u2019re reading this on has many more pixels.
+        Yet somehow we manage to get the correct color to each screen pixel. We do
+        so by interpolating between the UVs."
+      skippable: 1
+      points: 0
+    - identifier: 
+      name: Interpolation
+      description: We already know which pixel gets which vertex. But a vertex also
+        has a UV-coordinate, so that same pixel also has the UV belonging to the
+        vertex. For each pixel without an assigned vertex, the UV coordinates get
+        interpolated over its triangle.
+      skippable: 1
+      points: 0
+    - identifier: 
+      name: Interpolation methods
+      description: 'This interpolation can be done in many ways. Each gives more
+        realistic visuals and is more costly than the last. We will explain the two
+        simplest, yet most used ones: nearest-neighbor and bilinear interpolation.'
+      skippable: 1
+      points: 0
+    - identifier: 
+      name: Texture sample
+      description: 'This interpolation can be done in many ways. Each gives more
+        realistic visuals and is more costly than the last. We will explain the two
+        simplest, yet most used ones: nearest-neighbor and bilinear interpolation.'
+      skippable: 1
+      points: 0
   Badges:
   - type: 1
     badgeName: Experimenter

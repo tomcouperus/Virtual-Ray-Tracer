@@ -13,6 +13,7 @@ public class TextureManager : ScriptableObject {
         return sprite;
     }
 
+    // TODO clear up old sprites when they are no longer in use
     public List<Sprite> CreateTexturePreviews() {
         List<Sprite> sprites = new List<Sprite>();
         foreach (Texture2D tex in textures) {

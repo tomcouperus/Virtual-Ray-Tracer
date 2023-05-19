@@ -4,8 +4,14 @@ using UnityEngine;
 
 [RequireComponent(typeof(Renderer))]
 public class TextureSampler : MonoBehaviour{
+
+    [SerializeField]
+    private Camera mainCamera;
+
+    [SerializeField]
     public TextureManager textureManager;
 
+    //TODO destroy textures, because they are apparently not collected by the GC.
     [SerializeField]
     private Texture2D _texture;
     public Texture2D Texture {
@@ -38,9 +44,22 @@ public class TextureSampler : MonoBehaviour{
         }
     }
 
+    public bool IsSampling;
+
+    [Header("Events")]
+    [SerializeField]
+    private GameEvent onTextureSampled;
+    [SerializeField]
+    private GameEvent onEnableSampling;
+    [SerializeField]
+    private GameEvent onDisableSampling;
+
     private void Awake() {
         Renderer renderer = GetComponent<Renderer>();
         Texture = renderer.material.mainTexture as Texture2D;
+
+        if (IsSampling) onEnableSampling.Raise(this, null);
+        else onDisableSampling.Raise(this, null);
     }
 
     public Color SampleTexture(Vector2 uv) {
@@ -59,6 +78,24 @@ public class TextureSampler : MonoBehaviour{
     public Sprite CreateTexturePreview() {
         if (!Texture) return null;
         return TextureManager.CreateTexturePreview(Texture);
+    }
+
+    private void OnMouseOver() {
+        Sample();
+    }
+
+    private void Sample() {
+        if (!IsSampling || !Texture) return;
+        
+        RaycastHit hit;
+        Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+        Physics.Raycast(ray, out hit);
+        Color color = SampleTexture(hit.textureCoord);
+        onTextureSampled.Raise(this, color);
+    }
+
+    public void SetSamplingActive(bool value) {
+        IsSampling = value;
     }
 
     #if UNITY_EDITOR
