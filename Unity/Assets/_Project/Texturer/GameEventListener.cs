@@ -30,6 +30,7 @@ public class GameEventListener : MonoBehaviour {
     }
 
     public void OnEventRaised(Component sender, object data) {
+        // Debug.Log(gameObject.name + " responds to "+gameEvent.name);
         response.Invoke(sender, data);
     }
     

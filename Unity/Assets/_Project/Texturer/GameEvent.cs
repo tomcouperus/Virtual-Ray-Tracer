@@ -6,7 +6,7 @@ using UnityEngine;
 
 [CreateAssetMenu()]
 public class GameEvent : ScriptableObject {
-    public List<GameEventListener> listeners = new List<GameEventListener>();
+    private List<GameEventListener> listeners = new List<GameEventListener>();
 
     public void Raise(Component sender, object data) {
         for (int i = 0; i < listeners.Count; i++) {
@@ -15,10 +15,10 @@ public class GameEvent : ScriptableObject {
     }
 
     public void Register(GameEventListener listener) {
-        listeners.Add(listener);
+        if (!listeners.Contains(listener)) listeners.Add(listener);
     }
 
     public void Deregister(GameEventListener listener) {
-        listeners.Remove(listener);
+        if (listeners.Contains(listener)) listeners.Remove(listener);
     }
 }
