@@ -2,10 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu()]
-public class TextureManager : ScriptableObject {
+public class TextureManager : MonoBehaviour {
     [SerializeField]
     private List<Texture2D> textures;
+
+    [SerializeField]
+    private bool _isSampling;
+    public bool IsSampling {
+        get {return _isSampling;}
+        set {_isSampling = value;}
+    }
+
+    [Header("Events")]
+    [SerializeField]
+    private GameEvent onEnableSampling;
+    [SerializeField]
+    private GameEvent onDisableSampling;
+
+    private void Start() {
+        if (IsSampling) onEnableSampling.Raise(this, null);
+        else onDisableSampling.Raise(this, null);
+    }
 
     public static Sprite CreateTexturePreview(Texture2D texture) {
         Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero);

@@ -117,6 +117,7 @@ MonoBehaviour:
   shininessEdit: {fileID: 4230464289872872783}
   typeDropdown: {fileID: 6933101066988821734}
   refractiveIndexEdit: {fileID: 4564871298783847607}
+  onSamplingModeChanged: {fileID: 11400000, guid: 1711c353fdb054972a19220dbdf79b10, type: 2}
   OnExternalTranslationChange:
     m_PersistentCalls:
       m_Calls: []

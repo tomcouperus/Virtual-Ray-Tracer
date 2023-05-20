@@ -46,17 +46,11 @@ public class TextureSampler : MonoBehaviour{
         }
     }
 
-    public bool IsSampling;
-
     [Header("Events")]
     [SerializeField]
     private GameEvent onSamplingModeChanged;
     [SerializeField]
     private GameEvent onTextureSampled;
-    [SerializeField]
-    private GameEvent onEnableSampling;
-    [SerializeField]
-    private GameEvent onDisableSampling;
 
     [Header("Tutorial events")]
     [SerializeField]
@@ -65,10 +59,6 @@ public class TextureSampler : MonoBehaviour{
     private void Awake() {
         Renderer renderer = GetComponent<Renderer>();
         Texture = renderer.material.mainTexture as Texture2D;
-
-        if (IsSampling) onEnableSampling.Raise(this, null);
-        else onDisableSampling.Raise(this, null);
-        onSamplingModeChanged.Raise(this, Mode);
     }
 
     public Color SampleTexture(Vector2 uv, SamplingMode mode) {
@@ -95,7 +85,7 @@ public class TextureSampler : MonoBehaviour{
     }
 
     private void Sample() {
-        if (!IsSampling || !Texture) return;
+        if (!textureManager.IsSampling || !Texture) return;
         OnMouseOverEvent.Invoke();
         
         RaycastHit hit;
@@ -133,10 +123,6 @@ public class TextureSampler : MonoBehaviour{
         }
 
         onTextureSampled.Raise(this, data);
-    }
-
-    public void SetSamplingActive(bool value) {
-        IsSampling = value;
     }
 
     #if UNITY_EDITOR

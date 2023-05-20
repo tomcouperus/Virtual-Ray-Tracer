@@ -55,6 +55,10 @@ namespace _Project.UI.Scripts.Control_Panel
         [SerializeField]
         private FloatEdit refractiveIndexEdit;
 
+        [Header("Events")]
+        [SerializeField]
+        private GameEvent onSamplingModeChanged;
+
         [Serializable]
         public class ExternalChange : UnityEvent { };
         public ExternalChange OnExternalTranslationChange, OnExternalRotationChange, OnExternalScaleChange;
@@ -109,11 +113,11 @@ namespace _Project.UI.Scripts.Control_Panel
             }
             samplingModeEdit.SetOptions(new List<string>(typeof(SamplingMode).GetEnumNames()));
             samplingModeEdit.Select((int)texSampler.Mode);
+            onSamplingModeChanged.Raise(this, texSampler.Mode);
             samplingModeEdit.gameObject.SetActive(true);
 
-            // TODO: better layout? For now we're just showing the sampled color.
             samplingEdit.gameObject.SetActive(true);
-            samplingEdit.IsOn = texSampler.IsSampling;
+            samplingEdit.IsOn = texSampler.textureManager.IsSampling;
         }
 
         private void ShowInteractibleMesh() {
