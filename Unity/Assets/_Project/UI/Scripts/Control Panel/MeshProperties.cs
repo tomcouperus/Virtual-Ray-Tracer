@@ -108,7 +108,7 @@ namespace _Project.UI.Scripts.Control_Panel
                 return;
             }
             samplingModeEdit.SetOptions(new List<string>(typeof(SamplingMode).GetEnumNames()));
-            samplingModeEdit.Select((int)texSampler.SamplingMode);
+            samplingModeEdit.Select((int)texSampler.Mode);
             samplingModeEdit.gameObject.SetActive(true);
 
             // TODO: better layout? For now we're just showing the sampled color.
@@ -148,7 +148,7 @@ namespace _Project.UI.Scripts.Control_Panel
         }
 
         public void UpdateTextureSamplingMode() {
-            texSampler.SamplingMode = (SamplingMode)samplingModeEdit.Value;
+            texSampler.Mode = (SamplingMode)samplingModeEdit.Value;
         }
         
         private void Awake()

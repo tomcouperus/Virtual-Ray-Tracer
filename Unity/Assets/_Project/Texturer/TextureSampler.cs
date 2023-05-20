@@ -25,18 +25,19 @@ public class TextureSampler : MonoBehaviour{
     }
 
     [SerializeField]
-    private SamplingMode _samplingMode;
-    public SamplingMode SamplingMode {
-        get {return _samplingMode;}
+    private SamplingMode _mode;
+    public SamplingMode Mode {
+        get {return _mode;}
         set {
-            _samplingMode = value;
+            _mode = value;
+            onSamplingModeChanged.Raise(this, _mode);
             if (Texture) Texture.filterMode = filterMode;
         }
     }
     
     private FilterMode filterMode {
         get {
-            return SamplingMode switch {
+            return Mode switch {
                 SamplingMode.Point => FilterMode.Point,
                 SamplingMode.Bilinear => FilterMode.Bilinear,
                 _ => FilterMode.Trilinear,
@@ -47,6 +48,8 @@ public class TextureSampler : MonoBehaviour{
     public bool IsSampling;
 
     [Header("Events")]
+    [SerializeField]
+    private GameEvent onSamplingModeChanged;
     [SerializeField]
     private GameEvent onTextureSampled;
     [SerializeField]
@@ -60,19 +63,21 @@ public class TextureSampler : MonoBehaviour{
 
         if (IsSampling) onEnableSampling.Raise(this, null);
         else onDisableSampling.Raise(this, null);
+        onSamplingModeChanged.Raise(this, Mode);
     }
 
-    public Color SampleTexture(Vector2 uv) {
+    public Color SampleTexture(Vector2 uv, SamplingMode mode) {
         if (!Texture) return Color.white;
-        switch (Texture.filterMode) {
-            case FilterMode.Point:
-                return Texture.GetPixel((int) (uv.x*Texture.width), (int) (uv.y*Texture.height));
-            case FilterMode.Bilinear:
-                return Texture.GetPixelBilinear(uv.x, uv.y);
-            default:
-                Debug.LogError("Trilinear filtering not supported");
-                return Color.white;
+        Color color = Color.black;
+        switch (mode) {
+            case SamplingMode.Point:
+                color = Texture.GetPixel((int) (uv.x*Texture.width), (int) (uv.y*Texture.height));
+                break;
+            case SamplingMode.Bilinear:
+                color = Texture.GetPixelBilinear(uv.x, uv.y);
+                break;
         }
+        return color;
     }
 
     public Sprite CreateTexturePreview() {
@@ -90,8 +95,38 @@ public class TextureSampler : MonoBehaviour{
         RaycastHit hit;
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
         Physics.Raycast(ray, out hit);
-        Color color = SampleTexture(hit.textureCoord);
-        onTextureSampled.Raise(this, color);
+        Vector2 uv = hit.textureCoord;
+        Color color = SampleTexture(uv, Mode);
+
+        SampleData data = new SampleData(color);
+        if (Mode == SamplingMode.Bilinear) {
+            // Debug.Log(uv);;
+            // Grab the pixels that are used in the bilinear sampling
+            int x = Mathf.RoundToInt(uv.x * Texture.width);
+            int y = Mathf.RoundToInt(uv.y * Texture.height);
+
+            int xNeighbor = ((x < uv.x && x != 0) || x == Texture.width) ? x-1 : x+1;
+            int yNeighbor = ((y < uv.y && y != 0) || y == Texture.height) ? y-1 : y+1;
+
+            // Get the colors in order of:
+            // a, b
+            // c, d
+            Vector2 a = new Vector2(Mathf.Min(x, xNeighbor), Mathf.Min(y, yNeighbor));
+            Vector2 b = new Vector2(Mathf.Max(x, xNeighbor), Mathf.Min(y, yNeighbor));
+            Vector2 c = new Vector2(Mathf.Min(x, xNeighbor), Mathf.Max(y, yNeighbor));
+            Vector2 d = new Vector2(Mathf.Max(x, xNeighbor), Mathf.Max(y, yNeighbor));
+
+            Vector2 textureSize = new Vector2(Texture.width, Texture.height);
+            Color[,] sampledColors = new Color[2,2];
+            sampledColors[0,0] = SampleTexture(a / textureSize, SamplingMode.Point);
+            sampledColors[1,0] = SampleTexture(b / textureSize, SamplingMode.Point);
+            sampledColors[0,1] = SampleTexture(c / textureSize, SamplingMode.Point);
+            sampledColors[1,1] = SampleTexture(d / textureSize, SamplingMode.Point);
+
+            data.sampledColors = sampledColors;
+        }
+
+        onTextureSampled.Raise(this, data);
     }
 
     public void SetSamplingActive(bool value) {
@@ -102,9 +137,19 @@ public class TextureSampler : MonoBehaviour{
     private void OnValidate() {
         Renderer renderer = GetComponent<Renderer>();
         _texture = renderer.sharedMaterial.mainTexture as Texture2D;
-        SamplingMode = _samplingMode;
+        Mode = _mode;
     }
     #endif
 }
 
 public enum SamplingMode : int {Point, Bilinear};
+
+public struct SampleData {
+    public Color color;
+    public Color[,] sampledColors;
+
+    public SampleData(Color color) {
+        this.color = color;
+        this.sampledColors = null;
+    }
+}

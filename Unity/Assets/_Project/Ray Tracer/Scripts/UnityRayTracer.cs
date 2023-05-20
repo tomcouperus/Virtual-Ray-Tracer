@@ -233,7 +233,7 @@ namespace _Project.Ray_Tracer.Scripts
                 Color color = mesh.Color;
                 TextureSampler sampler = hit.transform.GetComponent<TextureSampler>();
                 if (sampler) {
-                    color *= sampler.SampleTexture(hit.textureCoord);
+                    color *= sampler.SampleTexture(hit.textureCoord, sampler.Mode);
                 }
                 return color;
             }
