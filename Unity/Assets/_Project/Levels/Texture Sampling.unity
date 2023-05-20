@@ -353,11 +353,27 @@ MonoBehaviour:
   mainCamera: {fileID: 801592199}
   textureManager: {fileID: 11400000, guid: 120c481d3398e42379525d0889f3076b, type: 2}
   _texture: {fileID: 2800000, guid: a60629088a84e4476b2989d5423752e9, type: 3}
-  _samplingMode: 1
+  _mode: 0
   IsSampling: 0
+  onSamplingModeChanged: {fileID: 11400000, guid: 1711c353fdb054972a19220dbdf79b10, type: 2}
   onTextureSampled: {fileID: 11400000, guid: 9b41b2d53deab4965afb3e4baf9d103f, type: 2}
   onEnableSampling: {fileID: 11400000, guid: 8b4594846f06149d0a96a28b7511d733, type: 2}
   onDisableSampling: {fileID: 11400000, guid: 4b99be78896e548379231050048e9204, type: 2}
+  OnMouseOverEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8496189227971302856, guid: 36c3d85e447cd4f4f81bb48bc8a9229e, type: 3}
+        m_TargetAssemblyTypeName: _Project.UI.Scripts.Tutorial.TutorialManager, Assembly-CSharp
+        m_MethodName: CompleteTask
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: TextureSampling_TextureSample
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &352478949
 MonoBehaviour:
   m_ObjectHideFlags: 0

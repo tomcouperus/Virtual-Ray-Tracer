@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(Renderer))]
 public class TextureSampler : MonoBehaviour{
@@ -57,6 +58,10 @@ public class TextureSampler : MonoBehaviour{
     [SerializeField]
     private GameEvent onDisableSampling;
 
+    [Header("Tutorial events")]
+    [SerializeField]
+    private UnityEvent OnMouseOverEvent;
+
     private void Awake() {
         Renderer renderer = GetComponent<Renderer>();
         Texture = renderer.material.mainTexture as Texture2D;
@@ -91,6 +96,7 @@ public class TextureSampler : MonoBehaviour{
 
     private void Sample() {
         if (!IsSampling || !Texture) return;
+        OnMouseOverEvent.Invoke();
         
         RaycastHit hit;
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
