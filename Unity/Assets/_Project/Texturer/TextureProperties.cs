@@ -26,6 +26,7 @@ public class TextureProperties : MonoBehaviour
     }
 
     private void Awake() {
+        if (!textureManager) throw new System.NullReferenceException("Texture Properties needs a Texture Manager");
         List<Sprite> texPreviewList = textureManager.CreateTexturePreviews();
         for (int i = 0; i < texPreviewList.Count; i++) {
             Sprite texPreview = texPreviewList[i];
@@ -33,8 +34,8 @@ public class TextureProperties : MonoBehaviour
             textureSelect.SetPreview(texPreview);
             textureSelect.SetName(texPreview.name);
 
-            Texture2D texture = textureManager.SelectTexture(i);
-            textureSelect.AddOnClickListener(() => {TextureSampler.Texture = texture;});
+            int texIndex = i;
+            textureSelect.AddOnClickListener(() => {TextureSampler.Texture = textureManager.SelectTexture(texIndex);});
         }
     }
 

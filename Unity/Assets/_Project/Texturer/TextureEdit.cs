@@ -12,6 +12,9 @@ public class TextureEdit : MonoBehaviour {
 
     public void UpdateTexturePreview(Sprite preview) {
         if (preview) {
+            if (texturePreview.sprite != null) {
+                Object.Destroy(texturePreview.sprite);
+            }
             texturePreview.sprite = preview;
             texturePreview.gameObject.SetActive(true);
             noTextureLabel.gameObject.SetActive(false);

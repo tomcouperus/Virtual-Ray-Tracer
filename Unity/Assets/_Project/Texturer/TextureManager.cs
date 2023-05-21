@@ -6,6 +6,10 @@ public class TextureManager : MonoBehaviour {
     [SerializeField]
     private List<Texture2D> textures;
 
+    public int TextureCount {
+        get {return textures.Count;}
+    }
+
     [SerializeField]
     private bool _isSampling;
     public bool IsSampling {
@@ -30,7 +34,6 @@ public class TextureManager : MonoBehaviour {
         return sprite;
     }
 
-    // TODO clear up old sprites when they are no longer in use
     public List<Sprite> CreateTexturePreviews() {
         List<Sprite> sprites = new List<Sprite>();
         foreach (Texture2D tex in textures) {
@@ -40,7 +43,9 @@ public class TextureManager : MonoBehaviour {
     }
 
     public Texture2D SelectTexture(int index) {
+        Debug.Log(index);
         Texture2D tex = textures[index];
+        Debug.Log(tex.name);
         Texture2D copy = new Texture2D(tex.width, tex.height);
         copy.name = tex.name + "(copy)";
         copy.SetPixels(tex.GetPixels());

@@ -276,7 +276,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 801592199}
   textureManager: {fileID: 1239964289}
-  _texture: {fileID: 2800000, guid: a60629088a84e4476b2989d5423752e9, type: 3}
+  InitialTextureIndex: 0
+  _texture: {fileID: 0}
   _mode: 0
   onSamplingModeChanged: {fileID: 11400000, guid: 1711c353fdb054972a19220dbdf79b10, type: 2}
   onTextureSampled: {fileID: 11400000, guid: 9b41b2d53deab4965afb3e4baf9d103f, type: 2}
@@ -495,116 +496,17 @@ AudioSource:
   m_CorrespondingSourceObject: {fileID: 1674307944987595451, guid: 60ed96064c5523b46b7a7bd67e36e6d7, type: 3}
   m_PrefabInstance: {fileID: 1483919276}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1239964288
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1239964290}
-  - component: {fileID: 1239964289}
-  - component: {fileID: 1239964292}
-  - component: {fileID: 1239964291}
-  m_Layer: 0
-  m_Name: TextureManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1239964289
+--- !u!114 &1239964289 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 3710568225778045256, guid: 99e0f1f351068401b9096064b7435fdd, type: 3}
+  m_PrefabInstance: {fileID: 3710568224861080521}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1239964288}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f16dee96403f34de59144e629e9eecfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textures:
-  - {fileID: 2800000, guid: a60629088a84e4476b2989d5423752e9, type: 3}
-  - {fileID: 2800000, guid: ae08a1afd315d4d3396e71cdab8e08c5, type: 3}
-  _isSampling: 0
-  onEnableSampling: {fileID: 11400000, guid: 8b4594846f06149d0a96a28b7511d733, type: 2}
-  onDisableSampling: {fileID: 11400000, guid: 4b99be78896e548379231050048e9204, type: 2}
---- !u!4 &1239964290
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1239964288}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1689, y: 133, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 10
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1239964291
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1239964288}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b4c111791dd8451e86be66c2cf81424, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DeregisterOnDestroy: 0
-  gameEvent: {fileID: 11400000, guid: 4b99be78896e548379231050048e9204, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1239964289}
-        m_TargetAssemblyTypeName: TextureManager, Assembly-CSharp
-        m_MethodName: set_IsSampling
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &1239964292
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1239964288}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b4c111791dd8451e86be66c2cf81424, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DeregisterOnDestroy: 0
-  gameEvent: {fileID: 11400000, guid: 8b4594846f06149d0a96a28b7511d733, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1239964289}
-        m_TargetAssemblyTypeName: TextureManager, Assembly-CSharp
-        m_MethodName: set_IsSampling
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
 --- !u!1001 &1401387784
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -960,7 +862,7 @@ PrefabInstance:
     - target: {fileID: 2561906846987527469, guid: 60ed96064c5523b46b7a7bd67e36e6d7, type: 3}
       propertyPath: textureManager
       value: 
-      objectReference: {fileID: 11400000, guid: 120c481d3398e42379525d0889f3076b, type: 2}
+      objectReference: {fileID: 1239964289}
     - target: {fileID: 2680403823761778606, guid: 60ed96064c5523b46b7a7bd67e36e6d7, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2528,7 +2430,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: a60629088a84e4476b2989d5423752e9, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -2686,3 +2588,60 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e0d717d1ddc10425d94a6cd9fbc5e9f1, type: 3}
+--- !u!1001 &3710568224861080521
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3710568225778045257, guid: 99e0f1f351068401b9096064b7435fdd, type: 3}
+      propertyPath: m_Name
+      value: TextureManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 3710568225778045259, guid: 99e0f1f351068401b9096064b7435fdd, type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3710568225778045259, guid: 99e0f1f351068401b9096064b7435fdd, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1689
+      objectReference: {fileID: 0}
+    - target: {fileID: 3710568225778045259, guid: 99e0f1f351068401b9096064b7435fdd, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 133
+      objectReference: {fileID: 0}
+    - target: {fileID: 3710568225778045259, guid: 99e0f1f351068401b9096064b7435fdd, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3710568225778045259, guid: 99e0f1f351068401b9096064b7435fdd, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3710568225778045259, guid: 99e0f1f351068401b9096064b7435fdd, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3710568225778045259, guid: 99e0f1f351068401b9096064b7435fdd, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3710568225778045259, guid: 99e0f1f351068401b9096064b7435fdd, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3710568225778045259, guid: 99e0f1f351068401b9096064b7435fdd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3710568225778045259, guid: 99e0f1f351068401b9096064b7435fdd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3710568225778045259, guid: 99e0f1f351068401b9096064b7435fdd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 99e0f1f351068401b9096064b7435fdd, type: 3}

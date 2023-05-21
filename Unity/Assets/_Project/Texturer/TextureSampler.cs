@@ -12,12 +12,16 @@ public class TextureSampler : MonoBehaviour{
     [SerializeField]
     public TextureManager textureManager;
 
-    //TODO destroy textures, because they are apparently not collected by the GC.
     [SerializeField]
+    [Tooltip("If set to an index out of bounds for the textures in textureManager, no texture is initialised.")]
+    [Min(-1)]
+    private int InitialTextureIndex;
+
     private Texture2D _texture;
     public Texture2D Texture {
         get {return _texture;}
         set {
+            if (_texture) Object.Destroy(_texture);
             _texture = value;
             if (_texture) _texture.filterMode = filterMode;
             Renderer renderer = GetComponent<Renderer>();
@@ -57,8 +61,8 @@ public class TextureSampler : MonoBehaviour{
     private UnityEvent OnMouseOverEvent;
 
     private void Awake() {
-        Renderer renderer = GetComponent<Renderer>();
-        Texture = renderer.material.mainTexture as Texture2D;
+        if (InitialTextureIndex < 0 || InitialTextureIndex >= textureManager.TextureCount) return;
+        Texture = textureManager.SelectTexture(InitialTextureIndex);
     }
 
     public Color SampleTexture(Vector2 uv, SamplingMode mode) {
@@ -124,14 +128,6 @@ public class TextureSampler : MonoBehaviour{
 
         onTextureSampled.Raise(this, data);
     }
-
-    #if UNITY_EDITOR
-    private void OnValidate() {
-        Renderer renderer = GetComponent<Renderer>();
-        _texture = renderer.sharedMaterial.mainTexture as Texture2D;
-        Mode = _mode;
-    }
-    #endif
 }
 
 public enum SamplingMode : int {Point, Bilinear};
