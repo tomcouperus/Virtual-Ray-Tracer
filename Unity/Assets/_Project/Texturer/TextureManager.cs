@@ -43,9 +43,7 @@ public class TextureManager : MonoBehaviour {
     }
 
     public Texture2D SelectTexture(int index) {
-        Debug.Log(index);
         Texture2D tex = textures[index];
-        Debug.Log(tex.name);
         Texture2D copy = new Texture2D(tex.width, tex.height);
         copy.name = tex.name + "(copy)";
         copy.SetPixels(tex.GetPixels());

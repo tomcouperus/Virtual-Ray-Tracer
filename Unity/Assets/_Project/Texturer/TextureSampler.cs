@@ -100,7 +100,6 @@ public class TextureSampler : MonoBehaviour{
 
         SampleData data = new SampleData(color);
         if (Mode == SamplingMode.Bilinear) {
-            // Debug.Log(uv);;
             // Grab the pixels that are used in the bilinear sampling
             int x = Mathf.RoundToInt(uv.x * Texture.width);
             int y = Mathf.RoundToInt(uv.y * Texture.height);
