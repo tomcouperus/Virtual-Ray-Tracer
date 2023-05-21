@@ -277,7 +277,6 @@ MonoBehaviour:
   mainCamera: {fileID: 801592199}
   textureManager: {fileID: 1239964289}
   InitialTextureIndex: 0
-  _texture: {fileID: 0}
   _mode: 0
   onSamplingModeChanged: {fileID: 11400000, guid: 1711c353fdb054972a19220dbdf79b10, type: 2}
   onTextureSampled: {fileID: 11400000, guid: 9b41b2d53deab4965afb3e4baf9d103f, type: 2}
