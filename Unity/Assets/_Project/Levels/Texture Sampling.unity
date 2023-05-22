@@ -829,10 +829,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2468103160594124575, guid: 60ed96064c5523b46b7a7bd67e36e6d7, type: 3}
-      propertyPath: onDisableSampling
-      value: 
-      objectReference: {fileID: 11400000, guid: 4b99be78896e548379231050048e9204, type: 2}
+    - target: {fileID: 2468103160594124561, guid: 60ed96064c5523b46b7a7bd67e36e6d7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2493761859824495126, guid: 60ed96064c5523b46b7a7bd67e36e6d7, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1

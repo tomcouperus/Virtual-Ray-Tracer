@@ -1068,7 +1068,7 @@ MonoBehaviour:
   sampledColorImage01: {fileID: 2686682705010447424}
   sampledColorImage11: {fileID: 2686682706993390090}
   bilinearSampleImage: {fileID: 2686682706097803257}
-  onDisableSampling: {fileID: 0}
+  onDisableSampling: {fileID: 11400000, guid: 4b99be78896e548379231050048e9204, type: 2}
 --- !u!114 &6853673300687259133
 MonoBehaviour:
   m_ObjectHideFlags: 0
