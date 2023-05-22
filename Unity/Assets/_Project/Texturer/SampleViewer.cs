@@ -26,6 +26,11 @@ public class SampleViewer : MonoBehaviour {
     private GameEvent onDisableSampling;
 
     private void Awake() {
+        if (!onDisableSampling) {
+            Debug.Log(gameObject.name+" has no 'onDisableSampling' event. "+gameObject.name+" will be disabled.");
+            gameObject.SetActive(false);
+        }
+
         closeButton.onClick.AddListener(() => onDisableSampling.Raise(closeButton, null));
     }
 
