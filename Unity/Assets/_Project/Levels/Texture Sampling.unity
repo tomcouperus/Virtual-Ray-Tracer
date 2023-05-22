@@ -2113,6 +2113,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -35
       objectReference: {fileID: 0}
+    - target: {fileID: 6980112441749258711, guid: 60ed96064c5523b46b7a7bd67e36e6d7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7210395969010972243, guid: 60ed96064c5523b46b7a7bd67e36e6d7, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -2492,6 +2496,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3710568225778045256, guid: 99e0f1f351068401b9096064b7435fdd, type: 3}
+      propertyPath: proceduralTextures.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3710568225778045256, guid: 99e0f1f351068401b9096064b7435fdd, type: 3}
+      propertyPath: proceduralTextures.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 1b157eee983d04904b280fa3454b9160, type: 2}
     - target: {fileID: 3710568225778045257, guid: 99e0f1f351068401b9096064b7435fdd, type: 3}
       propertyPath: m_Name
       value: TextureManager

@@ -11,6 +11,13 @@ public class TextureManager : MonoBehaviour {
     }
 
     [SerializeField]
+    private List<ProceduralTexture> proceduralTextures;
+
+    public int ProceduralTextureCount {
+        get {return proceduralTextures.Count;}
+    }
+
+    [SerializeField]
     private bool _isSampling;
     public bool IsSampling {
         get {return _isSampling;}
@@ -42,6 +49,14 @@ public class TextureManager : MonoBehaviour {
         return sprites;
     }
 
+    public List<Sprite> CreateProceduralTexturePreviews() {
+        List<Sprite> sprites = new List<Sprite>();
+        foreach (ProceduralTexture prodTex in proceduralTextures) {
+            sprites.Add(CreateTexturePreview(prodTex.CreateTexture()));
+        }
+        return sprites;
+    }
+
     public Texture2D SelectTexture(int index) {
         Texture2D tex = textures[index];
         Texture2D copy = new Texture2D(tex.width, tex.height);
@@ -50,5 +65,10 @@ public class TextureManager : MonoBehaviour {
         copy.wrapMode = TextureWrapMode.Clamp;
         copy.Apply();
         return copy;
+    }
+
+    public Texture2D SelectProceduralTexture(int index) {
+        ProceduralTexture tex = proceduralTextures[index];
+        return tex.CreateTexture();
     }
 }

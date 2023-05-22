@@ -13,7 +13,7 @@ public class TextureSampler : MonoBehaviour{
     public TextureManager textureManager;
 
     [SerializeField]
-    [Tooltip("If set to an index out of bounds for the textures in textureManager, no texture is initialised.")]
+    [Tooltip("If set to -1, no texture is initialised.")]
     [Min(-1)]
     private int InitialTextureIndex;
 
@@ -107,6 +107,7 @@ public class TextureSampler : MonoBehaviour{
             int xNeighbor = ((x < uv.x && x != 0) || x == Texture.width) ? x-1 : x+1;
             int yNeighbor = ((y < uv.y && y != 0) || y == Texture.height) ? y-1 : y+1;
 
+            //TODO something is off with the logic here. They show the right texels, just upside down, it seems.
             // Get the colors in order of:
             // a, b
             // c, d
@@ -127,6 +128,12 @@ public class TextureSampler : MonoBehaviour{
 
         onTextureSampled.Raise(this, data);
     }
+
+    #if UNITY_EDITOR
+    private void OnValidate() {
+        if (InitialTextureIndex >= textureManager.TextureCount) InitialTextureIndex = textureManager.TextureCount-1;
+    }
+    #endif
 }
 
 public enum SamplingMode : int {Point, Bilinear};
