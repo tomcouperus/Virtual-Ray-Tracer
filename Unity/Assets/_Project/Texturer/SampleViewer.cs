@@ -19,6 +19,8 @@ public class SampleViewer : MonoBehaviour {
     [SerializeField]
     private Image sampledColorImage11;
     [SerializeField]
+    private Image arrow;
+    [SerializeField]
     private Image bilinearSampleImage;
 
     [Header("Events")]
@@ -38,6 +40,7 @@ public class SampleViewer : MonoBehaviour {
         sampledColorImage10.gameObject.SetActive(!value);
         sampledColorImage01.gameObject.SetActive(!value);
         sampledColorImage11.gameObject.SetActive(!value);
+        arrow.gameObject.SetActive(!value);
         bilinearSampleImage.gameObject.SetActive(!value);
     }
 

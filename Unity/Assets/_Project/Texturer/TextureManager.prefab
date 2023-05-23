@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3710568225778045257}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1689, y: 133, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -46,11 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f16dee96403f34de59144e629e9eecfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textures:
-  - {fileID: 2800000, guid: a60629088a84e4476b2989d5423752e9, type: 3}
-  - {fileID: 2800000, guid: ae08a1afd315d4d3396e71cdab8e08c5, type: 3}
-  proceduralTextures:
-  - {fileID: 11400000, guid: 1b157eee983d04904b280fa3454b9160, type: 2}
+  textures: []
+  proceduralTextures: []
   _isSampling: 0
   onEnableSampling: {fileID: 11400000, guid: 8b4594846f06149d0a96a28b7511d733, type: 2}
   onDisableSampling: {fileID: 11400000, guid: 4b99be78896e548379231050048e9204, type: 2}
