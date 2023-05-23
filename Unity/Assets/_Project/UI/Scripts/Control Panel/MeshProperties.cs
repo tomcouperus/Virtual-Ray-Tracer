@@ -100,7 +100,7 @@ namespace _Project.UI.Scripts.Control_Panel
                 textureEdit.gameObject.SetActive(false);
                 return;
             }
-            textureEdit.UpdateTexturePreview(texSampler.CreateTexturePreview());
+            textureEdit.SetCurrentTextureSampler(texSampler);
             textureEdit.gameObject.SetActive(true);
             
         }

@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: Procedural Brick
   m_EditorClassIdentifier: 
   Name: Bricks
+  _proceduralTextureEditPrefab: {fileID: 5303340727583192834, guid: 69377169bb81940c189a1942aaca3c77, type: 3}
   BrickWidth: 19
   BrickHeight: 9
-  BricksX: 10
-  BricksY: 1
+  BricksX: 4
+  BricksY: 10
+  BrickOffset: 0.5
   MortarThickness: 1

@@ -6,19 +6,27 @@ using UnityEngine;
 
 [CreateAssetMenu()]
 public class GameEvent : ScriptableObject {
+    [SerializeField]
     private List<GameEventListener> listeners = new List<GameEventListener>();
 
     public void Raise(Component sender, object data) {
+        // Debug.Log("Raise: "+name); // Left this here for easy debugging of events
         for (int i = 0; i < listeners.Count; i++) {
             listeners[i].OnEventRaised(sender, data);
         }
     }
 
     public void Register(GameEventListener listener) {
-        if (!listeners.Contains(listener)) listeners.Add(listener);
+        if (!listeners.Contains(listener)) {
+            // Debug.Log("Register: "+listener.gameObject.name+" to "+name); // Left this here for easy debugging of events
+            listeners.Add(listener);
+        }
     }
 
     public void Deregister(GameEventListener listener) {
-        if (listeners.Contains(listener)) listeners.Remove(listener);
+        if (listeners.Contains(listener)) {
+            // Debug.Log("Deregister: "+listener.gameObject.name+" to "+name); //Left this here for easy debugging of events
+            listeners.Remove(listener);
+        }
     }
 }

@@ -71,4 +71,8 @@ public class TextureManager : MonoBehaviour {
         ProceduralTexture tex = proceduralTextures[index];
         return tex.CreateTexture();
     }
+
+    public ProceduralTexture GetProceduralTexture(int index) {
+        return proceduralTextures[index];
+    }
 }

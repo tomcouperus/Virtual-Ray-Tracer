@@ -5,12 +5,21 @@ using UnityEngine.UI;
 
 public class TextureEdit : MonoBehaviour {
     
+    [Header("UI")]
     [SerializeField]
     private Image texturePreview;
     [SerializeField]
     private TMPro.TextMeshProUGUI noTextureLabel;
+    [SerializeField]
+    private Button changeTextureButton;
 
-    public void UpdateTexturePreview(Sprite preview) {
+    private TextureSampler currentSampler;
+
+    [Header("Events")]
+    [SerializeField]
+    private GameEvent onShowTextureProperties;
+
+    private void UpdateTexturePreview(Sprite preview) {
         if (preview) {
             if (texturePreview.sprite != null) {
                 Object.Destroy(texturePreview.sprite);
@@ -22,6 +31,15 @@ public class TextureEdit : MonoBehaviour {
             texturePreview.gameObject.SetActive(false);
             noTextureLabel.gameObject.SetActive(true);
         }
+    }
+
+    public void SetCurrentTextureSampler(TextureSampler textureSampler) {
+        currentSampler = textureSampler;
+        UpdateTexturePreview(currentSampler.CreateTexturePreview());
+    }
+
+    private void Awake() {
+        changeTextureButton.onClick.AddListener(() => {onShowTextureProperties.Raise(this, currentSampler);});
     }
 
 }

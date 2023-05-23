@@ -135,7 +135,6 @@ namespace _Project.UI.Scripts.Control_Panel
             emptyProperties.gameObject.SetActive(false);
             
             textureProperties.Hide();
-            textureProperties.TextureSampler = mesh.GetComponent<TextureSampler>();
 
             cameraButton.Conceal();
             rayTracerButton.Conceal();
@@ -144,23 +143,6 @@ namespace _Project.UI.Scripts.Control_Panel
             Show();
             objectButton.Highlight();
             meshProperties.Show(mesh);
-        }
-
-        public void ShowTextureProperties() {
-            rayTracerProperties.Hide();
-            cameraProperties.Hide();
-            lightProperties.Hide();
-            meshProperties.Hide();
-            emptyProperties.gameObject.SetActive(false);
-
-            rayTracerButton.Conceal();
-            cameraButton.Conceal();
-            objectButton.Conceal();
-
-            Show();
-            textureButton.gameObject.SetActive(true);
-            textureButton.Highlight();
-            textureProperties.Show();
         }
 
         public void ShowEmptyProperties()

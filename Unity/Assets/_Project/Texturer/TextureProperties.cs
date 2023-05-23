@@ -1,76 +1,94 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TextureProperties : MonoBehaviour
-{
-    [SerializeField]
-    private TextureManager textureManager;
+public class TextureProperties : MonoBehaviour {
 
-    [SerializeField]
-    private RectTransform textureSelectContainer;
     [SerializeField]
     private TextureSelect textureSelectPrefab;
-
     [SerializeField]
-    private RectTransform proceduralTextureSelectContainer;
-    [SerializeField]
-    private GameObject proceduralTextureSelectPrefab;
+    private TextMeshProUGUI proceduralTexturesHeader;
 
-    private TextureSampler _textureSampler;
-    public TextureSampler TextureSampler {
-        get {return _textureSampler;} 
-        set {_textureSampler = value;}
-    }
+    private List<int> textureSelectIndices = new List<int>();
 
-    public void Show() {
-        gameObject.SetActive(true);
-    }
+    private TextureSampler textureSampler;
 
     public void Hide() {
         gameObject.SetActive(false);
     }
 
-    private void Awake() {
-        if (!textureManager) throw new System.NullReferenceException("Texture Properties needs a Texture Manager");
-        InitialiseTexturePreviews();
-        InitialiseProceduralTexturePreviews();
-    }
-
-    private void InitialiseTexturePreviews() {
+    private void CreateTextureSelects(TextureManager textureManager) {
         List<Sprite> texPreviewList = textureManager.CreateTexturePreviews();
         for (int i = 0; i < texPreviewList.Count; i++) {
-            Sprite texPreview = texPreviewList[i];
-            TextureSelect textureSelect = Instantiate(textureSelectPrefab, textureSelectContainer.transform);
-            textureSelect.SetPreview(texPreview);
-            textureSelect.SetName(texPreview.name);
+            int siblingIndex = proceduralTexturesHeader.transform.GetSiblingIndex();
+            TextureSelect textureSelect = Instantiate(textureSelectPrefab, transform);
+            textureSelect.transform.SetSiblingIndex(siblingIndex);
+            textureSelectIndices.Add(siblingIndex);
+            
+            textureSelect.SetPreview(texPreviewList[i]);
+            textureSelect.SetName(texPreviewList[i].name);
 
             int texIndex = i;
-            textureSelect.AddOnClickListener(() => {TextureSampler.Texture = textureManager.SelectTexture(texIndex);});
+            textureSelect.AddOnClickListener(() => {textureSampler.Texture = textureManager.SelectTexture(texIndex);});
+
+
         }
-        float containerHeight = textureSelectContainer.sizeDelta.y;
-        RectTransform prefabTransform = textureSelectPrefab.transform as RectTransform;
-        float prefabHeight = prefabTransform.sizeDelta.y;
-        float spacing = GetComponent<VerticalLayoutGroup>().spacing;
-        float newContainerHeight = containerHeight + prefabHeight * texPreviewList.Count + spacing * (texPreviewList.Count-1);
-        textureSelectContainer.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, newContainerHeight);
     }
     
-    private void InitialiseProceduralTexturePreviews() {
+    private void CreateProceduralTextureSelects(TextureManager textureManager) {
         List<Sprite> texPreviewList = textureManager.CreateProceduralTexturePreviews();
+        if (texPreviewList.Count == 0) {
+            proceduralTexturesHeader.gameObject.SetActive(false);
+            return;
+        }
+        proceduralTexturesHeader.gameObject.SetActive(true);
+
         for (int i = 0; i < texPreviewList.Count; i++) {
-            Sprite texPreview = texPreviewList[i];
-            TextureSelect textureSelect = Instantiate(textureSelectPrefab, proceduralTextureSelectContainer.transform);
-            textureSelect.SetPreview(texPreview);
-            textureSelect.SetName(texPreview.name);
+            TextureSelect textureSelect = Instantiate(textureSelectPrefab, transform);
+            textureSelect.SetPreview(texPreviewList[i]);
+            textureSelect.SetName(texPreviewList[i].name);
+
+            ProceduralTexture texture = textureManager.GetProceduralTexture(i);
+            ProceduralTextureEdit proceduralEdit = Instantiate(texture.ProceduralTextureEditPrefab, transform);
+            proceduralEdit.SetProceduralValues(texture);
+            proceduralEdit.AddListeners(texture);
 
             int texIndex = i;
-            textureSelect.AddOnClickListener(() => {TextureSampler.Texture = textureManager.SelectProceduralTexture(texIndex);});
+            textureSelect.AddOnClickListener(() => {
+                Texture2D tex = textureManager.SelectProceduralTexture(texIndex);
+                textureSampler.Texture = tex;
+            });
+        }
+    }
+
+    private void DestroyTexturePreviews() {
+        foreach (int i in textureSelectIndices) {
+            Object.Destroy(transform.GetChild(i).gameObject);
+        }
+        textureSelectIndices.Clear();
+    }
+
+    private void DestroyProceduralTexturePreviews() {
+        for (int i = proceduralTexturesHeader.transform.GetSiblingIndex()+1; i < transform.childCount; i++) {
+            Object.Destroy(transform.GetChild(i).gameObject);
         }
     }
 
     public void SelectNoTexture() {
-        TextureSampler.Texture = null;
+        textureSampler.Texture = null;
+    }
+
+    public void OnShowTextureProperties(Component sender, object data) {
+        if (!(data is TextureSampler)) return;
+        textureSampler = (TextureSampler) data;
+        TextureManager textureManager = textureSampler.textureManager;
+
+        DestroyTexturePreviews();
+        DestroyProceduralTexturePreviews();
+        
+        CreateTextureSelects(textureManager);
+        CreateProceduralTextureSelects(textureManager);
     }
 }

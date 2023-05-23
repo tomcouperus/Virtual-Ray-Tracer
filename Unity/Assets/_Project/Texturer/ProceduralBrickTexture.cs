@@ -6,17 +6,17 @@ using UnityEngine;
 public class ProceduralBrickTexture : ProceduralTexture {
 
     [Range(1, 200)]
-    public int BrickWidth;
+    public int BrickWidth = 19;
     [Range(1, 100)]
-    public int BrickHeight;
+    public int BrickHeight = 9;
     [Range(1, 10)]
-    public int BricksX;
+    public int BricksX = 4;
     [Range(1,10)]
-    public int BricksY;
+    public int BricksY = 10;
     [Range(0,1)]
-    public float BrickOffset;
+    public float BrickOffset = 0.5f;
     [Range(1, 10)]
-    public int MortarThickness;
+    public int MortarThickness = 1;
 
     public override Texture2D CreateTexture() {
         int width = BrickWidth * BricksX + MortarThickness * (BricksX-1);

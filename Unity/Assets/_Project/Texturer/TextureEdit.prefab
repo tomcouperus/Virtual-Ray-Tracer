@@ -199,6 +199,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   texturePreview: {fileID: 5670656200827305222}
   noTextureLabel: {fileID: 407891106702596079}
+  changeTextureButton: {fileID: 2650399509525529335}
+  onShowTextureProperties: {fileID: 11400000, guid: 123af581b49ea49ddb17bed4c365792f, type: 2}
 --- !u!1 &7335554691692634732
 GameObject:
   m_ObjectHideFlags: 0
