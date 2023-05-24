@@ -8,10 +8,13 @@ public class TextureProperties : MonoBehaviour {
 
     [SerializeField]
     private TextureSelect textureSelectPrefab;
-    [SerializeField]
-    private TextMeshProUGUI proceduralTexturesHeader;
 
-    private List<int> textureSelectIndices = new List<int>();
+    [SerializeField]
+    private GameObject texturesHeader;
+    [SerializeField]
+    private GameObject nullTextureSelect;
+    [SerializeField]
+    private GameObject proceduralTexturesHeader;
 
     private TextureSampler textureSampler;
 
@@ -25,7 +28,6 @@ public class TextureProperties : MonoBehaviour {
             int siblingIndex = proceduralTexturesHeader.transform.GetSiblingIndex();
             TextureSelect textureSelect = Instantiate(textureSelectPrefab, transform);
             textureSelect.transform.SetSiblingIndex(siblingIndex);
-            textureSelectIndices.Add(siblingIndex);
             
             textureSelect.SetPreview(texPreviewList[i]);
             textureSelect.SetName(texPreviewList[i].name);
@@ -40,10 +42,10 @@ public class TextureProperties : MonoBehaviour {
     private void CreateProceduralTextureSelects(TextureManager textureManager) {
         List<Sprite> texPreviewList = textureManager.CreateProceduralTexturePreviews();
         if (texPreviewList.Count == 0) {
-            proceduralTexturesHeader.gameObject.SetActive(false);
+            proceduralTexturesHeader.SetActive(false);
             return;
         }
-        proceduralTexturesHeader.gameObject.SetActive(true);
+        proceduralTexturesHeader.SetActive(true);
 
         for (int i = 0; i < texPreviewList.Count; i++) {
             TextureSelect textureSelect = Instantiate(textureSelectPrefab, transform);
@@ -63,16 +65,13 @@ public class TextureProperties : MonoBehaviour {
         }
     }
 
-    private void DestroyTexturePreviews() {
-        foreach (int i in textureSelectIndices) {
-            Object.Destroy(transform.GetChild(i).gameObject);
-        }
-        textureSelectIndices.Clear();
-    }
-
-    private void DestroyProceduralTexturePreviews() {
-        for (int i = proceduralTexturesHeader.transform.GetSiblingIndex()+1; i < transform.childCount; i++) {
-            Object.Destroy(transform.GetChild(i).gameObject);
+    private void Clear() {
+        for (int i = 0; i < transform.childCount; i++) {
+            GameObject child = transform.GetChild(i).gameObject;
+            if (child == texturesHeader) continue;
+            if (child == nullTextureSelect) continue;
+            if (child == proceduralTexturesHeader) continue;
+            Object.Destroy(child);
         }
     }
 
@@ -85,8 +84,7 @@ public class TextureProperties : MonoBehaviour {
         textureSampler = (TextureSampler) data;
         TextureManager textureManager = textureSampler.textureManager;
 
-        DestroyTexturePreviews();
-        DestroyProceduralTexturePreviews();
+        Clear();
         
         CreateTextureSelects(textureManager);
         CreateProceduralTextureSelects(textureManager);
