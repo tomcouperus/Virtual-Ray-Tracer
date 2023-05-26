@@ -101,13 +101,12 @@ public class TextureSampler : MonoBehaviour{
         SampleData data = new SampleData(color);
         if (Mode == SamplingMode.Bilinear) {
             // Grab the pixels that are used in the bilinear sampling
-            int x = Mathf.RoundToInt(uv.x * Texture.width);
-            int y = Mathf.RoundToInt(uv.y * Texture.height);
+            int x = Mathf.RoundToInt(uv.x * (Texture.width-1));
+            int y = Mathf.RoundToInt(uv.y * (Texture.height-1));
 
-            int xNeighbor = ((x < uv.x && x != 0) || x == Texture.width) ? x-1 : x+1;
-            int yNeighbor = ((y < uv.y && y != 0) || y == Texture.height) ? y-1 : y+1;
+            int xNeighbor = ((x < uv.x && x != 0) || x == (Texture.width-1)) ? x-1 : x+1;
+            int yNeighbor = ((y < uv.y && y != 0) || y == (Texture.height-1)) ? y-1 : y+1;
 
-            //TODO something is off with the logic here. They show the right texels, just upside down, it seems.
             // Get the colors in order of:
             // a, b
             // c, d
