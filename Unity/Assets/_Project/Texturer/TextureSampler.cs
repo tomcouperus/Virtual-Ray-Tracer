@@ -73,7 +73,8 @@ public class TextureSampler : MonoBehaviour{
                 color = Texture.GetPixel((int) (uv.x*Texture.width), (int) (uv.y*Texture.height));
                 break;
             case SamplingMode.Bilinear:
-                color = Texture.GetPixelBilinear(uv.x, uv.y);
+                Vector2 sampleUV = uv - new Vector2(0.5f/Texture.width, 0.5f/Texture.height);
+                color = Texture.GetPixelBilinear(sampleUV.x, sampleUV.y);
                 break;
         }
         return color;
@@ -100,29 +101,43 @@ public class TextureSampler : MonoBehaviour{
 
         SampleData data = new SampleData(color);
         if (Mode == SamplingMode.Bilinear) {
-            // Grab the pixels that are used in the bilinear sampling
-            int x = Mathf.RoundToInt(uv.x * (Texture.width-1));
-            int y = Mathf.RoundToInt(uv.y * (Texture.height-1));
+            // Get the pixel coords that the bilinear sample is taken from
+            Vector2 textureSize = new Vector2(Texture.width, Texture.height);
+            Vector2 uvPos = uv * textureSize;
+            Vector2Int pos = Vector2Int.FloorToInt(uvPos);
+            
+            int xNeighbor = (pos.x == 0 || (pos.x < textureSize.x-1 && Mathf.RoundToInt(uvPos.x) > pos.x)) ? pos.x+1 : pos.x-1;
+            int yNeighbor = (pos.y == 0 || (pos.y < textureSize.y-1 && Mathf.RoundToInt(uvPos.y) > pos.y)) ? pos.y+1 : pos.y-1;
 
-            int xNeighbor = ((x < uv.x && x != 0) || x == (Texture.width-1)) ? x-1 : x+1;
-            int yNeighbor = ((y < uv.y && y != 0) || y == (Texture.height-1)) ? y-1 : y+1;
+            Vector2Int minPos = new Vector2Int(Mathf.Min(pos.x, xNeighbor), Mathf.Min(pos.y, yNeighbor));
+            Vector2Int maxPos = new Vector2Int(Mathf.Max(pos.x, xNeighbor), Mathf.Max(pos.y, yNeighbor));
 
-            // Get the colors in order of:
+            // Get the colors so that they're ordered like:
             // a, b
             // c, d
-            Vector2 a = new Vector2(Mathf.Min(x, xNeighbor), Mathf.Min(y, yNeighbor));
-            Vector2 b = new Vector2(Mathf.Max(x, xNeighbor), Mathf.Min(y, yNeighbor));
-            Vector2 c = new Vector2(Mathf.Min(x, xNeighbor), Mathf.Max(y, yNeighbor));
-            Vector2 d = new Vector2(Mathf.Max(x, xNeighbor), Mathf.Max(y, yNeighbor));
+            Vector2Int a = new Vector2Int(minPos.x, minPos.y);
+            Vector2Int b = new Vector2Int(maxPos.x, minPos.y);
+            Vector2Int c = new Vector2Int(minPos.x, maxPos.y);
+            Vector2Int d = new Vector2Int(maxPos.x, maxPos.y);
 
-            Vector2 textureSize = new Vector2(Texture.width, Texture.height);
             Color[,] sampledColors = new Color[2,2];
-            sampledColors[0,0] = SampleTexture(a / textureSize, SamplingMode.Point);
-            sampledColors[1,0] = SampleTexture(b / textureSize, SamplingMode.Point);
-            sampledColors[0,1] = SampleTexture(c / textureSize, SamplingMode.Point);
-            sampledColors[1,1] = SampleTexture(d / textureSize, SamplingMode.Point);
-
+            sampledColors[0,0] = Texture.GetPixel(a.x, a.y);
+            sampledColors[1,0] = Texture.GetPixel(b.x, b.y);
+            sampledColors[0,1] = Texture.GetPixel(c.x, c.y);
+            sampledColors[1,1] = Texture.GetPixel(d.x, d.y);
             data.sampledColors = sampledColors;
+
+            Debug.Log(minPos+" "+maxPos+" "+uvPos);
+            // Get a local uv space between minPos and maxPos for a hit marker in the preview
+            float markerUVx = Mathf.InverseLerp(
+                minPos.x, 
+                maxPos.x + (minPos.x == 0 ? 0.5f : 0) + (maxPos.x == textureSize.x-1 ? 0.5f : 0), 
+                uvPos.x - (minPos.x > 0 ? 0.5f : 0));
+            float markerUVy = Mathf.InverseLerp(
+                minPos.y, 
+                maxPos.y + (minPos.y == 0 ? 0.5f : 0) + (maxPos.y == textureSize.y-1 ? 0.5f : 0), 
+                uvPos.y - (minPos.y > 0 ? 0.5f : 0));
+            data.markerUV = new Vector2(markerUVx, markerUVy);
         }
 
         onTextureSampled.Raise(this, data);
@@ -140,9 +155,11 @@ public enum SamplingMode : int {Point, Bilinear};
 public struct SampleData {
     public Color color;
     public Color[,] sampledColors;
+    public Vector2 markerUV;
 
     public SampleData(Color color) {
         this.color = color;
         this.sampledColors = null;
+        markerUV = Vector2.one / 2f;
     }
 }

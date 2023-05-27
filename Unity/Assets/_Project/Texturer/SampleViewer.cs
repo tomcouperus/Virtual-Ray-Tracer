@@ -11,6 +11,8 @@ public class SampleViewer : MonoBehaviour {
     [SerializeField]
     private Image pointSampleImage;
     [SerializeField]
+    private RectTransform bilinearSampleBounds;
+    [SerializeField]
     private Image sampledColorImage00;
     [SerializeField]
     private Image sampledColorImage10;
@@ -22,6 +24,8 @@ public class SampleViewer : MonoBehaviour {
     private Image arrow;
     [SerializeField]
     private Image bilinearSampleImage;
+    [SerializeField]
+    private Image bilinearSampleMarker;
 
     [Header("Events")]
     [SerializeField]
@@ -36,10 +40,7 @@ public class SampleViewer : MonoBehaviour {
         
         pointSampleImage.gameObject.SetActive(value);
         
-        sampledColorImage00.gameObject.SetActive(!value);
-        sampledColorImage10.gameObject.SetActive(!value);
-        sampledColorImage01.gameObject.SetActive(!value);
-        sampledColorImage11.gameObject.SetActive(!value);
+        bilinearSampleBounds.gameObject.SetActive(!value);
         arrow.gameObject.SetActive(!value);
         bilinearSampleImage.gameObject.SetActive(!value);
     }
@@ -61,6 +62,11 @@ public class SampleViewer : MonoBehaviour {
             sampledColorImage01.color = sampleData.sampledColors[0,1];
             sampledColorImage11.color = sampleData.sampledColors[1,1];
             bilinearSampleImage.color = sampleData.color;
+
+            float insetX = bilinearSampleBounds.rect.width * sampleData.markerUV.x;
+            bilinearSampleMarker.rectTransform.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Left, insetX, bilinearSampleMarker.rectTransform.rect.width);
+            float insetY = bilinearSampleBounds.rect.height * sampleData.markerUV.y;
+            bilinearSampleMarker.rectTransform.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Bottom, insetY, bilinearSampleMarker.rectTransform.rect.height);
         }
     }
     
