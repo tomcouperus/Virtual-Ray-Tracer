@@ -102,7 +102,7 @@ public class TextureSampler : MonoBehaviour{
         SampleData data = new SampleData(color);
         if (Mode == SamplingMode.Bilinear) {
             // Get the pixel coords that the bilinear sample is taken from
-            Vector2 textureSize = new Vector2(Texture.width, Texture.height);
+            Vector2Int textureSize = new Vector2Int(Texture.width, Texture.height);
             Vector2 uvPos = uv * textureSize;
             Vector2Int pos = Vector2Int.FloorToInt(uvPos);
             
@@ -127,8 +127,8 @@ public class TextureSampler : MonoBehaviour{
             sampledColors[1,1] = Texture.GetPixel(d.x, d.y);
             data.sampledColors = sampledColors;
 
-            Debug.Log(minPos+" "+maxPos+" "+uvPos);
-            // Get a local uv space between minPos and maxPos for a hit marker in the preview
+            // Get a local uv space between minPos and maxPos for a hit marker in the preview.
+            // The offsetting for maxPos and uvPos happens because of the edges not playing nice otherwise.
             float markerUVx = Mathf.InverseLerp(
                 minPos.x, 
                 maxPos.x + (minPos.x == 0 ? 0.5f : 0) + (maxPos.x == textureSize.x-1 ? 0.5f : 0), 
@@ -138,6 +138,11 @@ public class TextureSampler : MonoBehaviour{
                 maxPos.y + (minPos.y == 0 ? 0.5f : 0) + (maxPos.y == textureSize.y-1 ? 0.5f : 0), 
                 uvPos.y - (minPos.y > 0 ? 0.5f : 0));
             data.markerUV = new Vector2(markerUVx, markerUVy);
+
+            // TODO optimize this by moving it into OnMouseEnter and firing with an event or something like that.
+            data.textureSprite = TextureManager.CreateTexturePreview(Texture);
+            data.textureSize = textureSize;
+            data.zoneMarkerUV = (Vector2)minPos / textureSize;
         }
 
         onTextureSampled.Raise(this, data);
@@ -154,12 +159,20 @@ public enum SamplingMode : int {Point, Bilinear};
 
 public struct SampleData {
     public Color color;
+    
     public Color[,] sampledColors;
     public Vector2 markerUV;
+    
+    public Sprite textureSprite;
+    public Vector2Int textureSize;
+    public Vector2 zoneMarkerUV;
 
     public SampleData(Color color) {
         this.color = color;
         this.sampledColors = null;
         markerUV = Vector2.one / 2f;
+        textureSprite = null;
+        textureSize = Vector2Int.zero;
+        zoneMarkerUV = Vector2Int.zero;
     }
 }
