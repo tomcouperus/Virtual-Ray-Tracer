@@ -16,7 +16,7 @@ public class TextureProperties : MonoBehaviour {
     [SerializeField]
     private GameObject proceduralTexturesHeader;
 
-    private TextureSampler textureSampler;
+    private TextureManager textureManager;
 
     public void Hide() {
         gameObject.SetActive(false);
@@ -33,7 +33,7 @@ public class TextureProperties : MonoBehaviour {
             textureSelect.SetName(texPreviewList[i].name);
 
             int texIndex = i;
-            textureSelect.AddOnClickListener(() => {textureSampler.Texture = textureManager.SelectTexture(texIndex);});
+            textureSelect.AddOnClickListener(() => {textureManager.SelectTexture(texIndex);});
 
 
         }
@@ -58,10 +58,7 @@ public class TextureProperties : MonoBehaviour {
             proceduralEdit.AddListeners(texture);
 
             int texIndex = i;
-            textureSelect.AddOnClickListener(() => {
-                Texture2D tex = textureManager.SelectProceduralTexture(texIndex);
-                textureSampler.Texture = tex;
-            });
+            textureSelect.AddOnClickListener(() => {textureManager.SelectProceduralTexture(texIndex);});
         }
     }
 
@@ -76,13 +73,12 @@ public class TextureProperties : MonoBehaviour {
     }
 
     public void SelectNoTexture() {
-        textureSampler.Texture = null;
+        textureManager.ClearTexture();
     }
 
     public void OnShowTextureProperties(Component sender, object data) {
-        if (!(data is TextureSampler)) return;
-        textureSampler = (TextureSampler) data;
-        TextureManager textureManager = textureSampler.textureManager;
+        if (!(data is TextureManager)) return;
+        textureManager = (TextureManager) data;
 
         Clear();
         

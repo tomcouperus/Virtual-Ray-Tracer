@@ -13,7 +13,7 @@ public class TextureEdit : MonoBehaviour {
     [SerializeField]
     private Button changeTextureButton;
 
-    private TextureSampler currentSampler;
+    private TextureManager currentManager;
 
     [Header("Events")]
     [SerializeField]
@@ -33,13 +33,13 @@ public class TextureEdit : MonoBehaviour {
         }
     }
 
-    public void SetCurrentTextureSampler(TextureSampler textureSampler) {
-        currentSampler = textureSampler;
-        UpdateTexturePreview(currentSampler.CreateTexturePreview());
+    public void SetCurrentTextureManager(TextureManager textureManager) {
+        currentManager = textureManager;
+        UpdateTexturePreview(currentManager.CreateTexturePreview());
     }
 
     private void Awake() {
-        changeTextureButton.onClick.AddListener(() => {onShowTextureProperties.Raise(this, currentSampler);});
+        changeTextureButton.onClick.AddListener(() => {onShowTextureProperties.Raise(this, currentManager);});
     }
 
 }

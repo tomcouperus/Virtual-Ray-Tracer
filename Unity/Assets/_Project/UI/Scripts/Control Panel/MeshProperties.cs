@@ -19,6 +19,7 @@ namespace _Project.UI.Scripts.Control_Panel
     {
         private RTMesh mesh;
         private InteractableMesh iMesh;
+        private TextureManager texManager;
         private TextureSampler texSampler;
 
         [Header("Model settings")]
@@ -77,8 +78,10 @@ namespace _Project.UI.Scripts.Control_Panel
             rotationEdit.Value = mesh.Rotation;
             scaleEdit.Value = mesh.Scale;
 
-            this.texSampler = mesh.GetComponent<TextureSampler>();
+            this.texManager = mesh.GetComponent<TextureManager>();
             ShowTextureEdit();
+            
+            this.texSampler = mesh.GetComponent<TextureSampler>();
             ShowSamplingEdits();
 
             this.iMesh = mesh.GetComponent<InteractableMesh>();
@@ -96,11 +99,11 @@ namespace _Project.UI.Scripts.Control_Panel
         }
 
         private void ShowTextureEdit() {
-            if (!texSampler) {
+            if (!texManager) {
                 textureEdit.gameObject.SetActive(false);
                 return;
             }
-            textureEdit.SetCurrentTextureSampler(texSampler);
+            textureEdit.SetCurrentTextureManager(texManager);
             textureEdit.gameObject.SetActive(true);
             
         }
@@ -117,7 +120,7 @@ namespace _Project.UI.Scripts.Control_Panel
             samplingModeEdit.gameObject.SetActive(true);
 
             samplingEdit.gameObject.SetActive(true);
-            samplingEdit.IsOn = texSampler.textureManager.IsSampling;
+            samplingEdit.IsOn = texSampler.IsSampling;
         }
 
         private void ShowInteractibleMesh() {

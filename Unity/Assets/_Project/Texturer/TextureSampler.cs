@@ -3,29 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-[RequireComponent(typeof(Renderer))]
+[RequireComponent(typeof(Renderer), typeof(TextureManager))]
 public class TextureSampler : MonoBehaviour{
 
     [SerializeField]
     private Camera mainCamera;
 
-    [SerializeField]
-    public TextureManager textureManager;
-
-    [SerializeField]
-    [Tooltip("If set to -1, no texture is initialised.")]
-    [Min(-1)]
-    private int InitialTextureIndex;
-
-    private Texture2D _texture;
     public Texture2D Texture {
-        get {return _texture;}
-        set {
-            if (_texture) Object.Destroy(_texture);
-            _texture = value;
-            if (_texture) _texture.filterMode = filterMode;
+        get {
             Renderer renderer = GetComponent<Renderer>();
-            renderer.material.mainTexture = _texture;
+            Texture2D texture = renderer.material.mainTexture as Texture2D;
+            return texture;
         }
     }
 
@@ -50,9 +38,20 @@ public class TextureSampler : MonoBehaviour{
         }
     }
 
+    [SerializeField]
+    private bool _isSampling;
+    public bool IsSampling {
+        get {return _isSampling;}
+        set {_isSampling = value;}
+    }
+
     [Header("Events")]
     [SerializeField]
     private GameEvent onSamplingModeChanged;
+    [SerializeField]
+    private GameEvent onEnableSampling;
+    [SerializeField]
+    private GameEvent onDisableSampling;
     [SerializeField]
     private GameEvent onTextureSampled;
 
@@ -60,9 +59,10 @@ public class TextureSampler : MonoBehaviour{
     [SerializeField]
     private UnityEvent OnMouseOverEvent;
 
-    private void Awake() {
-        if (InitialTextureIndex < 0 || InitialTextureIndex >= textureManager.TextureCount) return;
-        Texture = textureManager.SelectTexture(InitialTextureIndex);
+    private void Start() {
+        Mode = _mode;
+        if (IsSampling) onEnableSampling.Raise(this, null);
+        else onDisableSampling.Raise(this, null);
     }
 
     public Color SampleTexture(Vector2 uv, SamplingMode mode) {
@@ -80,17 +80,12 @@ public class TextureSampler : MonoBehaviour{
         return color;
     }
 
-    public Sprite CreateTexturePreview() {
-        if (!Texture) return null;
-        return TextureManager.CreateTexturePreview(Texture);
-    }
-
     private void OnMouseOver() {
         Sample();
     }
 
     private void Sample() {
-        if (!textureManager.IsSampling || !Texture) return;
+        if (!IsSampling || !Texture) return;
         OnMouseOverEvent.Invoke();
         
         RaycastHit hit;
@@ -144,15 +139,9 @@ public class TextureSampler : MonoBehaviour{
             data.textureSize = textureSize;
             data.zoneMarkerUV = (Vector2)minPos / textureSize;
         }
-
+        onSamplingModeChanged.Raise(this, Mode);
         onTextureSampled.Raise(this, data);
     }
-
-    #if UNITY_EDITOR
-    private void OnValidate() {
-        if (InitialTextureIndex >= textureManager.TextureCount) InitialTextureIndex = textureManager.TextureCount-1;
-    }
-    #endif
 }
 
 public enum SamplingMode : int {Point, Bilinear};
