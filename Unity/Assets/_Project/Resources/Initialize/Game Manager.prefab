@@ -1177,11 +1177,11 @@ MonoBehaviour:
       points: 0
     - identifier: 
       name: Bilinear interpolation
-      description: As you can see, the preview now shows where the 4 nearest texture
-        pixels to where you hover are in the texture in the left-most image. The
-        actual texture pixels are shown in the second image, along with your mouse's
-        location. The pixel you hovered on gets a weighted average color of these
-        four texture pixels in the rightmost image.
+      description: The preview now shows where the 4 nearest texture pixels to where
+        you hover are in the texture in the left-most image. The actual texture pixels
+        are shown in the second image, along with your mouse's location. The pixel
+        you hovered on gets a weighted average color of these four texture pixels
+        in the rightmost image.
       skippable: 1
       points: 0
     - identifier: 

@@ -41,7 +41,9 @@ public class TextureManager : MonoBehaviour {
     private void Awake() {
         List<Texture2D> texturesCopy = new List<Texture2D>();
         for (int i = 0; i < TextureCount; i++) {
-            texturesCopy.Add(CopyTexture(textures[i]));
+            Texture2D tex = Instantiate(textures[i]);
+            tex.name = textures[i].name;
+            texturesCopy.Add(tex);
         }
         textures = texturesCopy;
 
@@ -76,16 +78,6 @@ public class TextureManager : MonoBehaviour {
             sprites.Add(CreateTexturePreview(prodTex.CreateTexture()));
         }
         return sprites;
-    }
-
-    public Texture2D CopyTexture(Texture2D texture) {
-        Texture2D copy = new Texture2D(texture.width, texture.height);
-        copy.name = texture.name + "(copy)";
-        copy.SetPixels(texture.GetPixels());
-        copy.wrapMode = TextureWrapMode.Clamp;
-        copy.filterMode = FilterMode.Point;
-        copy.Apply();
-        return copy;
     }
 
     public void SelectTexture(int index) {
