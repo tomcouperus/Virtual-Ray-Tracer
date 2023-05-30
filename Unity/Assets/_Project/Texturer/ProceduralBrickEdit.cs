@@ -6,6 +6,10 @@ using UnityEngine;
 public class ProceduralBrickEdit : ProceduralTextureEdit {
 
     [SerializeField]
+    private ColorEdit brickColorEdit;
+    [SerializeField]
+    private ColorEdit mortarColorEdit;
+    [SerializeField]
     private FloatEdit brickWidthEdit;
     [SerializeField]
     private FloatEdit brickHeightEdit;
@@ -21,6 +25,8 @@ public class ProceduralBrickEdit : ProceduralTextureEdit {
     public override void SetProceduralValues(ProceduralTexture proceduralTexture) {
         ProceduralBrickTexture brickTexture = (ProceduralBrickTexture)proceduralTexture;
 
+        brickColorEdit.Color = brickTexture.BrickColor;
+        mortarColorEdit.Color = brickTexture.MortarColor;
         brickWidthEdit.Value = brickTexture.BrickWidth;
         brickHeightEdit.Value = brickTexture.BrickHeight;
         bricksXEdit.Value = brickTexture.BricksX;
@@ -32,11 +38,13 @@ public class ProceduralBrickEdit : ProceduralTextureEdit {
     public override void AddListeners(ProceduralTexture proceduralTexture) {
         ProceduralBrickTexture brickTexture = (ProceduralBrickTexture)proceduralTexture;
 
-        brickWidthEdit.OnValueChanged.AddListener(value => {brickTexture.BrickWidth = (int)value;});
-        brickHeightEdit.OnValueChanged.AddListener(value => {brickTexture.BrickHeight = (int)value;});
-        bricksXEdit.OnValueChanged.AddListener(value => {brickTexture.BricksX = (int)value;});
-        bricksYEdit.OnValueChanged.AddListener(value => {brickTexture.BricksY = (int)value;});
-        brickOffsetEdit.OnValueChanged.AddListener(value => {brickTexture.BrickOffset = (int)value;});
-        mortarThicknessEdit.OnValueChanged.AddListener(value => {brickTexture.MortarThickness = (int)value;});
+        brickColorEdit.OnValueChanged.AddListener(value => brickTexture.BrickColor = value);
+        mortarColorEdit.OnValueChanged.AddListener(value => brickTexture.MortarColor = value);
+        brickWidthEdit.OnValueChanged.AddListener(value => brickTexture.BrickWidth = (int)value);
+        brickHeightEdit.OnValueChanged.AddListener(value => brickTexture.BrickHeight = (int)value);
+        bricksXEdit.OnValueChanged.AddListener(value => brickTexture.BricksX = (int)value);
+        bricksYEdit.OnValueChanged.AddListener(value => brickTexture.BricksY = (int)value);
+        brickOffsetEdit.OnValueChanged.AddListener(value => brickTexture.BrickOffset = (int)value);
+        mortarThicknessEdit.OnValueChanged.AddListener(value => brickTexture.MortarThickness = (int)value);
     }
 }

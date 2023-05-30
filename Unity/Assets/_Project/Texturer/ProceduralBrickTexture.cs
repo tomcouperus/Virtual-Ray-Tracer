@@ -5,6 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Procedural Texture/Brick")]
 public class ProceduralBrickTexture : ProceduralTexture {
 
+    public Color BrickColor = Color.red;
+    public Color MortarColor = Color.gray;
     [Range(1, 200)]
     public int BrickWidth = 19;
     [Range(1, 100)]
@@ -36,13 +38,13 @@ public class ProceduralBrickTexture : ProceduralTexture {
             int brickX = Mathf.RoundToInt(row * BrickOffset * BrickWidth);
             int mortarX = 0;
             for (int x = 0; x < width; x++) {
-                Color color = Color.black;
+                Color color;
                 if (isBrickX && isBrickY) {
-                    color = Color.red;
+                    color = BrickColor;
                     brickX++;
                     if (brickX % BrickWidth == 0) isBrickX = false;
                 } else {
-                    color = Color.gray;
+                    color = MortarColor;
                     mortarX++;
                     if (mortarX % MortarThickness == 0) isBrickX = true;
                 }
