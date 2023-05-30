@@ -1189,6 +1189,42 @@ MonoBehaviour:
       description: 
       skippable: 0
       points: 0
+  - optionalTasksStart: 5
+    tasks:
+    - identifier: 
+      name: Introduction
+      description: "Until now, the textures we have used were prepared specifically
+        for the models we showed. This will quickly cost a lot of time if you\u2019re
+        making small variations of the same model, for example different shapes and
+        sizes of rocks or differently styled brick houses."
+      skippable: 1
+      points: 0
+    - identifier: 
+      name: Brick houses
+      description: Say you want to make a dozen houses with a different brick style;
+        you could draw their texture maps by hand, but that would take a lot of time.
+        If you could just specify how many rows and columns of bricks you would want,
+        along with their color and some other settings, you would be done much sooner.
+      skippable: 1
+      points: 0
+    - identifier: ProceduralTextures_ProcTex
+      name: Procedural textures
+      description: That is what procedural textures do. To see them in action, click
+        on the cube and select the brick texture.
+      skippable: 0
+      points: 0
+    - identifier: 
+      name: Brick choices
+      description: The generated brick texture has exactly as many horizontal and
+        vertical bricks as are specified in the menu. Play around with these options
+        until you find some you like.
+      skippable: 1
+      points: 0
+    - identifier: 
+      name: 
+      description: 
+      skippable: 1
+      points: 0
   Badges:
   - type: 1
     badgeName: Experimenter
