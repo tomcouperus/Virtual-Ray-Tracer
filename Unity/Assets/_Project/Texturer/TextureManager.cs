@@ -34,6 +34,10 @@ public class TextureManager : MonoBehaviour {
             if (textureIsProcedural) Object.Destroy(Texture);
             Renderer renderer = GetComponent<Renderer>();
             renderer.material.mainTexture = value;
+
+            foreach (Renderer rend in GetComponentsInChildren<Renderer>()) {
+                rend.material.mainTexture = value;
+            }
         }
     }
     private bool textureIsProcedural;
