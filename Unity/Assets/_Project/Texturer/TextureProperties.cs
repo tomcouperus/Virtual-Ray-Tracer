@@ -15,6 +15,8 @@ public class TextureProperties : MonoBehaviour {
     private GameObject nullTextureSelect;
     [SerializeField]
     private GameObject proceduralTexturesHeader;
+    [SerializeField]
+    private GameObject UVProjectionHeader;
 
     private TextureManager textureManager;
 
