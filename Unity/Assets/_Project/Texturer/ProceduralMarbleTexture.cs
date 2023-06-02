@@ -6,11 +6,11 @@ using UnityEngine;
 public class ProceduralMarbleTexture : ProceduralTexture {
 
     [SerializeField]
-    private int size = 512;
+    public int Size = 512;
     [SerializeField]
-    private int seed;
+    public int Seed;
     [SerializeField]
-    private float frequency = 3f;
+    public float Frequency = 2f;
 
     [SerializeField]
     private RandomNoise roughNoise;
@@ -22,12 +22,16 @@ public class ProceduralMarbleTexture : ProceduralTexture {
     private float detailBlend;
 
     public override Texture2D CreateTexture() {
+        return CreateTexture(Size);
+    }
+
+    private Texture2D CreateTexture(int size) {
         Texture2D tex = new Texture2D(size, size);
         tex.name = Name;
-        
+
         Color[] colorMap = new Color[size * size];
 
-        System.Random prng = new System.Random(seed);
+        System.Random prng = new System.Random(Seed);
 
         roughNoise.Init(prng.Next());
         float[,] roughNoiseMap = roughNoise.PerlinMap(size, size);
@@ -37,16 +41,16 @@ public class ProceduralMarbleTexture : ProceduralTexture {
         
         for (int y = 0; y < size; y++) {
             for (int x = 0; x < size; x++) {
-                float t = (float)x/size;
-                t += roughNoiseMap[x,y] * 2 - 1;
+                float t = (float)x / size;
+                t += roughNoiseMap[x, y] * 2 - 1;
                 float phase = 0.5f;
-                float sample = -Mathf.Cos(2*Mathf.PI * (frequency * t + phase) + Mathf.Sin(2*Mathf.PI * (frequency * t + phase))); // [-1, 1]
-                sample = (sample + 1) / 2f; // [0, 1]
+                float sample = -Mathf.Cos(2* Mathf.PI * (Frequency * t + phase) + Mathf.Sin(2* Mathf.PI * (Frequency * t + phase)));
+                sample = (sample + 1) / 2f;
 
                 Color roughColor = Color.Lerp(Color.black, Color.white, sample);
-                Color detailColor = Color.Lerp(Color.black, Color.white, detailNoiseMap[x,y]);
+                Color detailColor = Color.Lerp(Color.black, Color.white, detailNoiseMap[x, y]);
                 
-                colorMap[x + y*size] = Color.Lerp(roughColor, detailColor, detailBlend);
+                colorMap[x + y* size] = Color.Lerp(roughColor, detailColor, detailBlend);
             }
         }
 
@@ -55,6 +59,10 @@ public class ProceduralMarbleTexture : ProceduralTexture {
         tex.filterMode = FilterMode.Bilinear;
         tex.Apply();
         return tex;
+    }
+
+    public override Texture2D CreatePreviewTexture() {
+        return CreateTexture(128);
     }
 }
 

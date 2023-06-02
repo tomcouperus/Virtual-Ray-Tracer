@@ -485,10 +485,10 @@ GameObject:
   m_Component:
   - component: {fileID: 590595069432362180}
   - component: {fileID: 590595069432362182}
-  - component: {fileID: 4859702474671463386}
-  - component: {fileID: 4669281846634619387}
+  - component: {fileID: -9132043089225741288}
+  - component: {fileID: 3128268861885215986}
   m_Layer: 5
-  m_Name: PowerEdit
+  m_Name: LogEdit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -525,7 +525,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 590595069432362181}
   m_CullTransparentMesh: 1
---- !u!114 &4859702474671463386
+--- !u!114 &-9132043089225741288
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -534,7 +534,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 590595069432362181}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73e08b73087eb2343b8e4bcfcd5bc49c, type: 3}
+  m_Script: {fileID: 11500000, guid: 6dd11216fedbd4fce997ea7e2b76eb42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   OnValueChanged:
@@ -544,12 +544,12 @@ MonoBehaviour:
   slider: {fileID: 590595068844967958}
   input: {fileID: 590595069595218159}
   tooltip: 
-  minValue: 4
-  maxValue: 256
+  minValue: 1
+  maxValue: 2048
   digits: 0
   interactable: 1
-  powerBase: 2
---- !u!114 &4669281846634619387
+  logBase: 2
+--- !u!114 &3128268861885215986
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

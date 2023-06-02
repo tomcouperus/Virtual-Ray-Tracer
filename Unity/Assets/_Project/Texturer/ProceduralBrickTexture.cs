@@ -21,8 +21,12 @@ public class ProceduralBrickTexture : ProceduralTexture {
     public int MortarThickness = 1;
 
     public override Texture2D CreateTexture() {
-        int width = BrickWidth * BricksX + MortarThickness * (BricksX-1);
-        int height = BrickHeight * BricksY + MortarThickness * (BricksY-1);
+        return CreateTexture(BricksX, BricksY);
+    }
+
+    private Texture2D CreateTexture(int bricksX, int bricksY) {
+        int width = BrickWidth * bricksX + MortarThickness * (bricksX-1);
+        int height = BrickHeight * bricksY + MortarThickness * (bricksY-1);
 
         Texture2D tex = new Texture2D(width, height);
         tex.name = Name;
@@ -63,5 +67,9 @@ public class ProceduralBrickTexture : ProceduralTexture {
         tex.filterMode = FilterMode.Point;
         tex.Apply();
         return tex;
+    }
+
+    public override Texture2D CreatePreviewTexture() {
+        return CreateTexture(2, 2);
     }
 }

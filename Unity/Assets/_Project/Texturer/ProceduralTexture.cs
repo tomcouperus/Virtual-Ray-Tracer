@@ -15,4 +15,5 @@ public abstract class ProceduralTexture : ScriptableObject {
     public UnityEvent onSelect;
 
     public abstract Texture2D CreateTexture();
+    public abstract Texture2D CreatePreviewTexture();
 }

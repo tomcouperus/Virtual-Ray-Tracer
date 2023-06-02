@@ -79,7 +79,7 @@ public class TextureManager : MonoBehaviour {
     public List<Sprite> CreateProceduralTexturePreviews() {
         List<Sprite> sprites = new List<Sprite>();
         foreach (ProceduralTexture prodTex in proceduralTextures) {
-            sprites.Add(CreateTexturePreview(prodTex.CreateTexture()));
+            sprites.Add(CreateTexturePreview(prodTex.CreatePreviewTexture()));
         }
         return sprites;
     }
