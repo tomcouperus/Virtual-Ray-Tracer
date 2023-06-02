@@ -6,9 +6,13 @@ using UnityEngine;
 public class TextureManager : MonoBehaviour {
     
     [SerializeField]
-    [Tooltip("If set to -1, no texture is initialised.")]
+    [Tooltip("If set to -1, no texture is initialised. Is checked first.")]
     [Min(-1)]
-    private int InitialTextureIndex;
+    private int InitialTextureIndex = -1;
+    [SerializeField]
+    [Tooltip("If set to -1, no procedural texture is initialised. Is checked second.")]
+    [Min(-1)]
+    private int InitialProceduralTextureIndex = -1;
     
     [SerializeField]
     private List<Texture2D> textures;
@@ -54,8 +58,8 @@ public class TextureManager : MonoBehaviour {
         }
         proceduralTextures = proceduralTexturesCopy;
 
-        if (InitialTextureIndex < 0 || InitialTextureIndex >= TextureCount) return;
-        else SelectTexture(InitialTextureIndex);
+        if (InitialTextureIndex >= 0 && InitialTextureIndex < TextureCount) SelectTexture(InitialTextureIndex);
+        else if (InitialProceduralTextureIndex >= 0 && InitialProceduralTextureIndex < ProceduralTextureCount) SelectProceduralTexture(InitialProceduralTextureIndex);
     }
 
     public static Sprite CreateTexturePreview(Texture2D texture) {
@@ -107,6 +111,7 @@ public class TextureManager : MonoBehaviour {
     #if UNITY_EDITOR
     private void OnValidate() {
         if (InitialTextureIndex >= TextureCount) InitialTextureIndex = TextureCount-1;
+        if (InitialProceduralTextureIndex >= ProceduralTextureCount) InitialProceduralTextureIndex = ProceduralTextureCount-1;
     }
     #endif
 }
