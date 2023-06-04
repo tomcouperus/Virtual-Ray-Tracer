@@ -1181,7 +1181,7 @@ MonoBehaviour:
       description: In conclusion, nearest-neighbor interpolation rounds the UV coordinates
         to the nearest whole number and chooses that color, whereas bilinear interpolation
         gets a weighted average of the colors of the 4 nearest whole numbers.
-      skippable: 0
+      skippable: 1
       points: 0
     - identifier: 
       name: 
