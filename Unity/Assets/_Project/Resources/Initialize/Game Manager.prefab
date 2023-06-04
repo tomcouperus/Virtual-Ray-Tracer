@@ -1126,31 +1126,32 @@ MonoBehaviour:
       description: 
       skippable: 1
       points: 0
-  - optionalTasksStart: 8
+  - optionalTasksStart: 9
     tasks:
     - identifier: 
       name: Introduction
       description: "So far, we\u2019ve mapped the vertices of our cube to points
         on a texture image. But how do we get this onto the screen? For the points
         of our cube, this is quite simple: we simply tell the computer to render
-        this vertex on that pixel. But to get our texture onto the surface is more
-        difficult."
+        this vertex on that pixel. But to get our texture onto the rest of the surface
+        is more difficult."
       skippable: 1
       points: 0
     - identifier: 
       name: Texture and screen pixels
       description: "For our example, we have applied an 8x8 rainbow texture onto
-        this surface. But the screen you\u2019re reading this on has many more pixels.
-        Yet somehow we manage to get the correct color to each screen pixel. We do
-        so by interpolating between the UVs."
+        this surface. But the screen you\u2019re reading this on has many more pixels,
+        so we cannot simply pick 64 pixels to display the rainbow, that would be
+        way too small."
       skippable: 1
       points: 0
     - identifier: 
       name: Interpolation
-      description: We already know which pixel gets which vertex. But a vertex also
-        has a UV-coordinate, so that same pixel also has the UV belonging to the
-        vertex. For each pixel without an assigned vertex, the UV coordinates get
-        interpolated over its triangle.
+      description: The solution to this is interpolation. We already assigned some
+        pixels to a vertex, and a vertex has a UV-coordinate, so those special pixels
+        have the UV belonging to the vertex they were assigned. For each pixel without
+        an assigned vertex, its UV coordinate gets interpolated over the triangle
+        the pixel belongs to.
       skippable: 1
       points: 0
     - identifier: 
@@ -1183,6 +1184,13 @@ MonoBehaviour:
         you hovered on gets a weighted average color of these four texture pixels
         in the rightmost image.
       skippable: 1
+      points: 0
+    - identifier: 
+      name: Conclusion
+      description: In conclusion, nearest-neighbor interpolation rounds the UV coordinates
+        to the nearest whole number and chooses that color, whereas bilinear interpolation
+        gets a weighted average of the colors of the 4 nearest whole numbers.
+      skippable: 0
       points: 0
     - identifier: 
       name: 
