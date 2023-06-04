@@ -172,7 +172,7 @@ namespace _Project.UI.Scripts.Control_Panel
             diffuseEdit.OnValueChanged.AddListener((value) => { mesh.Diffuse = value; });
             specularEdit.OnValueChanged.AddListener((value) => { mesh.Specular = value; });
             shininessEdit.OnValueChanged.AddListener((value) => { mesh.Shininess = value; });
-
+  
             typeDropdown.onValueChanged.AddListener( type => ChangeObjectType( (RTMesh.ObjectType) type));
 
             refractiveIndexEdit.OnValueChanged.AddListener((value) => { mesh.RefractiveIndex = value; });
