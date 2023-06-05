@@ -1130,6 +1130,67 @@ MonoBehaviour:
     tasks:
     - identifier: 
       name: Introduction
+      description: Instead of having one colour, objects often have complicated paterns
+        and colour arangements. Your computer can map an image onto a 3D object to
+        make this possible. But how do you map a 2D image onto a 3D object? With
+        a concept called "Texture Mapping".
+      skippable: 1
+      points: 0
+    - identifier: Open_Edit_Texture
+      name: Example
+      description: Texture mapping means that every vertex in a 3D space has a coordinate
+        on a 2D plane. We will show in an example what this looks like. Click on
+        the large plane, which we will use as a projection surface, and click on
+        "Edit" next to "Texture".
+      skippable: 1
+      points: 0
+    - identifier: 
+      name: Textures
+      description: The images that are used to show specific patterns or drawings
+        are called "Textures". This means that every point on a 3D object, corresponds
+        with a 2D point. This 2D coordinate is called a "UV coordinate". The colour
+        found at the UV coordinate can be used to colour in 3D space.
+      skippable: 1
+      points: 0
+    - identifier: Unwrap_Transition
+      name: UV Unwrapping
+      description: Every vertex in a 3D object also has a 2D position. This  UV coordinate
+        can either be calculated, or assigned manually. For the sphere the positions
+        are often calculated with a function. By using the "Transition" slider you
+        can see how the sphere unwraps. Set the value of the slider to 1.
+      skippable: 1
+      points: 0
+    - identifier: 
+      name: Sphere unwrapping
+      description: When you check the "Loop" box, the sphere will animate from it's
+        3D coordinates to the UV coordinates and back. This will allow you to look
+        from different angles to see how the sphere unwraps. You can also apply different
+        textures to see how different images display.
+      skippable: 1
+      points: 0
+    - identifier: Pyramid_Select
+      name: Manual UV
+      description: UV coordinates are often set manually when textures need  to be
+        displayed precisely on 3D objects. Switch to  "Pyramid".
+      skippable: 1
+      points: 0
+    - identifier: 
+      name: Texture Coverage
+      description: Here we have set the UV coordinates manually. When looking at
+        the full projection, not the full image needs to covered. This way only parts
+        of the image that need to be used are used. It is however preferred to use
+        as much of the image as possible for optimal detail.
+      skippable: 1
+      points: 0
+    - identifier: 
+      name: 
+      description: 
+      skippable: 0
+      points: 0
+  - optionalTasksStart: 8
+    tasks:
+    - identifier: 
+      name: Introduction
       description: "So far, we\u2019ve mapped the vertices of our cube to points
         on a texture image. But how do we get this onto the screen? For the points
         of our cube, this is quite simple: we simply tell the computer to render

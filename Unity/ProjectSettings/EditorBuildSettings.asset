@@ -57,6 +57,9 @@ EditorBuildSettings:
     path: Assets/_Project/Levels/3D Objects.unity
     guid: 6b7250460d7dc43f0ac3edb4d8d49bb9
   - enabled: 1
+    path: Assets/_Project/Levels/Texture Mapping.unity
+    guid: b05dcc41d9420ac49bd2aebbcebb55ef
+  - enabled: 1
     path: Assets/_Project/Levels/Texture Sampling.unity
     guid: 9b4f3fb69504b46b0a48c77e30d5ae05
   m_configObjects: {}
