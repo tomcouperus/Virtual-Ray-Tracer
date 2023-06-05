@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 using _Project.UI.Scripts.Control_Panel;
 
@@ -27,6 +29,10 @@ public class TextureProperties : MonoBehaviour {
 
     [SerializeField]
     private TMP_Dropdown objectDropdown;
+
+    [Serializable]
+    public class Event : UnityEvent { }
+    public Event onTextureSelected;
 
     private TextureManager textureManager;
 
@@ -76,6 +82,7 @@ public class TextureProperties : MonoBehaviour {
 
     private void CreateUVProjectionSelects(TextureManager textureManager) {
         if(!textureManager.ActiveChild.HasValue) return;
+        onTextureSelected.Invoke();
 
         if(textureManager.transform.GetChild(textureManager.ActiveChild.Value).GetComponent<Renderer>().material.name == "UVProjection (Instance)") {
             UVProjectionHeader.SetActive(true);
@@ -109,7 +116,7 @@ public class TextureProperties : MonoBehaviour {
             if (child == transitionEdit.gameObject) continue;
             if (child == loopEdit.gameObject) continue;
             if (child == objectDropdown.gameObject) continue;
-            Object.Destroy(child);
+            UnityEngine.Object.Destroy(child);
         }
     }
 

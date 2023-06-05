@@ -1136,7 +1136,7 @@ MonoBehaviour:
         a concept called "Texture Mapping".
       skippable: 1
       points: 0
-    - identifier: Open_Edit_Texture
+    - identifier: Texture_Selected
       name: Example
       description: Texture mapping means that every vertex in a 3D space has a coordinate
         on a 2D plane. We will show in an example what this looks like. Click on

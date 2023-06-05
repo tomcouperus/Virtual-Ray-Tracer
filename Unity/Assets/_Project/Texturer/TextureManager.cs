@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(Renderer))]
 public class TextureManager : MonoBehaviour {
@@ -30,6 +32,7 @@ public class TextureManager : MonoBehaviour {
         get {return activeChild;}
         set {
             activeChild = SetActiveChild(value);
+            if (activeChild == 1) onPyramidSelected.Invoke();
         }
     }
 
@@ -39,6 +42,7 @@ public class TextureManager : MonoBehaviour {
         get {return transition;}
         set {
             if (value == transition) return;
+            if (value == 1.00f) onFullTransition.Invoke();
             transition = value;
             transform.GetChild(ActiveChild.Value).GetComponent<Renderer>().material.SetFloat("_Transition", transition);
         }
@@ -65,7 +69,7 @@ public class TextureManager : MonoBehaviour {
             return texture;
         }
         set {
-            if (textureIsProcedural) Object.Destroy(Texture);
+            if (textureIsProcedural) UnityEngine.Object.Destroy(Texture);
             Renderer renderer = GetComponent<Renderer>();
             renderer.material.mainTexture = value;
 
@@ -75,6 +79,10 @@ public class TextureManager : MonoBehaviour {
         }
     }
     private bool textureIsProcedural;
+
+    [Serializable]
+    public class Event : UnityEvent { }
+    public Event onFullTransition, onPyramidSelected;
 
     private void Awake() {
         List<Texture2D> texturesCopy = new List<Texture2D>();
