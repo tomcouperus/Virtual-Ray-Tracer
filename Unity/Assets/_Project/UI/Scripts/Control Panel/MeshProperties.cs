@@ -19,6 +19,7 @@ namespace _Project.UI.Scripts.Control_Panel
     {
         private RTMesh mesh;
         private InteractableMesh iMesh;
+        private TextureMapper texMapper;
         private TextureManager texManager;
         private TextureSampler texSampler;
 
@@ -33,6 +34,10 @@ namespace _Project.UI.Scripts.Control_Panel
         private BoolEdit showVerticesToggle;
         [SerializeField]
         private BoolEdit showEdgesToggle;
+        [SerializeField]
+        private RectTransform textureMappingButtons;
+        [SerializeField]
+        private BoolEdit showFullTextureToggle;
         
         [Header("Material settings")]
         [SerializeField] 
@@ -78,14 +83,17 @@ namespace _Project.UI.Scripts.Control_Panel
             rotationEdit.Value = mesh.Rotation;
             scaleEdit.Value = mesh.Scale;
 
+            this.iMesh = mesh.GetComponent<InteractableMesh>();
+            ShowInteractibleMesh();
+
+            this.texMapper = mesh.GetComponent<TextureMapper>();
+            ShowTextureMap();
+
             this.texManager = mesh.GetComponent<TextureManager>();
             ShowTextureEdit();
             
             this.texSampler = mesh.GetComponent<TextureSampler>();
             ShowSamplingEdits();
-
-            this.iMesh = mesh.GetComponent<InteractableMesh>();
-            ShowInteractibleMesh();
 
             colorEdit.Color = mesh.Color;
             ambientEdit.Value = mesh.Ambient;
@@ -96,6 +104,32 @@ namespace _Project.UI.Scripts.Control_Panel
             typeDropdown.value = typeDropdown.options.FindIndex(option => option.text == mesh.Type.ToString());
             refractiveIndexEdit.gameObject.SetActive(mesh.Type == RTMesh.ObjectType.Transparent);
             refractiveIndexEdit.Value = mesh.RefractiveIndex;
+        }
+
+        private void ShowInteractibleMesh() {
+            if (!iMesh) {
+                showVerticesToggle.gameObject.SetActive(false);
+                showEdgesToggle.gameObject.SetActive(false);
+                return;
+            }
+            showVerticesToggle.gameObject.SetActive(true);
+            showEdgesToggle.gameObject.SetActive(true);
+
+            showVerticesToggle.IsOn = iMesh.ShowVertices;
+            showEdgesToggle.IsOn = iMesh.ShowEdges;
+        }
+
+        private void ShowTextureMap() {
+            if (!texMapper) {
+                textureMappingButtons.gameObject.SetActive(false);
+                showFullTextureToggle.gameObject.SetActive(false);
+                return;
+            }
+            textureMappingButtons.gameObject.SetActive(true);
+            showFullTextureToggle.gameObject.SetActive(false);
+            texMapper.Select();
+
+            showFullTextureToggle.IsOn = texMapper.ShowFullTexture;
         }
 
         private void ShowTextureEdit() {
@@ -123,19 +157,6 @@ namespace _Project.UI.Scripts.Control_Panel
             samplingEdit.IsOn = texSampler.IsSampling;
         }
 
-        private void ShowInteractibleMesh() {
-            if (!iMesh) {
-                showVerticesToggle.gameObject.SetActive(false);
-                showEdgesToggle.gameObject.SetActive(false);
-                return;
-            }
-            showVerticesToggle.gameObject.SetActive(true);
-            showEdgesToggle.gameObject.SetActive(true);
-
-            showVerticesToggle.IsOn = iMesh.ShowVertices;
-            showEdgesToggle.IsOn = iMesh.ShowEdges;
-        }
-
         /// <summary>
         /// Hide the shown mesh properties.
         /// </summary>
@@ -157,6 +178,14 @@ namespace _Project.UI.Scripts.Control_Panel
         public void UpdateTextureSamplingMode() {
             texSampler.Mode = (SamplingMode)samplingModeEdit.Value;
         }
+
+        public void TexMapperWrap() {
+            texMapper.Wrap();
+        }
+
+        public void TexMapperUnwrap() {
+            texMapper.Unwrap();
+        }
         
         private void Awake()
         {
@@ -166,6 +195,7 @@ namespace _Project.UI.Scripts.Control_Panel
 
             showVerticesToggle.OnValueChanged.AddListener((value) => {iMesh.ShowVertices = value; });
             showEdgesToggle.OnValueChanged.AddListener((value) => {iMesh.ShowEdges = value; });
+            showFullTextureToggle.OnValueChanged.AddListener(value => texMapper.ShowFullTexture = value);
 
             colorEdit.OnValueChanged.AddListener((value) => { mesh.Color = value; });
             ambientEdit.OnValueChanged.AddListener((value) => { mesh.Ambient = value; });

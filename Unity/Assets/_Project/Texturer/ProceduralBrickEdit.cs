@@ -44,7 +44,7 @@ public class ProceduralBrickEdit : ProceduralTextureEdit {
         brickHeightEdit.OnValueChanged.AddListener(value => brickTexture.BrickHeight = (int)value);
         bricksXEdit.OnValueChanged.AddListener(value => brickTexture.BricksX = (int)value);
         bricksYEdit.OnValueChanged.AddListener(value => brickTexture.BricksY = (int)value);
-        brickOffsetEdit.OnValueChanged.AddListener(value => brickTexture.BrickOffset = (int)value);
+        brickOffsetEdit.OnValueChanged.AddListener(value => brickTexture.BrickOffset = value);
         mortarThicknessEdit.OnValueChanged.AddListener(value => brickTexture.MortarThickness = (int)value);
     }
 }

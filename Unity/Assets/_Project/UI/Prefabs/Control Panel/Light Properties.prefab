@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b4c111791dd8451e86be66c2cf81424, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DeregisterOnDestroy: 1
+  DeregisterOnDestroy: 0
   gameEvent: {fileID: 11400000, guid: 123af581b49ea49ddb17bed4c365792f, type: 2}
   response:
     m_PersistentCalls:
