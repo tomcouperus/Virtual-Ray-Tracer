@@ -8,6 +8,7 @@ public class TextureMapper : MonoBehaviour {
     public enum WrapState {Wrapped, Unwrapped, Transforming}
     private WrapState wrapState;
 
+    [Header("Animation")]
     [SerializeField]
     private Vector3 targetPosition;
     [SerializeField]
@@ -22,7 +23,7 @@ public class TextureMapper : MonoBehaviour {
     private Mesh lerpedMesh;
 
     [SerializeField]
-    private MeshFilter lerpedMeshFilter;
+    private MeshFilter targetMeshFilter;
 
     [Header("Events")]
     [SerializeField]
@@ -69,13 +70,13 @@ public class TextureMapper : MonoBehaviour {
 
     private IEnumerator UnwrapAnimation() {
         onWrapStateChanged.Raise(this, WrapState.Transforming);
-        lerpedMeshFilter.gameObject.SetActive(true);
+        targetMeshFilter.gameObject.SetActive(true);
         float deltaTime = 0;
         while (deltaTime < animationTime) {
             animationProgress = deltaTime / animationTime;
             
             LerpMesh(animationProgress);
-            lerpedMeshFilter.transform.localPosition = targetPosition * animationProgress;
+            targetMeshFilter.transform.localPosition = targetPosition * animationProgress;
 
             deltaTime += Time.deltaTime;
             yield return null;
@@ -95,13 +96,13 @@ public class TextureMapper : MonoBehaviour {
             animationProgress = 1 - deltaTime / animationTime;
 
             LerpMesh(animationProgress);
-            lerpedMeshFilter.transform.localPosition = targetPosition * animationProgress;
+            targetMeshFilter.transform.localPosition = targetPosition * animationProgress;
 
             deltaTime += Time.deltaTime;
             yield return null;
         }
         animationProgress = 0;
-        lerpedMeshFilter.gameObject.SetActive(false);
+        targetMeshFilter.gameObject.SetActive(false);
         onWrapStateChanged.Raise(this, WrapState.Wrapped);
     }
 
@@ -110,7 +111,7 @@ public class TextureMapper : MonoBehaviour {
         wrappedMesh = meshFilter.mesh;
         unwrappedMesh = UnwrapMesh(wrappedMesh);
         lerpedMesh = CopyMesh(meshFilter.mesh, meshFilter.mesh+" (Lerped)");
-        lerpedMeshFilter.mesh = lerpedMesh;
+        targetMeshFilter.mesh = lerpedMesh;
         wrapState = WrapState.Wrapped;
     }
 
@@ -123,7 +124,7 @@ public class TextureMapper : MonoBehaviour {
         if (!enabled) return;
         if (!Application.isPlaying) return;
         if (lerpedMesh) LerpMesh(animationProgress);
-        lerpedMeshFilter.transform.localPosition = targetPosition * animationProgress;
+        targetMeshFilter.transform.localPosition = targetPosition * animationProgress;
     }
     #endif
 }
