@@ -19,6 +19,11 @@ public class TextureMapper : MonoBehaviour {
         }
     }
 
+    [Header("Unwrapping")]
+    [SerializeField]
+    private bool invertUnwrappedX;
+    private bool invertUnwrappedY;
+
     [Header("Animation")]
     [SerializeField]
     private Vector3 targetPosition;
@@ -58,6 +63,8 @@ public class TextureMapper : MonoBehaviour {
         Vector3[] vertices = unwrapped.vertices;
         for (int i = 0; i < unwrapped.vertexCount; i++) {
             Vector2 uv = unwrapped.uv[i] * 2 - Vector2.one;
+            if (invertUnwrappedX) uv.x *= -1;
+            if (invertUnwrappedY) uv.y *= -1;
             vertices[i] = new Vector3(uv.x, uv.y, 0);
         }
         unwrapped.vertices = vertices;

@@ -126,7 +126,7 @@ namespace _Project.UI.Scripts.Control_Panel
                 return;
             }
             textureMappingButtons.gameObject.SetActive(true);
-            showFullTextureToggle.gameObject.SetActive(true);
+            showFullTextureToggle.gameObject.SetActive(false);
             texMapper.Select();
 
             showFullTextureToggle.IsOn = texMapper.ShowFullTexture;

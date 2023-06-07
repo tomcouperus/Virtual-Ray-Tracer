@@ -1147,29 +1147,29 @@ MonoBehaviour:
       description: 'To do this translation, each vertex is manually assigned an extra
         pair of coordinates: the u and v coordinates, with values between 0 and 1.
         The reason they are in this range is so that they can work on any size of
-        image. Select the sphere and click on the Unwrap button to see how the object
-        was wrapped.'
-      skippable: 0
-      points: 0
-    - identifier: TextureMapping_TextureUsage
-      name: Texture usage
-      description: You may note that the unwrapped object does not form a perfect
-        square. However, if you fill in the gaps, it will be. Select the Show Full
-        Texture checkmark.
+        image. Select the cylinder and click on the Unwrap button to see how it was
+        wrapped.'
       skippable: 0
       points: 0
     - identifier: TextureMapping_Texture
       name: Texture
       description: "This is the full texture that was used to wrap the object. Just
         like how you\u2019d wrap a gift and not use all of the wrapping paper, we
-        do not use all areas of the texture to detail our object. This texture image
-        can be anything you want it to be. Click the Wrap button to transform the
-        texture back into a cube."
+        do not need to use all areas of the texture to detail our object. This texture
+        image can be anything you want it to be. Click the Wrap button to transform
+        the texture back into a cylinder."
       skippable: 0
       points: 0
     - identifier: 
       name: 
       description: 
+      skippable: 0
+      points: 0
+    - identifier: TextureMapping_TextureUsage
+      name: Texture usage
+      description: You may note that the unwrapped cylinder does not form a perfect
+        square. However, if you fill in the gaps, it will be. Select the Show Full
+        Texture checkmark.
       skippable: 0
       points: 0
   - optionalTasksStart: 9
