@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TextureWrappingButton : MonoBehaviour {
+public class TextureWrappingEdit : MonoBehaviour {
     [SerializeField]
     private TextureMapper.WrapState activeState;
 

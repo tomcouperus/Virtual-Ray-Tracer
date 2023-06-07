@@ -2,11 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(MeshRenderer))]
 [RequireComponent(typeof(MeshFilter))]
 public class TextureMapper : MonoBehaviour {
 
     public enum WrapState {Wrapped, Unwrapped, Transforming}
+    [SerializeField]
     private WrapState wrapState;
+
+    [SerializeField]
+    private MeshRenderer fullTextureRenderer;
+    public bool ShowFullTexture {
+        get { return fullTextureRenderer.gameObject.activeSelf; }
+        set {
+            fullTextureRenderer.gameObject.SetActive(value);
+        }
+    }
 
     [Header("Animation")]
     [SerializeField]
@@ -24,6 +35,8 @@ public class TextureMapper : MonoBehaviour {
 
     [SerializeField]
     private MeshFilter targetMeshFilter;
+    [SerializeField]
+    private MeshRenderer targetMeshRenderer;
 
     [Header("Events")]
     [SerializeField]
@@ -90,6 +103,10 @@ public class TextureMapper : MonoBehaviour {
     }
 
     private IEnumerator WrapAnimation() {
+        if (ShowFullTexture) {
+            ShowFullTexture = false;
+            yield return new WaitForSeconds(0.25f);
+        }
         onWrapStateChanged.Raise(this, WrapState.Transforming);
         float deltaTime = 0;
         while (deltaTime < animationTime) {
@@ -113,10 +130,22 @@ public class TextureMapper : MonoBehaviour {
         lerpedMesh = CopyMesh(meshFilter.mesh, meshFilter.mesh+" (Lerped)");
         targetMeshFilter.mesh = lerpedMesh;
         wrapState = WrapState.Wrapped;
+
+        MeshRenderer meshRenderer = GetComponent<MeshRenderer>();
+        targetMeshRenderer.material = meshRenderer.material;
+
+        fullTextureRenderer.transform.position = targetPosition;
+        fullTextureRenderer.material = meshRenderer.material;
+        ShowFullTexture = false;
     }
 
     public void Select() {
         onWrapStateChanged.Raise(this, wrapState);
+    }
+
+    public void SetWrapState(Component sender, object data) {
+        if (sender != this) return;
+        wrapState = (WrapState) data;
     }
 
     #if UNITY_EDITOR

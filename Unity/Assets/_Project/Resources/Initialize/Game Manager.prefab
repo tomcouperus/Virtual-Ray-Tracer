@@ -1126,6 +1126,52 @@ MonoBehaviour:
       description: 
       skippable: 1
       points: 0
+  - optionalTasksStart: 6
+    tasks:
+    - identifier: 
+      name: Introduction
+      description: "There are 2 main ways of texturing: texture mapping and solid
+        textures. In this tutorial, we\u2019ll go over the former, since it\u2019s
+        the standard in the 3D modeling industry."
+      skippable: 1
+      points: 0
+    - identifier: 
+      name: Texture mapping
+      description: "Texture mapping can be thought of as wrapping your 3D object
+        in an image printed on some stretchy wrapping paper. It does so by mapping
+        a vertex\u2019s 3D coordinates to a second pair of 2D coordinates."
+      skippable: 1
+      points: 0
+    - identifier: TextureMapping_UVs
+      name: UVs
+      description: 'To do this translation, each vertex is manually assigned an extra
+        pair of coordinates: the u and v coordinates, with values between 0 and 1.
+        The reason they are in this range is so that they can work on any size of
+        image. Select the sphere and click on the Unwrap button to see how the object
+        was wrapped.'
+      skippable: 0
+      points: 0
+    - identifier: TextureMapping_TextureUsage
+      name: Texture usage
+      description: You may note that the unwrapped object does not form a perfect
+        square. However, if you fill in the gaps, it will be. Select the Show Full
+        Texture checkmark.
+      skippable: 0
+      points: 0
+    - identifier: TextureMapping_Texture
+      name: Texture
+      description: "This is the full texture that was used to wrap the object. Just
+        like how you\u2019d wrap a gift and not use all of the wrapping paper, we
+        do not use all areas of the texture to detail our object. This texture image
+        can be anything you want it to be. Click the Wrap button to transform the
+        texture back into a cube."
+      skippable: 0
+      points: 0
+    - identifier: 
+      name: 
+      description: 
+      skippable: 0
+      points: 0
   - optionalTasksStart: 9
     tasks:
     - identifier: 

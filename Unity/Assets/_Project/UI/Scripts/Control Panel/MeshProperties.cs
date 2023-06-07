@@ -36,6 +36,8 @@ namespace _Project.UI.Scripts.Control_Panel
         private BoolEdit showEdgesToggle;
         [SerializeField]
         private RectTransform textureMappingButtons;
+        [SerializeField]
+        private BoolEdit showFullTextureToggle;
         
         [Header("Material settings")]
         [SerializeField] 
@@ -85,7 +87,7 @@ namespace _Project.UI.Scripts.Control_Panel
             ShowInteractibleMesh();
 
             this.texMapper = mesh.GetComponent<TextureMapper>();
-            ShowTextureMapButtons();
+            ShowTextureMap();
 
             this.texManager = mesh.GetComponent<TextureManager>();
             ShowTextureEdit();
@@ -117,13 +119,17 @@ namespace _Project.UI.Scripts.Control_Panel
             showEdgesToggle.IsOn = iMesh.ShowEdges;
         }
 
-        private void ShowTextureMapButtons() {
+        private void ShowTextureMap() {
             if (!texMapper) {
                 textureMappingButtons.gameObject.SetActive(false);
+                showFullTextureToggle.gameObject.SetActive(false);
                 return;
             }
-            texMapper.Select();
             textureMappingButtons.gameObject.SetActive(true);
+            showFullTextureToggle.gameObject.SetActive(true);
+            texMapper.Select();
+
+            showFullTextureToggle.IsOn = texMapper.ShowFullTexture;
         }
 
         private void ShowTextureEdit() {
@@ -189,6 +195,7 @@ namespace _Project.UI.Scripts.Control_Panel
 
             showVerticesToggle.OnValueChanged.AddListener((value) => {iMesh.ShowVertices = value; });
             showEdgesToggle.OnValueChanged.AddListener((value) => {iMesh.ShowEdges = value; });
+            showFullTextureToggle.OnValueChanged.AddListener(value => texMapper.ShowFullTexture = value);
 
             colorEdit.OnValueChanged.AddListener((value) => { mesh.Color = value; });
             ambientEdit.OnValueChanged.AddListener((value) => { mesh.Ambient = value; });
