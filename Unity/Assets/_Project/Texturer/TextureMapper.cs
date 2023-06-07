@@ -9,6 +9,8 @@ public class TextureMapper : MonoBehaviour {
     private WrapState wrapState;
 
     [SerializeField]
+    private Vector3 targetPosition;
+    [SerializeField]
     [Min(0.1f)]
     private float animationTime = 3f;
     [SerializeField]
@@ -67,10 +69,14 @@ public class TextureMapper : MonoBehaviour {
 
     private IEnumerator UnwrapAnimation() {
         onWrapStateChanged.Raise(this, WrapState.Transforming);
+        lerpedMeshFilter.gameObject.SetActive(true);
         float deltaTime = 0;
         while (deltaTime < animationTime) {
             animationProgress = deltaTime / animationTime;
+            
             LerpMesh(animationProgress);
+            lerpedMeshFilter.transform.localPosition = targetPosition * animationProgress;
+
             deltaTime += Time.deltaTime;
             yield return null;
         }
@@ -87,11 +93,15 @@ public class TextureMapper : MonoBehaviour {
         float deltaTime = 0;
         while (deltaTime < animationTime) {
             animationProgress = 1 - deltaTime / animationTime;
+
             LerpMesh(animationProgress);
+            lerpedMeshFilter.transform.localPosition = targetPosition * animationProgress;
+
             deltaTime += Time.deltaTime;
             yield return null;
         }
         animationProgress = 0;
+        lerpedMeshFilter.gameObject.SetActive(false);
         onWrapStateChanged.Raise(this, WrapState.Wrapped);
     }
 
@@ -113,6 +123,7 @@ public class TextureMapper : MonoBehaviour {
         if (!enabled) return;
         if (!Application.isPlaying) return;
         if (lerpedMesh) LerpMesh(animationProgress);
+        lerpedMeshFilter.transform.localPosition = targetPosition * animationProgress;
     }
     #endif
 }
