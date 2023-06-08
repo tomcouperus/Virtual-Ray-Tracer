@@ -19,11 +19,20 @@ public class ProceduralMarbleEdit : ProceduralTextureEdit {
         frequencyEdit.Value = marbleTexture.Frequency;
     }
 
-    public override void AddListeners(ProceduralTexture proceduralTexture) {
+    public override void AddListeners(ProceduralTexture proceduralTexture, TextureSelect texSelect) {
         ProceduralMarbleTexture marbleTexture = (ProceduralMarbleTexture)proceduralTexture;
 
-        sizeEdit.OnValueChanged.AddListener(value => marbleTexture.Size = (int)value);
-        seedEdit.OnValueChanged.AddListener(value => marbleTexture.Seed = (int)value);
-        frequencyEdit.OnValueChanged.AddListener(value => marbleTexture.Frequency = value);
+        sizeEdit.OnValueChanged.AddListener(value => {
+            marbleTexture.Size = (int)value;
+            if (texSelect.Selected) marbleTexture.RefreshTextureAction.Invoke();
+        });
+        seedEdit.OnValueChanged.AddListener(value => {
+            marbleTexture.Seed = (int)value;
+            if (texSelect.Selected) marbleTexture.RefreshTextureAction.Invoke();
+        });
+        frequencyEdit.OnValueChanged.AddListener(value => {
+            marbleTexture.Frequency = value;
+            if (texSelect.Selected) marbleTexture.RefreshTextureAction.Invoke();
+        });
     }
 }

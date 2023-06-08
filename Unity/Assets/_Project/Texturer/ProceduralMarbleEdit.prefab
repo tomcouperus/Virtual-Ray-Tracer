@@ -208,11 +208,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 590595069432362183, guid: 9c7e9f84e5dea9c40a41d59563b4d99b, type: 3}
       propertyPath: maxValue
-      value: 100000
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 590595069432362183, guid: 9c7e9f84e5dea9c40a41d59563b4d99b, type: 3}
       propertyPath: minValue
-      value: -100000
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 590595070482668862, guid: 9c7e9f84e5dea9c40a41d59563b4d99b, type: 3}
       propertyPath: m_AnchorMax.x
@@ -402,7 +402,8 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -9132043089225741288, guid: 8f3718f90182c44e1ad1f6b73eb52869, type: 3}
       propertyPath: tooltip
-      value: The size of the marble texture in pixels
+      value: 'The size of the marble texture in pixels. WARNING: Sizes larger than
+        256 have long loading times!'
       objectReference: {fileID: 0}
     - target: {fileID: -9132043089225741288, guid: 8f3718f90182c44e1ad1f6b73eb52869, type: 3}
       propertyPath: maxValue

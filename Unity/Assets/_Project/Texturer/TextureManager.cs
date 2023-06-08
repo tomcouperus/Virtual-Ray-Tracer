@@ -34,14 +34,11 @@ public class TextureManager : MonoBehaviour {
             return texture;
         }
         set {
-            if (textureIsProcedural) Object.Destroy(texture);
+            bool isProceduralTexture = TextureIndex >= TextureCount && TextureIndex < TextureCount + ProceduralTextureCount;
+            if (isProceduralTexture) Object.Destroy(texture);
             Renderer renderer = GetComponent<Renderer>();
             renderer.material.mainTexture = value;
         }
-    }
-    private bool textureIsProcedural;
-    public bool TextureIsNull {
-        get {return texture == null;}
     }
 
     private void Awake() {
@@ -56,6 +53,10 @@ public class TextureManager : MonoBehaviour {
         List<ProceduralTexture> proceduralTexturesCopy = new List<ProceduralTexture>();
         for (int i = 0; i < ProceduralTextureCount; i++) {
             ProceduralTexture copy = Instantiate(proceduralTextures[i]);
+            copy.RefreshTextureAction = () => {
+                int procIndex = TextureIndex - TextureCount;
+                SelectProceduralTexture(procIndex);
+            };
             proceduralTexturesCopy.Add(copy);
         }
         proceduralTextures = proceduralTexturesCopy;
@@ -93,14 +94,12 @@ public class TextureManager : MonoBehaviour {
 
     public void SelectTexture(int index) {
         texture = textures[index];
-        textureIsProcedural = false;
         _textureIndex = index;
     }
 
     public void SelectProceduralTexture(int index) {
         ProceduralTexture tex = proceduralTextures[index];
         texture = tex.CreateTexture();
-        textureIsProcedural = true;
         _textureIndex = index + TextureCount;
     }
 

@@ -500,8 +500,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f16dee96403f34de59144e629e9eecfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InitialTextureIndex: 0
-  InitialProceduralTextureIndex: -1
+  _textureIndex: 0
   textures:
   - {fileID: 2800000, guid: ae08a1afd315d4d3396e71cdab8e08c5, type: 3}
   proceduralTextures: []

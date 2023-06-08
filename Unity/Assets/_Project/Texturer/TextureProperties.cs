@@ -57,12 +57,12 @@ public class TextureProperties : MonoBehaviour {
             ProceduralTexture texture = textureManager.GetProceduralTexture(i);
             ProceduralTextureEdit proceduralEdit = Instantiate(texture.ProceduralTextureEditPrefab, transform);
             proceduralEdit.SetProceduralValues(texture);
-            proceduralEdit.AddListeners(texture);
+            proceduralEdit.AddListeners(texture, textureSelect);
 
             int texIndex = i;
             textureSelect.AddOnClickListener(() => {
                 textureManager.SelectProceduralTexture(texIndex);
-                texture.onSelect?.Invoke();
+                texture.OnSelect?.Invoke();
             });
 
             textureSelects.Add(textureSelect);

@@ -6,7 +6,7 @@ using UnityEngine;
 public class ProceduralMarbleTexture : ProceduralTexture {
 
     [SerializeField]
-    public int Size = 512;
+    public int Size = 256;
     [SerializeField]
     public int Seed;
     [SerializeField]

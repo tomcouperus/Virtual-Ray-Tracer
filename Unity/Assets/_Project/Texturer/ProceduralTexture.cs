@@ -12,7 +12,9 @@ public abstract class ProceduralTexture : ScriptableObject {
         get {return _proceduralTextureEditPrefab;}
     }
 
-    public UnityEvent onSelect;
+    public UnityEvent OnSelect;
+    
+    public UnityAction RefreshTextureAction;
 
     public abstract Texture2D CreateTexture();
     public abstract Texture2D CreatePreviewTexture();

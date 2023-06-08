@@ -35,16 +35,40 @@ public class ProceduralBrickEdit : ProceduralTextureEdit {
         mortarThicknessEdit.Value = brickTexture.MortarThickness;
     }
 
-    public override void AddListeners(ProceduralTexture proceduralTexture) {
+    public override void AddListeners(ProceduralTexture proceduralTexture, TextureSelect texSelect) {
         ProceduralBrickTexture brickTexture = (ProceduralBrickTexture)proceduralTexture;
 
-        brickColorEdit.OnValueChanged.AddListener(value => brickTexture.BrickColor = value);
-        mortarColorEdit.OnValueChanged.AddListener(value => brickTexture.MortarColor = value);
-        brickWidthEdit.OnValueChanged.AddListener(value => brickTexture.BrickWidth = (int)value);
-        brickHeightEdit.OnValueChanged.AddListener(value => brickTexture.BrickHeight = (int)value);
-        bricksXEdit.OnValueChanged.AddListener(value => brickTexture.BricksX = (int)value);
-        bricksYEdit.OnValueChanged.AddListener(value => brickTexture.BricksY = (int)value);
-        brickOffsetEdit.OnValueChanged.AddListener(value => brickTexture.BrickOffset = value);
-        mortarThicknessEdit.OnValueChanged.AddListener(value => brickTexture.MortarThickness = (int)value);
+        brickColorEdit.OnValueChanged.AddListener(value => {
+            brickTexture.BrickColor = value;
+            if (texSelect.Selected) brickTexture.RefreshTextureAction.Invoke();
+        });
+        mortarColorEdit.OnValueChanged.AddListener(value => {
+            brickTexture.MortarColor = value;
+            if (texSelect.Selected) brickTexture.RefreshTextureAction.Invoke();
+        });
+        brickWidthEdit.OnValueChanged.AddListener(value => {
+            brickTexture.BrickWidth = (int)value;
+            if (texSelect.Selected) brickTexture.RefreshTextureAction.Invoke();
+        });
+        brickHeightEdit.OnValueChanged.AddListener(value => {
+            brickTexture.BrickHeight = (int)value;
+            if (texSelect.Selected) brickTexture.RefreshTextureAction.Invoke();
+        });
+        bricksXEdit.OnValueChanged.AddListener(value => {
+            brickTexture.BricksX = (int)value;
+            if (texSelect.Selected) brickTexture.RefreshTextureAction.Invoke();
+        });
+        bricksYEdit.OnValueChanged.AddListener(value => {
+            brickTexture.BricksY = (int)value;
+            if (texSelect.Selected) brickTexture.RefreshTextureAction.Invoke();
+        });
+        brickOffsetEdit.OnValueChanged.AddListener(value => {
+            brickTexture.BrickOffset = value;
+            if (texSelect.Selected) brickTexture.RefreshTextureAction.Invoke();
+        });
+        mortarThicknessEdit.OnValueChanged.AddListener(value => {
+            brickTexture.MortarThickness = (int)value;
+            if (texSelect.Selected) brickTexture.RefreshTextureAction.Invoke();
+        });
     }
 }
