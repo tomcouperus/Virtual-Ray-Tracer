@@ -15,6 +15,14 @@ public class TextureSelect : MonoBehaviour
     [SerializeField]
     private Sprite indicator;
 
+    public bool Selected {
+        get {return textureName.fontStyle == TMPro.FontStyles.Bold;}
+        set {
+            if (value) textureName.fontStyle = TMPro.FontStyles.Bold;
+            else textureName.fontStyle = TMPro.FontStyles.Normal;
+        }
+    }
+
     public void SetPreview(Sprite preview) {
         texturePreview.sprite = preview;
     }

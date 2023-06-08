@@ -10,13 +10,15 @@ public class TextureProperties : MonoBehaviour {
     private TextureSelect textureSelectPrefab;
 
     [SerializeField]
-    private GameObject texturesHeader;
+    private TMPro.TextMeshProUGUI texturesHeader;
     [SerializeField]
-    private GameObject nullTextureSelect;
+    private TextureSelect nullTextureSelect;
     [SerializeField]
-    private GameObject proceduralTexturesHeader;
+    private TMPro.TextMeshProUGUI proceduralTexturesHeader;
 
     private TextureManager textureManager;
+
+    private List<TextureSelect> textureSelects = new List<TextureSelect>();
 
     public void Hide() {
         gameObject.SetActive(false);
@@ -33,19 +35,19 @@ public class TextureProperties : MonoBehaviour {
             textureSelect.SetName(texPreviewList[i].name);
 
             int texIndex = i;
-            textureSelect.AddOnClickListener(() => {textureManager.SelectTexture(texIndex);});
+            textureSelect.AddOnClickListener(() => textureManager.SelectTexture(texIndex));
 
-
+            textureSelects.Add(textureSelect);
         }
     }
     
     private void CreateProceduralTextureSelects(TextureManager textureManager) {
         List<Sprite> texPreviewList = textureManager.CreateProceduralTexturePreviews();
         if (texPreviewList.Count == 0) {
-            proceduralTexturesHeader.SetActive(false);
+            proceduralTexturesHeader.gameObject.SetActive(false);
             return;
         }
-        proceduralTexturesHeader.SetActive(true);
+        proceduralTexturesHeader.gameObject.SetActive(true);
 
         for (int i = 0; i < texPreviewList.Count; i++) {
             TextureSelect textureSelect = Instantiate(textureSelectPrefab, transform);
@@ -62,21 +64,39 @@ public class TextureProperties : MonoBehaviour {
                 textureManager.SelectProceduralTexture(texIndex);
                 texture.onSelect?.Invoke();
             });
+
+            textureSelects.Add(textureSelect);
         }
     }
 
     private void Clear() {
+        textureSelects.Clear();
+        textureSelects.Add(nullTextureSelect);
+
         for (int i = 0; i < transform.childCount; i++) {
             GameObject child = transform.GetChild(i).gameObject;
-            if (child == texturesHeader) continue;
-            if (child == nullTextureSelect) continue;
-            if (child == proceduralTexturesHeader) continue;
+            if (child == texturesHeader.gameObject) continue;
+            if (child == nullTextureSelect.gameObject) continue;
+            if (child == proceduralTexturesHeader.gameObject) continue;
             Object.Destroy(child);
         }
     }
 
     public void SelectNoTexture() {
         textureManager.ClearTexture();
+    }
+
+    private void AddSelectionHighlights() {
+        foreach (TextureSelect texSelect in textureSelects) {
+            texSelect.AddOnClickListener(() => {
+                foreach (TextureSelect t in textureSelects) {
+                    if (t == texSelect) t.Selected = true;
+                    else t.Selected = false;
+                }
+            });
+        }
+
+        textureSelects[textureManager.TextureIndex+1].Selected = true;
     }
 
     public void OnShowTextureProperties(Component sender, object data) {
@@ -87,5 +107,6 @@ public class TextureProperties : MonoBehaviour {
         
         CreateTextureSelects(textureManager);
         CreateProceduralTextureSelects(textureManager);
+        AddSelectionHighlights();
     }
 }

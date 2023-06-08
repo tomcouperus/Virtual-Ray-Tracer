@@ -6,13 +6,12 @@ using UnityEngine;
 public class TextureManager : MonoBehaviour {
     
     [SerializeField]
-    [Tooltip("If set to -1, no texture is initialised. Is checked first.")]
+    [Tooltip("If set to -1, no texture is initialised. If there are n textures and m procedural textures, then [0..n) is the range for textures and [n..n+m) is the range for procedural textures.")]
     [Min(-1)]
-    private int InitialTextureIndex = -1;
-    [SerializeField]
-    [Tooltip("If set to -1, no procedural texture is initialised. Is checked second.")]
-    [Min(-1)]
-    private int InitialProceduralTextureIndex = -1;
+    private int _textureIndex = -1;
+    public int TextureIndex {
+        get {return _textureIndex;}
+    }
     
     [SerializeField]
     private List<Texture2D> textures;
@@ -28,19 +27,22 @@ public class TextureManager : MonoBehaviour {
         get {return proceduralTextures.Count;}
     }
 
-    private Texture2D Texture {
+    private Texture2D texture {
         get {
             Renderer renderer = GetComponent<Renderer>();
             Texture2D texture = renderer.material.mainTexture as Texture2D;
             return texture;
         }
         set {
-            if (textureIsProcedural) Object.Destroy(Texture);
+            if (textureIsProcedural) Object.Destroy(texture);
             Renderer renderer = GetComponent<Renderer>();
             renderer.material.mainTexture = value;
         }
     }
     private bool textureIsProcedural;
+    public bool TextureIsNull {
+        get {return texture == null;}
+    }
 
     private void Awake() {
         List<Texture2D> texturesCopy = new List<Texture2D>();
@@ -58,8 +60,13 @@ public class TextureManager : MonoBehaviour {
         }
         proceduralTextures = proceduralTexturesCopy;
 
-        if (InitialTextureIndex >= 0 && InitialTextureIndex < TextureCount) SelectTexture(InitialTextureIndex);
-        else if (InitialProceduralTextureIndex >= 0 && InitialProceduralTextureIndex < ProceduralTextureCount) SelectProceduralTexture(InitialProceduralTextureIndex);
+        if (_textureIndex < 0) {
+            ClearTexture();
+        } else if (_textureIndex < TextureCount) {
+            SelectTexture(_textureIndex);
+        } else {
+            SelectProceduralTexture(_textureIndex - TextureCount);
+        }
     }
 
     public static Sprite CreateTexturePreview(Texture2D texture) {
@@ -85,14 +92,16 @@ public class TextureManager : MonoBehaviour {
     }
 
     public void SelectTexture(int index) {
-        Texture = textures[index];
+        texture = textures[index];
         textureIsProcedural = false;
+        _textureIndex = index;
     }
 
     public void SelectProceduralTexture(int index) {
         ProceduralTexture tex = proceduralTextures[index];
-        Texture = tex.CreateTexture();
+        texture = tex.CreateTexture();
         textureIsProcedural = true;
+        _textureIndex = index + TextureCount;
     }
 
     public ProceduralTexture GetProceduralTexture(int index) {
@@ -100,18 +109,18 @@ public class TextureManager : MonoBehaviour {
     }
 
     public void ClearTexture() {
-        Texture = null;
+        texture = null;
+        _textureIndex = -1;
     }
 
     public Sprite CreateTexturePreview() {
-        if (!Texture) return null;
-        return CreateTexturePreview(Texture);
+        if (!texture) return null;
+        return CreateTexturePreview(texture);
     }
 
     #if UNITY_EDITOR
     private void OnValidate() {
-        if (InitialTextureIndex >= TextureCount) InitialTextureIndex = TextureCount-1;
-        if (InitialProceduralTextureIndex >= ProceduralTextureCount) InitialProceduralTextureIndex = ProceduralTextureCount-1;
+        if (_textureIndex >= TextureCount + ProceduralTextureCount) _textureIndex = TextureCount + ProceduralTextureCount - 1;
     }
     #endif
 }

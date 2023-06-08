@@ -322,8 +322,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f16dee96403f34de59144e629e9eecfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InitialTextureIndex: -1
-  InitialProceduralTextureIndex: -1
+  _textureIndex: 0
   textures: []
   proceduralTextures:
   - {fileID: 11400000, guid: 1b157eee983d04904b280fa3454b9160, type: 2}
@@ -2734,8 +2733,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f16dee96403f34de59144e629e9eecfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InitialTextureIndex: -1
-  InitialProceduralTextureIndex: 1
+  _textureIndex: -1
   textures: []
   proceduralTextures:
   - {fileID: 11400000, guid: 1b157eee983d04904b280fa3454b9160, type: 2}
