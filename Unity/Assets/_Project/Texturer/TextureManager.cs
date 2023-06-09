@@ -26,42 +26,6 @@ public class TextureManager : MonoBehaviour {
         get {return proceduralTextures.Count;}
     }
 
-    // private int activeChild = SetActiveChild(0);
-    private int? activeChild;
-    public int? ActiveChild {
-        get {return activeChild;}
-        set {
-            activeChild = SetActiveChild(value);
-            if (activeChild == 1) onPyramidSelected.Invoke();
-        }
-    }
-
-    [SerializeField, Range(0.00f, 1.00f)]
-    private float transition = 0f;
-    public float Transition {
-        get {return transition;}
-        set {
-            if (value == transition) return;
-            if (value == 1.00f) onFullTransition.Invoke();
-            transition = value;
-            transform.GetChild(ActiveChild.Value).GetComponent<Renderer>().material.SetFloat("_Transition", transition);
-        }
-    }
-
-    private bool loop = false;
-    public bool Loop {
-        get {return loop;}
-        set {
-            if (value == loop) return;
-            loop = value;
-            transform.GetChild(ActiveChild.Value).GetComponent<Renderer>().material.SetFloat("_Loop", loop ? 1f : 0f);
-        }
-    }
-
-    public int ChildCount {
-        get {return transform.childCount;}
-    }
-
     private Texture2D Texture {
         get {
             Renderer renderer = GetComponent<Renderer>();
@@ -74,15 +38,13 @@ public class TextureManager : MonoBehaviour {
             renderer.material.mainTexture = value;
 
             foreach (Renderer rend in GetComponentsInChildren<Renderer>()) {
-                rend.material.mainTexture = value;
+                onSetChildTexture.Raise(this, value);
             }
         }
     }
     private bool textureIsProcedural;
 
-    [Serializable]
-    public class Event : UnityEvent { }
-    public Event onFullTransition, onPyramidSelected;
+    public GameEvent onSetChildTexture;
 
     private void Awake() {
         List<Texture2D> texturesCopy = new List<Texture2D>();
@@ -100,9 +62,6 @@ public class TextureManager : MonoBehaviour {
 
         if (InitialTextureIndex < 0 || InitialTextureIndex >= TextureCount) return;
         else SelectTexture(InitialTextureIndex);
-
-
-        ActiveChild = 0;
     }
 
     public static Sprite CreateTexturePreview(Texture2D texture) {
@@ -160,16 +119,6 @@ public class TextureManager : MonoBehaviour {
         if (!Texture) return null;
         return CreateTexturePreview(Texture);
     }
-
-    private int? SetActiveChild(int? index) {
-        if (transform.childCount == 0 || !index.HasValue) return null;
-
-        for (int i = 0; i < transform.childCount; i++)
-            transform.GetChild(i).gameObject.SetActive(i == index);
-
-        return index;
-    }
-
 
     #if UNITY_EDITOR
     private void OnValidate() {

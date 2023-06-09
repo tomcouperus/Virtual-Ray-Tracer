@@ -366,13 +366,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f16dee96403f34de59144e629e9eecfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InitialTextureIndex: 0
+  InitialTextureIndex: 2
   textures:
   - {fileID: 2800000, guid: aa49c54b54f8442f9ae5c5c455573d8f, type: 3}
   - {fileID: 2800000, guid: ae08a1afd315d4d3396e71cdab8e08c5, type: 3}
-  - {fileID: 2800000, guid: 4f8b5891e93afa644971703445402724, type: 3}
+  - {fileID: 2800000, guid: b4e43e662d1be7c42b4249fd4bf45091, type: 3}
   proceduralTextures: []
+  onSetChildTexture: {fileID: 11400000, guid: 4b05d799eac51924faa3d2ae24c252d1, type: 2}
+--- !u!4 &352478951 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2508341585415502816, guid: 46ac4ca1f3ae1fa0abba7d5d15963b63, type: 3}
+  m_PrefabInstance: {fileID: 352478940}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &352478958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 352478941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c93b7400e9825de46940744a0b32453a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  requiredMaterial: {fileID: 2100000, guid: 226ba30c5f56f8b4dbbcea708de21d80, type: 2}
   transition: 0
+  loop: 0
   onFullTransition:
     m_PersistentCalls:
       m_Calls:
@@ -403,11 +423,35 @@ MonoBehaviour:
           m_StringArgument: Pyramid_Select
           m_BoolArgument: 0
         m_CallState: 2
---- !u!4 &352478951 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2508341585415502816, guid: 46ac4ca1f3ae1fa0abba7d5d15963b63, type: 3}
-  m_PrefabInstance: {fileID: 352478940}
+--- !u!114 &352478959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 352478941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b4c111791dd8451e86be66c2cf81424, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DeregisterOnDestroy: 0
+  gameEvent: {fileID: 11400000, guid: 4b05d799eac51924faa3d2ae24c252d1, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 352478958}
+        m_TargetAssemblyTypeName: TextureProjector, Assembly-CSharp
+        m_MethodName: OnSetChildTexture
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &502900167
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3014,7 +3058,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Ambient: 1
+    - _Ambient: 0.6
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1

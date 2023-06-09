@@ -35,6 +35,7 @@ public class TextureProperties : MonoBehaviour {
     public Event onTextureSelected;
 
     private TextureManager textureManager;
+    private TextureProjector textureProjector;
 
     public void Hide() {
         gameObject.SetActive(false);
@@ -80,29 +81,20 @@ public class TextureProperties : MonoBehaviour {
         }
     }
 
-    private void CreateUVProjectionSelects(TextureManager textureManager) {
-        if(!textureManager.ActiveChild.HasValue) return;
+    private void CreateUVProjection(TextureProjector textureProjector) {
         onTextureSelected.Invoke();
 
-        if(textureManager.transform.GetChild(textureManager.ActiveChild.Value).GetComponent<Renderer>().material.name == "UVProjection (Instance)") {
-            UVProjectionHeader.SetActive(true);
-            transitionEdit.gameObject.SetActive(true);
-            loopEdit.gameObject.SetActive(true);
-        } else {
-            UVProjectionHeader.SetActive(false);
-            transitionEdit.gameObject.SetActive(false);
-            loopEdit.gameObject.SetActive(false);
-            return;
-        }
+        UVProjectionHeader.SetActive(true);
+        transitionEdit.gameObject.SetActive(true);
+        loopEdit.gameObject.SetActive(true);
         
-        transitionEdit.OnValueChanged.AddListener((value) => { textureManager.Transition = value; });
-        loopEdit.OnValueChanged.AddListener((value) => { textureManager.Loop = value; });
+        transitionEdit.OnValueChanged.AddListener((value) => { textureProjector.Transition = value; });
+        loopEdit.OnValueChanged.AddListener((value) => { textureProjector.Loop = value; });
 
-        if (textureManager.ChildCount > 1){
+        if (textureProjector.ChildCount > 1) {
             objectDropdown.gameObject.SetActive(true);
-            objectDropdown.onValueChanged.AddListener((value) => { textureManager.ActiveChild = value; });
-        }
-        else
+            objectDropdown.onValueChanged.AddListener((value) => { textureProjector.ActiveChild = value; });
+        } else
             objectDropdown.gameObject.SetActive(false);
     }
 
@@ -129,9 +121,22 @@ public class TextureProperties : MonoBehaviour {
         textureManager = (TextureManager) data;
 
         Clear();
-        
-        CreateUVProjectionSelects(textureManager);
+
+        TextureProjector textureProjector = textureManager.GetComponent<TextureProjector>();
+        if (textureProjector && checkChildMaterial(textureProjector)) {
+            CreateUVProjection(textureProjector);
+        }
         CreateTextureSelects(textureManager);
         CreateProceduralTextureSelects(textureManager);
+    }
+
+    private bool checkChildMaterial(TextureProjector textureProjector) {
+        foreach (Transform child in textureProjector.transform) {
+            if (child.GetComponent<MeshRenderer>().sharedMaterial.name == "UVProjection" || child.GetComponent<MeshRenderer>().material.name == "UVProjection (Instance)") {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
