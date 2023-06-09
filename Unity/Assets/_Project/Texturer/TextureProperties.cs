@@ -35,7 +35,7 @@ public class TextureProperties : MonoBehaviour {
             textureSelect.SetName(texPreviewList[i].name);
 
             int texIndex = i;
-            textureSelect.AddOnClickListener(() => textureManager.SelectTexture(texIndex));
+            textureSelect.AddOnSelectListener(() => textureManager.SelectTexture(texIndex));
 
             textureSelects.Add(textureSelect);
         }
@@ -60,7 +60,7 @@ public class TextureProperties : MonoBehaviour {
             proceduralEdit.AddListeners(texture, textureSelect);
 
             int texIndex = i;
-            textureSelect.AddOnClickListener(() => {
+            textureSelect.AddOnSelectListener(() => {
                 textureManager.SelectProceduralTexture(texIndex);
                 texture.OnSelect?.Invoke();
             });
@@ -88,7 +88,7 @@ public class TextureProperties : MonoBehaviour {
 
     private void AddSelectionHighlights() {
         foreach (TextureSelect texSelect in textureSelects) {
-            texSelect.AddOnClickListener(() => {
+            texSelect.AddOnSelectListener(() => {
                 foreach (TextureSelect t in textureSelects) {
                     if (t == texSelect) t.Selected = true;
                     else t.Selected = false;
@@ -108,5 +108,9 @@ public class TextureProperties : MonoBehaviour {
         CreateTextureSelects(textureManager);
         CreateProceduralTextureSelects(textureManager);
         AddSelectionHighlights();
+    }
+
+    private void Awake() {
+        nullTextureSelect.AddOnSelectListener(() => textureManager.ClearTexture());
     }
 }

@@ -11,15 +11,21 @@ public class TextureSelect : MonoBehaviour
     [SerializeField]
     private TMPro.TextMeshProUGUI textureName;
     [SerializeField]
-    private Button changeTextureButton;
+    private Toggle changeTextureMarker;
     [SerializeField]
     private Sprite indicator;
 
+    //helper variable to ensure the toggle does not get turned off by clicking it once it's selected.
+    private bool externalSelectedChange;
+    private bool _selected;
     public bool Selected {
-        get {return textureName.fontStyle == TMPro.FontStyles.Bold;}
+        get {return _selected;}
         set {
-            if (value) textureName.fontStyle = TMPro.FontStyles.Bold;
-            else textureName.fontStyle = TMPro.FontStyles.Normal;
+            if ((_selected && value) || (!_selected && !value)) return;
+            externalSelectedChange = true;
+            changeTextureMarker.isOn = value;
+            _selected = value;
+            externalSelectedChange = false;
         }
     }
 
@@ -31,13 +37,26 @@ public class TextureSelect : MonoBehaviour
         textureName.text = name;
     }
 
-    public void AddOnClickListener(UnityAction function) {
-        changeTextureButton.onClick.AddListener(function);
+    public void AddOnSelectListener(UnityAction function) {
+        changeTextureMarker.onValueChanged.AddListener(value => {
+            if (!_selected && value) function.Invoke();
+        });
     }
 
     private void OnDestroy() {
         if (texturePreview.sprite != indicator) {
             Object.Destroy(texturePreview.sprite);
         }
+    }
+
+    private void Awake() {
+        _selected = changeTextureMarker.isOn;
+        externalSelectedChange = false;
+        changeTextureMarker.onValueChanged.AddListener(value => {
+            if (!externalSelectedChange && !value) {
+                changeTextureMarker.isOn = true;
+                externalSelectedChange = false;
+            }
+        });
     }
 }
