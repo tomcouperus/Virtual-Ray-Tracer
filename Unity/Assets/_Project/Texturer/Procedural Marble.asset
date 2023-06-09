@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Marble
   _proceduralTextureEditPrefab: {fileID: 2067783881441467150, guid: ae93f5f01d1e04e309f25922e5967aab, type: 3}
-  onSelect:
+  OnSelect:
     m_PersistentCalls:
       m_Calls: []
-  Size: 1024
-  seed: 0
-  Frequency: 2
+  Size: 256
+  Seed: 0
+  Frequency: 2.75
   roughNoise:
     octaves: 6
     scale: 600
