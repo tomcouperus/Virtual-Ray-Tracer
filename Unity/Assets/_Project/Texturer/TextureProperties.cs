@@ -9,18 +9,9 @@ using _Project.UI.Scripts.Control_Panel;
 
 public class TextureProperties : MonoBehaviour {
 
-    [SerializeField]
-    private TextureSelect textureSelectPrefab;
-
-    [SerializeField]
-    private GameObject texturesHeader;
-    [SerializeField]
-    private GameObject nullTextureSelect;
-    [SerializeField]
-    private GameObject proceduralTexturesHeader;
+    [Header("UV mapping")]
     [SerializeField]
     private GameObject UVProjectionHeader;
-
     [SerializeField]
     private FloatEdit transitionEdit;
 
@@ -30,8 +21,20 @@ public class TextureProperties : MonoBehaviour {
     [SerializeField]
     private TMP_Dropdown objectDropdown;
 
+    [Header("Textures")]
+    [SerializeField]
+    private TextureSelect textureSelectPrefab;
+
+    [SerializeField]
+    private GameObject texturesHeader;
+    [SerializeField]
+    private GameObject nullTextureSelect;
+    [SerializeField]
+    private GameObject proceduralTexturesHeader;
+
     [Serializable]
     public class Event : UnityEvent { }
+    [Header("Events")]
     public Event onTextureSelected;
 
     private TextureManager textureManager;
@@ -132,7 +135,7 @@ public class TextureProperties : MonoBehaviour {
 
     private bool checkChildMaterial(TextureProjector textureProjector) {
         foreach (Transform child in textureProjector.transform) {
-            if (child.GetComponent<MeshRenderer>().sharedMaterial.name == "UVProjection" || child.GetComponent<MeshRenderer>().material.name == "UVProjection (Instance)") {
+            if (child.GetComponent<MeshRenderer>().sharedMaterial.name.StartsWith("UVProjection")) {
                 return true;
             }
         }
