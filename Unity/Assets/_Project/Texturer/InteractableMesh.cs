@@ -42,12 +42,19 @@ public class InteractableMesh : MonoBehaviour
         ShowVertices = _showVertices;
         vertices.transform.parent = transform;
         vertices.transform.localPosition = Vector3.zero;
+        vertices.transform.localScale = Vector3.one;
         vertices.transform.Rotate(transform.localEulerAngles, Space.Self);
         Mesh mesh = GetComponent<MeshFilter>().mesh;
         HashSet<Vector3> verts = new HashSet<Vector3>(mesh.vertices);
         foreach(Vector3 vertex in verts) {
             GameObject vertexObject = Instantiate(vertexPrefab, vertices.transform);
             vertexObject.transform.localPosition = vertex;
+            
+            Vector3 scale = vertexObject.transform.localScale;
+            scale.x /= transform.localScale.x;
+            scale.y /= transform.localScale.y;
+            scale.z /= transform.localScale.z;
+            vertexObject.transform.localScale = scale;
         }
     }
 

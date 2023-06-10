@@ -115,7 +115,7 @@ namespace _Project.UI.Scripts.Tutorial
 
             if (globalManager.CheatMode) return true;
 
-            if (level == SceneManager.sceneCountInBuildSettings - 1) return true;
+            // if (level == SceneManager.sceneCountInBuildSettings - 1) return true;
 
             // Check whether the tasks of the previous level exist
             if (globalManager.TutorialTasks.Count <= level - 2)

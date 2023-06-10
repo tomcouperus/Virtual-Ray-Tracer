@@ -84,7 +84,19 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8496189227971302856, guid: 36c3d85e447cd4f4f81bb48bc8a9229e, type: 3}
+        m_TargetAssemblyTypeName: _Project.UI.Scripts.Tutorial.TutorialManager, Assembly-CSharp
+        m_MethodName: CompleteTask
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Texture_Changed
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &3288401870877138142
 GameObject:

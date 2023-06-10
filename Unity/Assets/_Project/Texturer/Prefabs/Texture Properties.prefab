@@ -660,6 +660,42 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5225856449307455461}
     m_Modifications:
+    - target: {fileID: -8408966102784059295, guid: c187dcb58b1f9ff82b34253c7b41ce48, type: 3}
+      propertyPath: tooltip
+      value: Activates the looping animation.
+      objectReference: {fileID: 0}
+    - target: {fileID: -8408966102784059295, guid: c187dcb58b1f9ff82b34253c7b41ce48, type: 3}
+      propertyPath: OnEnabled.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8408966102784059295, guid: c187dcb58b1f9ff82b34253c7b41ce48, type: 3}
+      propertyPath: OnEnabled.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8408966102784059295, guid: c187dcb58b1f9ff82b34253c7b41ce48, type: 3}
+      propertyPath: OnEnabled.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8496189227971302856, guid: 36c3d85e447cd4f4f81bb48bc8a9229e, type: 3}
+    - target: {fileID: -8408966102784059295, guid: c187dcb58b1f9ff82b34253c7b41ce48, type: 3}
+      propertyPath: OnEnabled.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -8408966102784059295, guid: c187dcb58b1f9ff82b34253c7b41ce48, type: 3}
+      propertyPath: OnEnabled.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CompleteTask
+      objectReference: {fileID: 0}
+    - target: {fileID: -8408966102784059295, guid: c187dcb58b1f9ff82b34253c7b41ce48, type: 3}
+      propertyPath: OnEnabled.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: _Project.UI.Scripts.Tutorial.TutorialManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: -8408966102784059295, guid: c187dcb58b1f9ff82b34253c7b41ce48, type: 3}
+      propertyPath: OnEnabled.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Mapping_Loop
+      objectReference: {fileID: 0}
+    - target: {fileID: -8408966102784059295, guid: c187dcb58b1f9ff82b34253c7b41ce48, type: 3}
+      propertyPath: OnEnabled.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 590595068916426999, guid: c187dcb58b1f9ff82b34253c7b41ce48, type: 3}
       propertyPath: m_text
       value: Loop

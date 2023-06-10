@@ -200,6 +200,10 @@ PrefabInstance:
       value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2508341585415502816, guid: 46ac4ca1f3ae1fa0abba7d5d15963b63, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2508341585415502816, guid: 46ac4ca1f3ae1fa0abba7d5d15963b63, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0
       objectReference: {fileID: 0}
@@ -347,6 +351,7 @@ MonoBehaviour:
   - {fileID: 2800000, guid: aa49c54b54f8442f9ae5c5c455573d8f, type: 3}
   - {fileID: 2800000, guid: ae08a1afd315d4d3396e71cdab8e08c5, type: 3}
   proceduralTextures: []
+  onSetChildTexture: {fileID: 0}
 --- !u!114 &352478952
 MonoBehaviour:
   m_ObjectHideFlags: 0
