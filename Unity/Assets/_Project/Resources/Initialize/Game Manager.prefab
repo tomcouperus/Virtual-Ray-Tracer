@@ -53,7 +53,7 @@ MonoBehaviour:
       name: Introduction
       description: Welcome to Virtual Ray Tracer! These tutorial tasks will guide
         you through the program. Below this text, a progress bar is shown, which
-        displays your progress in the current level.  There are 11 levels in total.
+        displays your progress in the current level.  There are 6 levels in total.
         Press the button to the right of the progress bar to continue to the next
         task.
       skippable: 1
