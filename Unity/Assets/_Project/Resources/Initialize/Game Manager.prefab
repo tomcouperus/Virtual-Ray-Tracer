@@ -1117,8 +1117,8 @@ MonoBehaviour:
       points: 0
     - identifier: 
       name: Edge
-      description: 'The lines now visible show the edges between the vertices. Three
-        such edges make up a face. '
+      description: The lines now visible show the edges between the vertices. Each
+        triangle you see is a face.
       skippable: 1
       points: 0
     - identifier: 
@@ -1126,53 +1126,7 @@ MonoBehaviour:
       description: 
       skippable: 1
       points: 0
-  - optionalTasksStart: 6
-    tasks:
-    - identifier: 
-      name: Introduction
-      description: "There are 2 main ways of texturing: texture mapping and solid
-        textures. In this tutorial, we\u2019ll go over the former, since it\u2019s
-        the standard in the 3D modeling industry."
-      skippable: 1
-      points: 0
-    - identifier: 
-      name: Texture mapping
-      description: "Texture mapping can be thought of as wrapping your 3D object
-        in an image printed on some stretchy wrapping paper. It does so by mapping
-        a vertex\u2019s 3D coordinates to a second pair of 2D coordinates."
-      skippable: 1
-      points: 0
-    - identifier: TextureMapping_UVs
-      name: UVs
-      description: 'To do this translation, each vertex is manually assigned an extra
-        pair of coordinates: the u and v coordinates, with values between 0 and 1.
-        The reason they are in this range is so that they can work on any size of
-        image. Select the cylinder and click on the Unwrap button to see how it was
-        wrapped.'
-      skippable: 0
-      points: 0
-    - identifier: TextureMapping_Texture
-      name: Texture
-      description: "This is the full texture that was used to wrap the object. Just
-        like how you\u2019d wrap a gift and not use all of the wrapping paper, we
-        do not need to use all areas of the texture to detail our object. This texture
-        image can be anything you want it to be. Click the Wrap button to transform
-        the texture back into a cylinder."
-      skippable: 0
-      points: 0
-    - identifier: 
-      name: 
-      description: 
-      skippable: 0
-      points: 0
-    - identifier: TextureMapping_TextureUsage
-      name: Texture usage
-      description: You may note that the unwrapped cylinder does not form a perfect
-        square. However, if you fill in the gaps, it will be. Select the Show Full
-        Texture checkmark.
-      skippable: 0
-      points: 0
-  - optionalTasksStart: 9
+  - optionalTasksStart: 8
     tasks:
     - identifier: 
       name: Introduction
@@ -1188,7 +1142,7 @@ MonoBehaviour:
         on a 2D plane. We will show in an example what this looks like. Click on
         the large plane, which we will use as a projection surface, and click on
         "Edit" next to "Texture".
-      skippable: 1
+      skippable: 0
       points: 0
     - identifier: 
       name: Textures
@@ -1204,7 +1158,7 @@ MonoBehaviour:
         can either be calculated, or assigned manually. For the sphere the positions
         are often calculated with a function. By using the "Transition" slider you
         can see how the sphere unwraps. Set the value of the slider to 1.
-      skippable: 1
+      skippable: 0
       points: 0
     - identifier: 
       name: Sphere unwrapping
@@ -1218,7 +1172,7 @@ MonoBehaviour:
       name: Manual UV
       description: UV coordinates are often set manually when textures need  to be
         displayed precisely on 3D objects. Switch to  "Pyramid".
-      skippable: 1
+      skippable: 0
       points: 0
     - identifier: 
       name: Texture Coverage
@@ -1231,9 +1185,9 @@ MonoBehaviour:
     - identifier: 
       name: 
       description: 
-      skippable: 0
+      skippable: 1
       points: 0
-  - optionalTasksStart: 8
+  - optionalTasksStart: 9
     tasks:
     - identifier: 
       name: Introduction

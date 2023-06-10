@@ -40,9 +40,7 @@ public class TextureManager : MonoBehaviour {
             Renderer renderer = GetComponent<Renderer>();
             renderer.material.mainTexture = value;
 
-            foreach (Renderer rend in GetComponentsInChildren<Renderer>()) {
-                onSetChildTexture.Raise(this, value);
-            }
+            onSetChildTexture?.Raise(this, value);
         }
     }
 

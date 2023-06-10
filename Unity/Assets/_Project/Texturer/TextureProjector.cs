@@ -64,12 +64,19 @@ public class TextureProjector : MonoBehaviour{
         ActiveChild = 0;
     }
 
-    public void OnSetChildTexture(Component sender, object data) {
-        if (!(data is Texture2D)) return;
-        Texture2D texture = (Texture2D) data;
+    private void Start() {
+        Texture2D initialTexture = GetComponent<Renderer>().material.mainTexture as Texture2D;
+        SetChildTextures(initialTexture);
+    }
 
+    private void SetChildTextures(Texture2D texture) {
         for (int i = 0; i < transform.childCount; i++) {
             transform.GetChild(i).GetComponent<Renderer>().material.mainTexture = texture;
         }
+    }
+
+    public void OnSetChildTexture(Component sender, object data) {
+        if (!(data is Texture2D || data == null)) return;
+        SetChildTextures((Texture2D) data);
     }
 }

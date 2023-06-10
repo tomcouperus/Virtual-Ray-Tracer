@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Bricks
   _proceduralTextureEditPrefab: {fileID: 5303340727583192834, guid: 69377169bb81940c189a1942aaca3c77, type: 3}
-  onSelect:
+  OnSelect:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8496189227971302856, guid: 36c3d85e447cd4f4f81bb48bc8a9229e, type: 3}

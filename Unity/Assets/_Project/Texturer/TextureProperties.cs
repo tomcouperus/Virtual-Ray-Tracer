@@ -11,7 +11,7 @@ public class TextureProperties : MonoBehaviour {
 
     [Header("UV mapping")]
     [SerializeField]
-    private GameObject UVProjectionHeader;
+    private TMPro.TextMeshProUGUI UVProjectionHeader;
     [SerializeField]
     private FloatEdit transitionEdit;
 
@@ -94,7 +94,7 @@ public class TextureProperties : MonoBehaviour {
     private void CreateUVProjection(TextureProjector textureProjector) {
         onTextureSelected.Invoke();
 
-        UVProjectionHeader.SetActive(true);
+        UVProjectionHeader.gameObject.SetActive(true);
         transitionEdit.gameObject.SetActive(true);
         loopEdit.gameObject.SetActive(true);
         
@@ -114,10 +114,10 @@ public class TextureProperties : MonoBehaviour {
 
         for (int i = 0; i < transform.childCount; i++) {
             GameObject child = transform.GetChild(i).gameObject;
-            if (child == texturesHeader) continue;
-            if (child == nullTextureSelect) continue;
-            if (child == proceduralTexturesHeader) continue;
-            if (child == UVProjectionHeader) continue;
+            if (child == texturesHeader.gameObject) continue;
+            if (child == nullTextureSelect.gameObject) continue;
+            if (child == proceduralTexturesHeader.gameObject) continue;
+            if (child == UVProjectionHeader.gameObject) continue;
             if (child == transitionEdit.gameObject) continue;
             if (child == loopEdit.gameObject) continue;
             if (child == objectDropdown.gameObject) continue;
