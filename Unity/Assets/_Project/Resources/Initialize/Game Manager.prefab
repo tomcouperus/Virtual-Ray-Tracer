@@ -1126,7 +1126,53 @@ MonoBehaviour:
       description: 
       skippable: 1
       points: 0
-  - optionalTasksStart: 8
+  - optionalTasksStart: 6
+    tasks:
+    - identifier: 
+      name: Introduction
+      description: "There are 2 main ways of texturing: texture mapping and solid
+        textures. In this tutorial, we\u2019ll go over the former, since it\u2019s
+        the standard in the 3D modeling industry."
+      skippable: 1
+      points: 0
+    - identifier: 
+      name: Texture mapping
+      description: "Texture mapping can be thought of as wrapping your 3D object
+        in an image printed on some stretchy wrapping paper. It does so by mapping
+        a vertex\u2019s 3D coordinates to a second pair of 2D coordinates."
+      skippable: 1
+      points: 0
+    - identifier: TextureMapping_UVs
+      name: UVs
+      description: 'To do this translation, each vertex is manually assigned an extra
+        pair of coordinates: the u and v coordinates, with values between 0 and 1.
+        The reason they are in this range is so that they can work on any size of
+        image. Select the cylinder and click on the Unwrap button to see how it was
+        wrapped.'
+      skippable: 0
+      points: 0
+    - identifier: TextureMapping_Texture
+      name: Texture
+      description: "This is the full texture that was used to wrap the object. Just
+        like how you\u2019d wrap a gift and not use all of the wrapping paper, we
+        do not need to use all areas of the texture to detail our object. This texture
+        image can be anything you want it to be. Click the Wrap button to transform
+        the texture back into a cylinder."
+      skippable: 0
+      points: 0
+    - identifier: 
+      name: 
+      description: 
+      skippable: 0
+      points: 0
+    - identifier: TextureMapping_TextureUsage
+      name: Texture usage
+      description: You may note that the unwrapped cylinder does not form a perfect
+        square. However, if you fill in the gaps, it will be. Select the Show Full
+        Texture checkmark.
+      skippable: 0
+      points: 0
+  - optionalTasksStart: 9
     tasks:
     - identifier: 
       name: Introduction
@@ -1192,63 +1238,98 @@ MonoBehaviour:
     - identifier: 
       name: Introduction
       description: "So far, we\u2019ve mapped the vertices of our cube to points
-        on a texture image. But how do we get this onto the screen? For the points
-        of our cube, this is quite simple: we simply tell the computer to render
-        this vertex on that pixel. But to get our texture onto the surface is more
-        difficult."
+        on a texture image. But how do we get this onto the screen by ray tracing?"
       skippable: 1
       points: 0
     - identifier: 
-      name: Texture and screen pixels
-      description: "For our example, we have applied an 8x8 rainbow texture onto
-        this surface. But the screen you\u2019re reading this on has many more pixels.
-        Yet somehow we manage to get the correct color to each screen pixel. We do
-        so by interpolating between the UVs."
+      name: Rays and vertices
+      description: If a ray exactly hits a vertex, then it immediately knows the
+        right UV-coordinate. But what happens if a ray hits somewhere else?
       skippable: 1
       points: 0
     - identifier: 
       name: Interpolation
-      description: We already know which pixel gets which vertex. But a vertex also
-        has a UV-coordinate, so that same pixel also has the UV belonging to the
-        vertex. For each pixel without an assigned vertex, the UV coordinates get
-        interpolated over its triangle.
+      description: "The surface is formed by making triangles of vertices. We can
+        calculate the UV-coordinate for any point on this triangle by interpolating
+        between UV-coordinates of the triangle\u2019s vertices."
       skippable: 1
       points: 0
     - identifier: 
       name: Interpolation methods
-      description: 'This interpolation can be done in many ways. Each gives more
-        realistic visuals and is more costly than the last. We will explain the two
-        simplest, yet most used ones: nearest-neighbor and bilinear interpolation.'
+      description: 'The interpolated UV-coordinates do not necessarily land in the
+        center of a texture pixel. There are many ways to handle this. Each method
+        gives more realistic visuals and is more costly than the last. We will explain
+        the two simplest, yet most used ones: nearest-neighbor and bilinear interpolation.'
       skippable: 1
       points: 0
     - identifier: TextureSampling_TextureSample
       name: Texture sample
-      description: The interpolated UV coordinates do not necessarily land in the
-        center of a texture pixel. Select the Show Sampling checkmark in the object
-        menu and hover on a spot on the cube.
+      description: Select the Show Sampling checkmark in the object menu and hover
+        on a spot on the cube.
       skippable: 0
       points: 0
     - identifier: TextureSampling_NNInterpolate
       name: Nearest-neighbor interpolation
       description: "In the texture preview you can see the place on the texture where
         you hovered on the cube. Nearest-neighbor interpolation simply picks the
-        texture pixel nearest to where you hover as the screen pixel\u2019s color.
-        Change the Sample Mode to bilinear."
+        texture pixel nearest to where you hover as the ray\u2019s color. Change
+        the Sample Mode to bilinear."
       skippable: 0
       points: 0
     - identifier: 
       name: Bilinear interpolation
-      description: As you can see, the preview now shows where the 4 nearest texture
-        pixels to where you hover are in the texture in the left-most image. The
-        actual texture pixels are shown in the second image, along with your mouse's
-        location. The pixel you hovered on gets a weighted average color of these
-        four texture pixels in the rightmost image.
+      description: The preview now shows the 4 nearest texture pixels near where
+        you hover. With bilinear interpolation the pixel you hovered on gets a weighted
+        average color of these four texture pixels.
+      skippable: 1
+      points: 0
+    - identifier: 
+      name: Conclusion
+      description: In conclusion, nearest-neighbor interpolation rounds the UV coordinates
+        to the nearest whole number and chooses that color, whereas bilinear interpolation
+        gets a weighted average of the colors of the 4 nearest whole numbers.
       skippable: 1
       points: 0
     - identifier: 
       name: 
       description: 
       skippable: 0
+      points: 0
+  - optionalTasksStart: 5
+    tasks:
+    - identifier: 
+      name: Introduction
+      description: "Until now, the textures we have used were prepared specifically
+        for the models we showed. This will quickly cost a lot of time if you\u2019re
+        making small variations of the same model, for example different shapes and
+        sizes of rocks or differently styled brick houses."
+      skippable: 1
+      points: 0
+    - identifier: 
+      name: Brick houses
+      description: Say you want to make a dozen houses with a different brick style;
+        you could draw their texture maps by hand, but that would take a lot of time.
+        If you could just specify how many rows and columns of bricks you would want,
+        along with their color and some other settings, you would be done much sooner.
+      skippable: 1
+      points: 0
+    - identifier: ProceduralTextures_ProcTex
+      name: Procedural textures
+      description: That is what procedural textures do. To see them in action, click
+        on the cube and select the brick texture.
+      skippable: 0
+      points: 0
+    - identifier: 
+      name: Brick choices
+      description: The generated brick texture has exactly as many horizontal and
+        vertical bricks as are specified in the menu. Play around with these options
+        until you find some you like.
+      skippable: 1
+      points: 0
+    - identifier: 
+      name: 
+      description: 
+      skippable: 1
       points: 0
   Badges:
   - type: 1

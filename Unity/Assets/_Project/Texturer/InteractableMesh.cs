@@ -10,6 +10,7 @@ public class InteractableMesh : MonoBehaviour
     public Edge edgePrefab;
 
     GameObject vertices;
+    [SerializeField]
     private bool _showVertices;
     public bool ShowVertices {
         get {return _showVertices;}
@@ -20,6 +21,7 @@ public class InteractableMesh : MonoBehaviour
     }
 
     GameObject edges;
+    [SerializeField]
     private bool _showEdges;
     public bool ShowEdges {
         get {return _showEdges;}
@@ -37,7 +39,7 @@ public class InteractableMesh : MonoBehaviour
 
     void GenerateVertices() {
         vertices = new GameObject("vertices");
-        ShowVertices = false;
+        ShowVertices = _showVertices;
         vertices.transform.parent = transform;
         vertices.transform.localPosition = Vector3.zero;
         vertices.transform.Rotate(transform.localEulerAngles, Space.Self);
@@ -51,7 +53,7 @@ public class InteractableMesh : MonoBehaviour
 
     void GenerateEdges() {
         edges = new GameObject("edges");
-        ShowEdges = false;
+        ShowEdges = _showEdges;
         edges.transform.parent = transform;
         edges.transform.localPosition = Vector3.zero;
         edges.transform.Rotate(transform.localEulerAngles, Space.Self);

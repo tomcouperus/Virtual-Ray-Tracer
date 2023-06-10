@@ -14,6 +14,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Bricks
   _proceduralTextureEditPrefab: {fileID: 5303340727583192834, guid: 69377169bb81940c189a1942aaca3c77, type: 3}
+  onSelect:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8496189227971302856, guid: 36c3d85e447cd4f4f81bb48bc8a9229e, type: 3}
+        m_TargetAssemblyTypeName: _Project.UI.Scripts.Tutorial.TutorialManager, Assembly-CSharp
+        m_MethodName: CompleteTask
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: ProceduralTextures_ProcTex
+          m_BoolArgument: 0
+        m_CallState: 2
+  BrickColor: {r: 1, g: 0, b: 0, a: 1}
+  MortarColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   BrickWidth: 19
   BrickHeight: 9
   BricksX: 4

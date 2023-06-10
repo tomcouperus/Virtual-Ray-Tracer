@@ -5,6 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Procedural Texture/Brick")]
 public class ProceduralBrickTexture : ProceduralTexture {
 
+    public Color BrickColor = Color.red;
+    public Color MortarColor = Color.gray;
     [Range(1, 200)]
     public int BrickWidth = 19;
     [Range(1, 100)]
@@ -19,8 +21,12 @@ public class ProceduralBrickTexture : ProceduralTexture {
     public int MortarThickness = 1;
 
     public override Texture2D CreateTexture() {
-        int width = BrickWidth * BricksX + MortarThickness * (BricksX-1);
-        int height = BrickHeight * BricksY + MortarThickness * (BricksY-1);
+        return CreateTexture(BricksX, BricksY);
+    }
+
+    private Texture2D CreateTexture(int bricksX, int bricksY) {
+        int width = BrickWidth * bricksX + MortarThickness * (bricksX-1);
+        int height = BrickHeight * bricksY + MortarThickness * (bricksY-1);
 
         Texture2D tex = new Texture2D(width, height);
         tex.name = Name;
@@ -36,13 +42,13 @@ public class ProceduralBrickTexture : ProceduralTexture {
             int brickX = Mathf.RoundToInt(row * BrickOffset * BrickWidth);
             int mortarX = 0;
             for (int x = 0; x < width; x++) {
-                Color color = Color.black;
+                Color color;
                 if (isBrickX && isBrickY) {
-                    color = Color.red;
+                    color = BrickColor;
                     brickX++;
                     if (brickX % BrickWidth == 0) isBrickX = false;
                 } else {
-                    color = Color.gray;
+                    color = MortarColor;
                     mortarX++;
                     if (mortarX % MortarThickness == 0) isBrickX = true;
                 }
@@ -61,5 +67,9 @@ public class ProceduralBrickTexture : ProceduralTexture {
         tex.filterMode = FilterMode.Point;
         tex.Apply();
         return tex;
+    }
+
+    public override Texture2D CreatePreviewTexture() {
+        return CreateTexture(2, 2);
     }
 }

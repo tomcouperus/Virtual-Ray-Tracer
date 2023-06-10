@@ -26,11 +26,11 @@ public class TextureProperties : MonoBehaviour {
     private TextureSelect textureSelectPrefab;
 
     [SerializeField]
-    private GameObject texturesHeader;
+    private TMPro.TextMeshProUGUI texturesHeader;
     [SerializeField]
-    private GameObject nullTextureSelect;
+    private TextureSelect nullTextureSelect;
     [SerializeField]
-    private GameObject proceduralTexturesHeader;
+    private TMPro.TextMeshProUGUI proceduralTexturesHeader;
 
     [Serializable]
     public class Event : UnityEvent { }
@@ -39,6 +39,8 @@ public class TextureProperties : MonoBehaviour {
 
     private TextureManager textureManager;
     private TextureProjector textureProjector;
+
+    private List<TextureSelect> textureSelects = new List<TextureSelect>();
 
     public void Hide() {
         gameObject.SetActive(false);
@@ -55,19 +57,19 @@ public class TextureProperties : MonoBehaviour {
             textureSelect.SetName(texPreviewList[i].name);
 
             int texIndex = i;
-            textureSelect.AddOnClickListener(() => {textureManager.SelectTexture(texIndex);});
+            textureSelect.AddOnSelectListener(() => textureManager.SelectTexture(texIndex));
 
-
+            textureSelects.Add(textureSelect);
         }
     }
     
     private void CreateProceduralTextureSelects(TextureManager textureManager) {
         List<Sprite> texPreviewList = textureManager.CreateProceduralTexturePreviews();
         if (texPreviewList.Count == 0) {
-            proceduralTexturesHeader.SetActive(false);
+            proceduralTexturesHeader.gameObject.SetActive(false);
             return;
         }
-        proceduralTexturesHeader.SetActive(true);
+        proceduralTexturesHeader.gameObject.SetActive(true);
 
         for (int i = 0; i < texPreviewList.Count; i++) {
             TextureSelect textureSelect = Instantiate(textureSelectPrefab, transform);
@@ -77,10 +79,15 @@ public class TextureProperties : MonoBehaviour {
             ProceduralTexture texture = textureManager.GetProceduralTexture(i);
             ProceduralTextureEdit proceduralEdit = Instantiate(texture.ProceduralTextureEditPrefab, transform);
             proceduralEdit.SetProceduralValues(texture);
-            proceduralEdit.AddListeners(texture);
+            proceduralEdit.AddListeners(texture, textureSelect);
 
             int texIndex = i;
-            textureSelect.AddOnClickListener(() => {textureManager.SelectProceduralTexture(texIndex);});
+            textureSelect.AddOnSelectListener(() => {
+                textureManager.SelectProceduralTexture(texIndex);
+                texture.OnSelect?.Invoke();
+            });
+
+            textureSelects.Add(textureSelect);
         }
     }
 
@@ -102,6 +109,9 @@ public class TextureProperties : MonoBehaviour {
     }
 
     private void Clear() {
+        textureSelects.Clear();
+        textureSelects.Add(nullTextureSelect);
+
         for (int i = 0; i < transform.childCount; i++) {
             GameObject child = transform.GetChild(i).gameObject;
             if (child == texturesHeader) continue;
@@ -119,6 +129,19 @@ public class TextureProperties : MonoBehaviour {
         textureManager.ClearTexture();
     }
 
+    private void AddSelectionHighlights() {
+        foreach (TextureSelect texSelect in textureSelects) {
+            texSelect.AddOnSelectListener(() => {
+                foreach (TextureSelect t in textureSelects) {
+                    if (t == texSelect) t.Selected = true;
+                    else t.Selected = false;
+                }
+            });
+        }
+
+        textureSelects[textureManager.TextureIndex+1].Selected = true;
+    }
+
     public void OnShowTextureProperties(Component sender, object data) {
         if (!(data is TextureManager)) return;
         textureManager = (TextureManager) data;
@@ -131,6 +154,11 @@ public class TextureProperties : MonoBehaviour {
         }
         CreateTextureSelects(textureManager);
         CreateProceduralTextureSelects(textureManager);
+        AddSelectionHighlights();
+    }
+
+    private void Awake() {
+        nullTextureSelect.AddOnSelectListener(() => textureManager.ClearTexture());
     }
 
     private bool checkChildMaterial(TextureProjector textureProjector) {
