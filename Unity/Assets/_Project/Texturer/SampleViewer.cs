@@ -13,6 +13,8 @@ public class SampleViewer : MonoBehaviour {
     [SerializeField]
     private Button closeButton;
     [SerializeField]
+    private SampleView emptySampleView;
+    [SerializeField]
     private SampleView pointSampleView;
 
     [SerializeField]
@@ -26,15 +28,14 @@ public class SampleViewer : MonoBehaviour {
         closeButton.onClick.AddListener(() => onDisableSampling.Raise(closeButton, null));
     }
 
-    private void ActivateMode(SamplingMode mode) {
-        bool value = mode == SamplingMode.Point;
-        
-        pointSampleView.gameObject.SetActive(value);
-        bilinearSampleView.gameObject.SetActive(!value);
+    private void ActivateMode(SamplingMode? mode) {
+        emptySampleView.gameObject.SetActive(mode == null);
+        pointSampleView.gameObject.SetActive(mode == SamplingMode.Point);
+        bilinearSampleView.gameObject.SetActive(mode == SamplingMode.Bilinear);
     }
 
     public void ActivateMode(Component sender, object data) {
-        if (!(data is SamplingMode)) return;
-        ActivateMode((SamplingMode) data);
+        if (!(data is SamplingMode) && data != null) return;
+        ActivateMode((SamplingMode?) data);
     }
 }

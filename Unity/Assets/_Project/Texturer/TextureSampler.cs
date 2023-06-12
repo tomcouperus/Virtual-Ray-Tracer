@@ -23,7 +23,6 @@ public class TextureSampler : MonoBehaviour{
         get {return _mode;}
         set {
             _mode = value;
-            onSamplingModeChanged.Raise(this, _mode);
             if (Texture) Texture.filterMode = filterMode;
         }
     }
@@ -82,6 +81,10 @@ public class TextureSampler : MonoBehaviour{
 
     private void OnMouseOver() {
         Sample();
+    }
+
+    private void OnMouseExit() {
+        onSamplingModeChanged.Raise(this, null);
     }
 
     private void Sample() {

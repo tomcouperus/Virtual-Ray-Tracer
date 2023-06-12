@@ -211,8 +211,8 @@ MonoBehaviour:
       points: 0
     - identifier: 
       name: Edge
-      description: The lines now visible show the edges between the vertices. Each
-        triangle you see is a face.
+      description: The grey lines show the edges between the vertices. Each triangle
+        you see is a face.
       skippable: 1
       points: 0
     - identifier: 
@@ -430,9 +430,9 @@ MonoBehaviour:
       points: 0
     - identifier: 
       name: Interpolation
-      description: "As you know, a surface is formed by making triangles of vertices.
-        We can calculate the UV-coordinate for any point on a triangle by interpolating
-        between UV-coordinates of the triangle\u2019s vertices."
+      description: "As you know, a surface is formed when 3 vertices are connected
+        to form a triangle. We can calculate the UV-coordinate for any point on a
+        triangle by interpolating between UV-coordinates of the triangle\u2019s vertices."
       skippable: 1
       points: 0
     - identifier: 
@@ -440,7 +440,8 @@ MonoBehaviour:
       description: 'The interpolated UV-coordinates do not necessarily land in the
         center of a texture pixel. There are many ways to handle this. Each method
         gives more realistic visuals and is more costly than the last. We will explain
-        the two simplest, yet most used ones: nearest-neighbor and bilinear interpolation.'
+        the two simplest, yet most used ones: nearest-neighbor sampling and bilinear
+        interpolation.'
       skippable: 1
       points: 0
     - identifier: TextureSampling_TextureSample
@@ -450,11 +451,11 @@ MonoBehaviour:
       skippable: 0
       points: 0
     - identifier: TextureSampling_NNInterpolate
-      name: Nearest-neighbor interpolation
+      name: Nearest-neighbor sampling
       description: "In the texture preview you can see the place on the texture where
-        you hovered on the cube. Nearest-neighbor interpolation simply picks the
-        texture pixel nearest to where you hover as the ray\u2019s color. Change
-        the Sample Mode to bilinear."
+        you hovered on the cube. Nearest-neighbor sampling simply picks the texture
+        pixel nearest to where you hover as the ray\u2019s color. Change the Sample
+        Mode to bilinear."
       skippable: 0
       points: 0
     - identifier: 
@@ -466,9 +467,9 @@ MonoBehaviour:
       points: 0
     - identifier: 
       name: Conclusion
-      description: In conclusion, nearest-neighbor interpolation rounds the UV coordinates
-        to the nearest whole number and chooses that color, whereas bilinear interpolation
-        gets a weighted average of the colors of the 4 nearest whole numbers.
+      description: In conclusion, nearest-neighbor sampling rounds the UV coordinates
+        and chooses that color. Bilinear interpolation, on the other hand, gets a
+        weighted average of the colors of the 4 points surrounding it.
       skippable: 1
       points: 0
     - identifier: 

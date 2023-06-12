@@ -61,12 +61,10 @@ namespace _Project.UI.Scripts.Control_Panel
         [SerializeField]
         private FloatEdit refractiveIndexEdit;
 
-        [Header("Events")]
-        [SerializeField]
-        private GameEvent onSamplingModeChanged;
 
         [Serializable]
         public class ExternalChange : UnityEvent { };
+        [Header("Events")]
         public ExternalChange OnExternalTranslationChange, OnExternalRotationChange, OnExternalScaleChange;
 
         /// <summary>
@@ -150,7 +148,6 @@ namespace _Project.UI.Scripts.Control_Panel
             }
             samplingModeEdit.SetOptions(new List<string>(typeof(SamplingMode).GetEnumNames()));
             samplingModeEdit.Select((int)texSampler.Mode);
-            onSamplingModeChanged.Raise(this, texSampler.Mode);
             samplingModeEdit.gameObject.SetActive(true);
 
             samplingEdit.gameObject.SetActive(true);
