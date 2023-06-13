@@ -527,9 +527,10 @@ MonoBehaviour:
       skippable: 0
       points: 0
     - identifier: 
-      name: 
-      description: You may press "Next Level" now to move onto the next level or
-        do some more exploring.
+      name: Final
+      description: You have now completed all levels of this version of Virtual Ray
+        Tracer. To help us assess the user experience please fill out the form in
+        the home menu (Click "Main Menu", then "Home") and click on Questionnaire.
       skippable: 1
       points: 0
   Badges:
