@@ -160,11 +160,6 @@ MonoBehaviour:
         on an option that is not disabled (HINT: it''s a button).'
       skippable: 0
       points: 51
-    - identifier: 
-      name: 
-      description: 
-      skippable: 1
-      points: 0
     - identifier: cameraSelection
       name: Camera
       description: Select the camera.
@@ -299,11 +294,6 @@ MonoBehaviour:
         Image" button on the bottom.
       skippable: 0
       points: 55
-    - identifier: 
-      name: 
-      description: 
-      skippable: 1
-      points: 0
     - identifier: editSuperSampling
       name: Super Sampling
       description: You might notice that the sphere isn't very round in the rendered
@@ -518,11 +508,6 @@ MonoBehaviour:
       description: The generated brick texture has exactly as many horizontal and
         vertical bricks as are specified in the menu. Play around with these options
         until you find some you like.
-      skippable: 1
-      points: 0
-    - identifier: 
-      name: 
-      description: 
       skippable: 1
       points: 0
     - identifier: 
