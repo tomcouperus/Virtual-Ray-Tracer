@@ -192,7 +192,7 @@ MonoBehaviour:
       name: Light in the Real World
       description: Light sources (like the sun) emit photons that travel in straight
         lines until they hit an object. These photons may be absorbed, reflected
-        or pass through an object. Some photons will find its way to an eye/camera
+        or pass through an object. Some photons will find their way to an eye/camera
         where they are processed into an image.
       skippable: 1
       points: 102
