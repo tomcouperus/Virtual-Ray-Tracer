@@ -53,7 +53,7 @@ MonoBehaviour:
       name: Introduction
       description: Welcome to Virtual Ray Tracer! These tutorial tasks will guide
         you through the program. Below this text, a progress bar is shown, which
-        displays your progress in the current level.  There are 11 levels in total.
+        displays your progress in the current level.  There are 19 levels in total.
         Press the button to the right of the progress bar to continue to the next
         task.
       skippable: 1
@@ -1123,8 +1123,8 @@ MonoBehaviour:
     - identifier: 
       name: Introduction
       description: Instead of having one colour, objects often have complicated patterns
-        and colour arrangements. Your computer can map an image onto a 3D object to
-        make this possible. But how do you map a 2D image onto a 3D object? With
+        and colour arrangements. Your computer can map an image onto a 3D object
+        to make this possible. But how do you map a 2D image onto a 3D object? With
         a concept called "Texture Mapping".
       skippable: 1
       points: 0
