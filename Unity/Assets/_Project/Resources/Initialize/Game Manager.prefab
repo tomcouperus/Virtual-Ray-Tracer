@@ -1084,21 +1084,13 @@ MonoBehaviour:
         you can enable "Cheat Mode" in the settings.
       skippable: 0
       points: 0
-  - optionalTasksStart: 6
+  - optionalTasksStart: 5
     tasks:
     - identifier: 
-      name: Attention to detail
-      description: "This is the texturing tutorial. If you\u2019ve worked through
-        the ray tracer tutorial, you\u2019ll recall that we only used solid colors
-        so far. However, the real world is much more detailed than solid colors.
-        That is why we use something called textures on our 3D objects."
-      skippable: 1
-      points: 0
-    - identifier: 
       name: 3D Objects
-      description: "Before we explain how this detail is added, we will first go
-        over how a 3D object is made. As an example, we\u2019ll use the cube you
-        can see on screen."
+      description: "The scene in the previous levels was made up of many 3D objects.
+        Before we continue, we will first go over how a 3D object is made. As an
+        example, we\u2019ll use the cube you can see on screen."
       skippable: 1
       points: 0
     - identifier: 3DObjects_verticesEdgesFaces
@@ -1126,22 +1118,22 @@ MonoBehaviour:
       description: 
       skippable: 1
       points: 0
-  - optionalTasksStart: 8
+  - optionalTasksStart: 9
     tasks:
     - identifier: 
       name: Introduction
-      description: Instead of having one colour, objects often have complicated paterns
-        and colour arangements. Your computer can map an image onto a 3D object to
+      description: Instead of having one colour, objects often have complicated patterns
+        and colour arrangements. Your computer can map an image onto a 3D object to
         make this possible. But how do you map a 2D image onto a 3D object? With
         a concept called "Texture Mapping".
       skippable: 1
       points: 0
-    - identifier: Texture_Selected
+    - identifier: TextureProperties_Selected
       name: Example
       description: Texture mapping means that every vertex in a 3D space has a coordinate
         on a 2D plane. We will show in an example what this looks like. Click on
         the large plane, which we will use as a projection surface, and click on
-        "Edit" next to "Texture".
+        Edit next to Texture.
       skippable: 0
       points: 0
     - identifier: 
@@ -1156,17 +1148,22 @@ MonoBehaviour:
       name: UV Unwrapping
       description: Every vertex in a 3D object also has a 2D position. This  UV coordinate
         can either be calculated, or assigned manually. For the sphere the positions
-        are often calculated with a function. By using the "Transition" slider you
+        are often calculated with a function. By using the Transition slider you
         can see how the sphere unwraps. Set the value of the slider to 1.
       skippable: 0
       points: 0
-    - identifier: 
+    - identifier: Mapping_Loop
       name: Sphere unwrapping
-      description: When you check the "Loop" box, the sphere will animate from it's
+      description: When you check the Loop box, the sphere will animate from it's
         3D coordinates to the UV coordinates and back. This will allow you to look
-        from different angles to see how the sphere unwraps. You can also apply different
-        textures to see how different images display.
-      skippable: 1
+        from different angles to see how the sphere unwraps. Check the Loop box.
+      skippable: 0
+      points: 0
+    - identifier: Texture_Changed
+      name: Other textures
+      description: You can also apply different textures to see how different images
+        display. Select a different texture.
+      skippable: 0
       points: 0
     - identifier: Pyramid_Select
       name: Manual UV
@@ -1191,7 +1188,7 @@ MonoBehaviour:
     tasks:
     - identifier: 
       name: Introduction
-      description: "So far, we\u2019ve mapped the vertices of our cube to points
+      description: "So far, we\u2019ve mapped the vertices of our objects to points
         on a texture image. But how do we get this onto the screen by ray tracing?"
       skippable: 1
       points: 0
@@ -1203,8 +1200,8 @@ MonoBehaviour:
       points: 0
     - identifier: 
       name: Interpolation
-      description: "The surface is formed by making triangles of vertices. We can
-        calculate the UV-coordinate for any point on this triangle by interpolating
+      description: "As you know, a surface is formed by making triangles of vertices.
+        We can calculate the UV-coordinate for any point on a triangle by interpolating
         between UV-coordinates of the triangle\u2019s vertices."
       skippable: 1
       points: 0
