@@ -1123,26 +1123,34 @@ MonoBehaviour:
     tasks:
     - identifier: 
       name: Introduction
-      description: Instead of having one colour, objects often have complicated patterns
-        and colour arrangements. Your computer can map an image onto a 3D object
-        to make this possible. But how do you map a 2D image onto a 3D object? With
+      description: Instead of having one colour, objects often have complicated paterns
+        and colour arangements. Your computer can map an image onto a 3D object to
+        make this possible. But how do you map a 2D image onto a 3D object? With
         a concept called "Texture Mapping".
+      skippable: 1
+      points: 0
+    - identifier: 
+      name: Texture Mapping
+      description: Texture mapping means that every vertex in a 3D space has a coordinate
+        on a 2D plane. This level will show an example of how these coordinates are
+        connected. Here you see a rectangle, which will be used to display an image
+        and some objects that will have these images "wrapped" onto them.
       skippable: 1
       points: 0
     - identifier: TextureProperties_Selected
       name: Example
-      description: Texture mapping means that every vertex in a 3D space has a coordinate
-        on a 2D plane. We will show in an example what this looks like. Click on
-        the large plane, which we will use as a projection surface, and click on
-        Edit next to Texture.
+      description: Click on the large plane. This plane will display the images used
+        on different 3D objects. Now Click on Edit next to Texture. When clicking
+        away from the object, you will need to go back here when completing the other
+        tasks in this level.
       skippable: 0
       points: 0
     - identifier: 
       name: Textures
       description: The images that are used to show specific patterns or drawings
         are called "Textures". This means that every point on a 3D object, corresponds
-        with a 2D point. This 2D coordinate is called a "UV coordinate". The colour
-        found at the UV coordinate can be used to colour in 3D space.
+        to a 2D point. This 2D coordinate is called a "UV coordinate". The colour
+        found at the UV coordinate can be used to colour objects in 3D space.
       skippable: 1
       points: 0
     - identifier: Unwrap_Transition
@@ -1155,7 +1163,7 @@ MonoBehaviour:
       points: 0
     - identifier: Mapping_Loop
       name: Sphere unwrapping
-      description: When you check the Loop box, the sphere will animate from it's
+      description: When you check the Loop box, the sphere will animate from its
         3D coordinates to the UV coordinates and back. This will allow you to look
         from different angles to see how the sphere unwraps. Check the Loop box.
       skippable: 0
@@ -1174,10 +1182,11 @@ MonoBehaviour:
       points: 0
     - identifier: 
       name: Texture Coverage
-      description: Here we have set the UV coordinates manually. When looking at
-        the full projection, not the full image needs to covered. This way only parts
-        of the image that need to be used are used. It is however preferred to use
-        as much of the image as possible for optimal detail.
+      description: Here we have set the UV coordinates manually. When Transition
+        is at 1 and the texture is fully 2D, we can see that the image does not necessarily
+        require to cover the full image. This way only parts of the image that need
+        to be used are used. It is however preferred to use as much of the image
+        as possible for optimal detail.
       skippable: 1
       points: 0
     - identifier: 
