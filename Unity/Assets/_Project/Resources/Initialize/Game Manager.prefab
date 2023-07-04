@@ -1265,7 +1265,7 @@ MonoBehaviour:
         along with their color and some other settings, you would be done much sooner.
       skippable: 1
       points: 0
-    - identifier: ProceduralTextures_ProcTex
+    - identifier: ProceduralTextures_ProcBrick
       name: Procedural textures
       description: That is what procedural textures do. To see them in action, click
         on the cube and select the brick texture.
@@ -1277,6 +1277,27 @@ MonoBehaviour:
         vertical bricks as are specified in the menu. Play around with these options
         until you find some you like.
       skippable: 1
+      points: 0
+    - identifier: 
+      name: 
+      description: 
+      skippable: 1
+      points: 0
+    - identifier: 
+      name: Natural textures
+      description: 'Apart from bricks, you can model functionally anything if you
+        apply some maths. To make things look less artificial like our brick wall,
+        you add multiple layers of noise. This is the same kind of noise you would
+        see on old TVs that could not find a channel, except with a very subtle pattern
+        to them. '
+      skippable: 1
+      points: 0
+    - identifier: ProceduralTextures_ProcMarble
+      name: Marble
+      description: If you combine a sine wave with two layers of this noise, you
+        can get marble and other stone like materials. Select the marble texture
+        and play around with the sliders to see what they do.
+      skippable: 0
       points: 0
     - identifier: 
       name: 
