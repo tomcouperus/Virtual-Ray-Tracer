@@ -1115,7 +1115,8 @@ MonoBehaviour:
       points: 0
     - identifier: 
       name: 
-      description: 
+      description: You may press "Next Level" now to move onto the next level or
+        do some more exploring.
       skippable: 1
       points: 0
   - optionalTasksStart: 9
@@ -1181,7 +1182,8 @@ MonoBehaviour:
       points: 0
     - identifier: 
       name: 
-      description: 
+      description: You may press "Next Level" now to move onto the next level or
+        do some more exploring.
       skippable: 1
       points: 0
   - optionalTasksStart: 9
@@ -1244,7 +1246,8 @@ MonoBehaviour:
       points: 0
     - identifier: 
       name: 
-      description: 
+      description: You may press "Next Level" now to move onto the next level or
+        do some more exploring.
       skippable: 0
       points: 0
   - optionalTasksStart: 5
@@ -1301,7 +1304,8 @@ MonoBehaviour:
       points: 0
     - identifier: 
       name: 
-      description: 
+      description: You may press "Next Level" now to move onto the next level or
+        do some more exploring.
       skippable: 1
       points: 0
   Badges:
