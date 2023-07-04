@@ -186,6 +186,41 @@ MonoBehaviour:
       description: 
       skippable: 0
       points: 0
+  - optionalTasksStart: 5
+    tasks:
+    - identifier: 
+      name: 3D Objects
+      description: "The scene in the previous levels was made up of many 3D objects.
+        Before we continue, we will first go over how a 3D object is made. As an
+        example, we\u2019ll use the cube you can see on screen."
+      skippable: 1
+      points: 0
+    - identifier: 3DObjects_verticesEdgesFaces
+      name: Vertices, edges and faces
+      description: A 3D object is made of points (vertices), connected by lines (edges),
+        to form triangles (faces). If you do this in specific ways, you can make
+        any shape you desire. Our cube has 8 corners and each corner is a vertex.
+        Select the cube and check the Show Vertices checkmark.
+      skippable: 0
+      points: 0
+    - identifier: 3DObjects_vertex
+      name: Vertex
+      description: These spheres represent a vertex. Each of these vertices is connected
+        to at least 2 others by edges. Check the Show Edges checkmark.
+      skippable: 0
+      points: 0
+    - identifier: 
+      name: Edge
+      description: The grey lines show the edges between the vertices. Each triangle
+        you see is a face.
+      skippable: 1
+      points: 0
+    - identifier: 
+      name: 
+      description: You may press "Next Level" now to move onto the next level or
+        do some more exploring.
+      skippable: 1
+      points: 0
   - optionalTasksStart: 12
     tasks:
     - identifier: 
@@ -1057,68 +1092,6 @@ MonoBehaviour:
         to move onto the sandbox level or do some more exploring.
       skippable: 0
       points: 0
-  - optionalTasksStart: 4
-    tasks:
-    - identifier: 
-      name: Freedom
-      description: You have reached the final level! This is a sandbox level which
-        means all tools are available to create a customized scene yourself.
-      skippable: 1
-      points: 93
-    - identifier: createObject
-      name: Creating Objects
-      description: You can now create objects. Create an object by choosing one of
-        the objects in the "Create" dropdown.
-      skippable: 0
-      points: 538
-    - identifier: deleteObject
-      name: Deleting Objects
-      description: You can now also delete any object, except for the camera. Delete
-        a non-camera object from the scene by selecting it and pressing [DEL].
-      skippable: 0
-      points: 410
-    - identifier: 
-      name: 
-      description: You are now able to create your own custom scenes. Go crazy! If
-        you would like to use Virtual Ray Tracer again but without any restrictions,
-        you can enable "Cheat Mode" in the settings.
-      skippable: 0
-      points: 0
-  - optionalTasksStart: 5
-    tasks:
-    - identifier: 
-      name: 3D Objects
-      description: "The scene in the previous levels was made up of many 3D objects.
-        Before we continue, we will first go over how a 3D object is made. As an
-        example, we\u2019ll use the cube you can see on screen."
-      skippable: 1
-      points: 0
-    - identifier: 3DObjects_verticesEdgesFaces
-      name: Vertices, edges and faces
-      description: A 3D object is made of points (vertices), connected by lines (edges),
-        to form triangles (faces). If you do this in specific ways, you can make
-        any shape you desire. Our cube has 8 corners and each corner is a vertex.
-        Select the cube and check the Show Vertices checkmark.
-      skippable: 0
-      points: 0
-    - identifier: 3DObjects_vertex
-      name: Vertex
-      description: These spheres represent a vertex. Each of these vertices is connected
-        to at least 2 others by edges. Check the Show Edges checkmark.
-      skippable: 0
-      points: 0
-    - identifier: 
-      name: Edge
-      description: The grey lines show the edges between the vertices. Each triangle
-        you see is a face.
-      skippable: 1
-      points: 0
-    - identifier: 
-      name: 
-      description: You may press "Next Level" now to move onto the next level or
-        do some more exploring.
-      skippable: 1
-      points: 0
   - optionalTasksStart: 9
     tasks:
     - identifier: 
@@ -1316,6 +1289,33 @@ MonoBehaviour:
       description: You may press "Next Level" now to move onto the next level or
         do some more exploring.
       skippable: 1
+      points: 0
+  - optionalTasksStart: 4
+    tasks:
+    - identifier: 
+      name: Freedom
+      description: You have reached the final level! This is a sandbox level which
+        means all tools are available to create a customized scene yourself.
+      skippable: 1
+      points: 93
+    - identifier: createObject
+      name: Creating Objects
+      description: You can now create objects. Create an object by choosing one of
+        the objects in the "Create" dropdown.
+      skippable: 0
+      points: 538
+    - identifier: deleteObject
+      name: Deleting Objects
+      description: You can now also delete any object, except for the camera. Delete
+        a non-camera object from the scene by selecting it and pressing [DEL].
+      skippable: 0
+      points: 410
+    - identifier: 
+      name: 
+      description: You are now able to create your own custom scenes. Go crazy! If
+        you would like to use Virtual Ray Tracer again but without any restrictions,
+        you can enable "Cheat Mode" in the settings.
+      skippable: 0
       points: 0
   Badges:
   - type: 1
