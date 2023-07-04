@@ -53,7 +53,7 @@ MonoBehaviour:
       name: Introduction
       description: Welcome to Virtual Ray Tracer! These tutorial tasks will guide
         you through the program. Below this text, a progress bar is shown, which
-        displays your progress in the current level.  There are 6 levels in total.
+        displays your progress in the current level.  There are 11 levels in total.
         Press the button to the right of the progress bar to continue to the next
         task.
       skippable: 1
@@ -186,41 +186,6 @@ MonoBehaviour:
       description: 
       skippable: 0
       points: 0
-  - optionalTasksStart: 5
-    tasks:
-    - identifier: 
-      name: 3D Objects
-      description: "The scene in the previous levels was made up of many 3D objects.
-        Before we continue, we will first go over how a 3D object is made. As an
-        example, we\u2019ll use the cube you can see on screen."
-      skippable: 1
-      points: 0
-    - identifier: 3DObjects_verticesEdgesFaces
-      name: Vertices, edges and faces
-      description: A 3D object is made of points (vertices), connected by lines (edges),
-        to form triangles (faces). If you do this in specific ways, you can make
-        any shape you desire. Our cube has 8 corners and each corner is a vertex.
-        Select the cube and check the Show Vertices checkmark.
-      skippable: 0
-      points: 0
-    - identifier: 3DObjects_vertex
-      name: Vertex
-      description: These spheres represent a vertex. Each of these vertices is connected
-        to at least 2 others by edges. Check the Show Edges checkmark.
-      skippable: 0
-      points: 0
-    - identifier: 
-      name: Edge
-      description: The grey lines show the edges between the vertices. Each triangle
-        you see is a face.
-      skippable: 1
-      points: 0
-    - identifier: 
-      name: 
-      description: You may press "Next Level" now to move onto the next level or
-        do some more exploring.
-      skippable: 0
-      points: 0
   - optionalTasksStart: 12
     tasks:
     - identifier: 
@@ -349,7 +314,819 @@ MonoBehaviour:
       description: 
       skippable: 0
       points: 0
+  - optionalTasksStart: 10
+    tasks:
+    - identifier: 
+      name: Reflections
+      description: Using ray tracing we are also able to implement reflections as
+        in the real world. If we hit an object with reflective properties, we cast
+        a ray (again) in the reflected direction.
+      skippable: 1
+      points: 121
+    - identifier: rayLegend
+      name: Reflected Ray Color
+      description: Examine the scene and notice how the reflected rays are a darker
+        blue color. The meaning of all ray colors can be found in a legend in the
+        help menu. Open the "Ray Legend" in the help menu.
+      skippable: 0
+      points: 177
+    - identifier: editDepth
+      name: Recursion Depth
+      description: The "Recursion Depth" setting determines after how many shot rays,
+        we stop shooting new rays and (try to) go to the light source immediately.
+        Play with this setting in the ray tracer properties and see what happens
+        to the amount of reflected rays.
+      skippable: 0
+      points: 189
+    - identifier: 
+      name: Limitations
+      description: Unfortunately, the mirrors in this scene are incorrectly displayed.
+        This is due to the scene itself not being rendered using ray tracing. Only
+        the render preview and rendered images are ray traced.
+      skippable: 1
+      points: 145
+    - identifier: renderImage
+      name: Render Image
+      description: To see what it should like, click on "Render Image" in the ray
+        tracer properties again. Make sure the "Recursion Depth" is not set to zero.
+      skippable: 0
+      points: 144
+    - identifier: selectMirror
+      name: Reflective Properties
+      description: As you can see, the wall behind the sphere acts like a "true"
+        mirror. We can change the reflective properties of the wall. Select this
+        wall.
+      skippable: 0
+      points: 92
+    - identifier: editSpecular
+      name: Specular
+      description: The specular of this wall is set to 1. This value describes how
+        much of the incoming light is reflected. So, the wall here reflects all the
+        incoming light.  Change the specular and notice how the render preview changes.
+      skippable: 0
+      points: 104
+    - identifier: editShininess
+      name: Shininess
+      description: The shininess of this wall is set to 128. This value describes
+        the size/smoothness of the specular highlights. So, the wall here has very
+        small specular highlights. Change the shininess and notice how the specular
+        highlights change in size.
+      skippable: 0
+      points: 93
+    - identifier: renderImage
+      name: Render Image
+      description: See what the scene looks now by clicking on the "Render Image"
+        in the ray tracer properties again.
+      skippable: 0
+      points: 87
+    - identifier: 
+      name: 
+      description: 
+      skippable: 1
+      points: 0
+    - identifier: openImage
+      name: Open Image
+      description: You can open the last rendered image by clicking "Open Image"
+        next to the "Render Image" button. Open the last rendered image.
+      skippable: 0
+      points: 174
+    - identifier: editLightColor
+      name: Light Color
+      description: Click on the light and change the light's color property.
+      skippable: 0
+      points: 309
+    - identifier: renderImage
+      name: Render Image
+      description: Render the scene again and notice how changing the light's color
+        changes the scene.
+      skippable: 0
+      points: 193
+    - identifier: 
+      name: 
+      description: 
+      skippable: 0
+      points: 0
+  - optionalTasksStart: 7
+    tasks:
+    - identifier: 
+      name: Refractions
+      description: Using ray tracing we are also able to implement transparency as
+        in the real world. If we hit an object with transparent properties, we cast
+        a ray (again) in the refracted direction.
+      skippable: 1
+      points: 112
+    - identifier: 
+      name: Refractions
+      description: The refracted ray continues to go through the transparent object.
+        However, the refracted ray does not continue in the same direction as the
+        original ray. Instead, it bends a certain amount depending on the refractive
+        index of a material.
+      skippable: 1
+      points: 135
+    - identifier: renderImage
+      name: Render Image
+      description: Unfortunately, the transparent objects in this scene are incorrectly
+        displayed as well. To see what it should like, click on "Render Image" in
+        the ray tracer properties.
+      skippable: 0
+      points: 97
+    - identifier: editAnimRays
+      name: Refracted Rays
+      description: Examine the scene and notice how the refracted rays are a bright
+        green color. Toggle "Animate Rays" off in the ray tracer properties to see
+        the refracted rays continuously.
+      skippable: 0
+      points: 146
+    - identifier: editRefractiveIndex
+      name: Refractive Index
+      description: The sphere in this scene tries to mimic glass with a refractive
+        index of about 1.5. Change the refractive index property of the sphere and
+        notice how the refracted rays bend differently.
+      skippable: 0
+      points: 130
+    - identifier: renderImage
+      name: Render Image
+      description: Render the image again to see what it should actually look like.
+      skippable: 0
+      points: 90
+    - identifier: 
+      name: 
+      description: 
+      skippable: 1
+      points: 0
+    - identifier: editSphereMaterialType
+      name: Material Type
+      description: 'We have now seen opaque, mirror and transparent material types.
+        You can change the material type in the object''s properties. Change the
+        sphere''s material type. '
+      skippable: 0
+      points: 419
+    - identifier: 
+      name: 
+      description: 
+      skippable: 0
+      points: 0
   - optionalTasksStart: 9
+    tasks:
+    - identifier: 
+      name: Ray Visualization
+      description: It is possible to get many rays in this program. In this level,
+        some new features of visualizing rays are available and will be explained
+        in the next tasks!
+      skippable: 1
+      points: 50
+    - identifier: editSuperSampling
+      name: Visualizing Super Sampling
+      description: As explained before, supersampling is a technique where multiple
+        rays are casted through a pixel to get a better approximation of the true
+        pixel color, not just the center of the pixel. This can also be visualized.
+        First, increase the "Super Sampling" factor in the ray tracer properties.
+      skippable: 0
+      points: 88
+    - identifier: visualSuperSampling
+      name: Visualizing Super Sampling
+      description: Excellent! Now enable "SS Visualization" (Super Sampling Visualization).
+      skippable: 0
+      points: 143
+    - identifier: 
+      name: Too many rays!
+      description: With supersampling, reflection and refraction, there may be too
+        many rays. To better see the rays and understand what they do, we added the
+        ability to hide negligible rays, make rays transparent, make their radius
+        dynamic and have the ray's color represent the color it adds to the pixel.
+      skippable: 1
+      points: 42
+    - identifier: hideRays
+      name: Hide Rays
+      description: 'There are now two toggles to hide rays: "Hide No Hit Rays" and
+        "Hide negligible Rays". The latter will hide rays that contribute less than
+        a set threshold to the final pixel''s color. Enable "Hide Negligible Rays"!'
+      skippable: 0
+      points: 86
+    - identifier: rayTransparency
+      name: Ray Transparency
+      description: You can make rays transparent with the toggle "Ray Transparency".
+        This will also reveal a slider "Ray Transparency Exponent", with which you
+        can define how transparent rays should be. Transparency is linked to the
+        ray's contribution, so important rays are more visible than negligible rays.
+        Enable "Ray Transparency".
+      skippable: 0
+      points: 98
+    - identifier: dynamicRadius
+      name: Dynamic Ray Radius
+      description: To better distinguish between important and unimportant rays,
+        there is "Dynamic Ray Radius" which will make negligible rays thin and important
+        rays thicker. The minimal and maximum radius can be changed by the "Ray Minimal
+        Radius" and "Ray Maximal Radius" sliders. Try it by enabling "Dynamic Ray
+        Radius".
+      skippable: 0
+      points: 110
+    - identifier: colorContribution
+      name: Contribution-Based Color
+      description: Lastly, by enabling "Contribution-Based Ray Color" the ray's color
+        will not represent its type, but the color it adds to the pixel color. Check
+        it out!
+      skippable: 0
+      points: 123
+    - identifier: 
+      name: 
+      description: 
+      skippable: 1
+      points: 0
+    - identifier: hideRayThreshold
+      name: Hide Rays
+      description: Change the "Ray Hide Threshold" and see negligible rays disappear!
+      skippable: 0
+      points: 60
+    - identifier: rayTransChange
+      name: Ray Transparency
+      description: Change the "Ray Transparency Exponent" using the slider and see
+        the transparency of the change!
+      skippable: 0
+      points: 78
+    - identifier: rayDynRadiusChange
+      name: Dynamic Ray Radius
+      description: Change the value of either "Ray Minimal Radius" or "Ray Maximum
+        Radius" and notice the rays change in size.
+      skippable: 0
+      points: 65
+    - identifier: 
+      name: 
+      description: 
+      skippable: 0
+      points: 0
+  - optionalTasksStart: 9
+    tasks:
+    - identifier: selectCamera
+      name: Transparent Interactions
+      description: In this scene we will explore three different interactions the
+        raytracer has with transparent objects. This results in many rays being cast.
+        Select the camera and play with the number of horizontal and vertical pixels
+        to really notice the amount of rays.
+      skippable: 0
+      points: 71
+    - identifier: hideNoHitRays
+      name: No Hit Rays
+      description: You might also notice a number of red rays. These red rays are
+        called no hit rays, they do not contribute to the final color. To get a clearer
+        view of this scene, toggle "Hide No Hit Rays" to on in the ray tracer properties.
+      skippable: 0
+      points: 95
+    - identifier: 
+      name: Lens
+      description: A lensing effect is achieved by placing an elongated sphere in
+        front of the camera. If you examine the scene, you will see that the rays
+        (green) rays converge to a focal point. The convergence isn't perfect but
+        it is quite close.
+      skippable: 1
+      points: 102
+    - identifier: 
+      name: Transparent Wall
+      description: There's also a transparent wall behind the lens. Because the wall
+        is transparent, you would expect that light rays can pass through it. However,
+        they don't. This is a limitation of the way the ray tracer generates light
+        rays.
+      skippable: 1
+      points: 99
+    - identifier: 
+      name: Transparent Wall
+      description: The ray tracer determines light rays by tracing a straight line
+        from the object to the light source. The transparent wall bends light, so
+        it won't work. Therefore, the lights rays are blocked and replaced by shadow
+        rays. These shadow rays only take the ambient components into consideration.
+      skippable: 1
+      points: 140
+    - identifier: disableShadows
+      name: Render Shadows
+      description: You can also disable rendering shadows. The light rays will then
+        go straight through the object(s). Turn off "Render Shadows" in the ray tracer
+        properties and notice how the shadow rays are replaced with light rays and
+        go straight through the transparent wall.
+      skippable: 0
+      points: 156
+    - identifier: 
+      name: Prism
+      description: In real life, light is also able to split into a rainbow of colors.
+        The prism that is placed on the bottom should cause this effect. If you place
+        the prism in front of the camera however, it doesn't work.
+      skippable: 1
+      points: 131
+    - identifier: 
+      name: Prism
+      description: The reason for this is that the rays in the raytracer are indivisible,
+        whereas light in the real world is almost always composed of a large range
+        of wavelengths.
+      skippable: 1
+      points: 163
+    - identifier: 
+      name: 
+      description: You may press "Next Level" now to move onto the next level or
+        do some more exploring.
+      skippable: 0
+      points: 0
+  - optionalTasksStart: 3
+    tasks:
+    - identifier: 
+      name: Everything Put Together
+      description: This scene contains all principles discussed thus-far combined.
+        It contains a mirror, a transparent object and various shapes. It also contains
+        a sphere that causes some interesting interactions with the rays.
+      skippable: 1
+      points: 88
+    - identifier: selectSphere
+      name: Spot The Sphere
+      description: 'Can you spot the sphere? Find the sphere and select it (HINT:
+        zoom all the way out). '
+      skippable: 0
+      points: 179
+    - identifier: 
+      name: 
+      description: 
+      skippable: 1
+      points: 0
+    - identifier: selectGreenLight
+      name: First Light Source
+      description: This scene also has multiple light sources. Find and select the
+        green light source.
+      skippable: 0
+      points: 400
+    - identifier: selectPurpleLight
+      name: Second Light Source
+      description: Now find and select the purple light source.
+      skippable: 0
+      points: 350
+    - identifier: selectRedLight
+      name: Third Light Source
+      description: Lastly find and select the red light source.
+      skippable: 0
+      points: 300
+    - identifier: 
+      name: 
+      description: 
+      skippable: 0
+      points: 0
+  - optionalTasksStart: 7
+    tasks:
+    - identifier: 
+      name: Advanced Lighting - Spot Lights
+      description: So far, the only type of light source has been the point light
+        source. However, not all light sources can be approximated by point light
+        sources. Therefore we introduce 2 more types of light sources, starting with
+        the Spot Light!
+      skippable: 1
+      points: 42
+    - identifier: spotLightSelect
+      name: Spot Light
+      description: A spot light is similar to a point light in that light comes from
+        a single point, but this time it also has a direction and a "Spot Angle".
+        It works very much like a flashlisht. Select the spot light.
+      skippable: 0
+      points: 68
+    - identifier: spotAngleChange
+      name: Spot Light Angle
+      description: The spot light's angle can be changed in the light's properties.
+        The angle defines how wide the cone of the light is, and the light's direction
+        specifies where the light points towards. Try changing the light's "Spot
+        Angle" and see for yourself!
+      skippable: 0
+      points: 145
+    - identifier: 
+      name: Light Attenuation
+      description: 'To make lighting look even more realistic, lights can be attenuated.
+        There are two types of attenuation in this program: angle attenuation and
+        light-distance attenuation. As this changes the light''s intensity, lights
+        now also have a "Light intensity" setting.'
+      skippable: 1
+      points: 0
+    - identifier: lightDistAtten
+      name: Light-Distance Attenuation
+      description: Light-distance attenuation can be toggled on/off per light. Light
+        decreases in intensity when it travels further because it covers a bigger
+        area. A light close to an object only illuminates a small section, but if
+        it is furher away is illuminates a bigger section. Check it out by disabling
+        /enabling the spot light's "Distance Attenuation"!
+      skippable: 0
+      points: 89
+    - identifier: angleAtten
+      name: Angle Attenuation
+      description: Angle attenuation occurs when the light is not directly looking
+        at a point, but at an angle. Just like a flashlight, the point it shines
+        at is the brightest. The light needs to have a direction, so it does not
+        apply to point lights. You can change how strong a spot (or area) light is
+        attenuated per light with the "Angle Attenuation" slider. Try it!
+      skippable: 0
+      points: 90
+    - identifier: 
+      name: 
+      description: 
+      skippable: 1
+      points: 0
+    - identifier: lightIntensity
+      name: Light Intensity
+      description: Light's now also have an intensity setting. This determines how
+        bright a light is. A bright light can still illuminate object from a far
+        distance, a dull light will not. See for yourself by changing the "Intensity"
+        setting of the spot light.
+      skippable: 0
+      points: 89
+    - identifier: 
+      name: 
+      description: 
+      skippable: 0
+      points: 0
+  - optionalTasksStart: 8
+    tasks:
+    - identifier: 
+      name: Advanced Lighting - Area Lights
+      description: As said in the previous level, there are also area lights. This
+        level has an area light. An area light is very similar to a spot light, except
+        that the light does not come from a single point, but from an area. This
+        can create soft shadows.
+      skippable: 1
+      points: 42
+    - identifier: 
+      name: Soft Shadows
+      description: 'So far we''ve only seen hard shadows: First there is no shadow,
+        and the next pixel there is a shadow. A soft shadow is a transition from
+        this no-shadow to full-shadow space. Area lights create soft shadows when
+        only a part of the area light is visible from a point. '
+      skippable: 1
+      points: 46
+    - identifier: 
+      name: Area Light Sampling
+      description: 'But it''s extremely difficult to determine how much of the area
+        is visible from a certain point. To approximate that, we use  ''sampling'':
+        We take random ''sample'' points on the area light and use that to approximate
+        the area light''s contribution. We trace each sample point like we trace
+        a spot light and then average the results.'
+      skippable: 1
+      points: 52
+    - identifier: lightSamplesChange
+      name: Area Light Sampling
+      description: To mimic this sampling behaviour, the area light in this program
+        actually uses multiple spot lights, the same amount as light samples taken.
+        This is a setting that can be changed per area light. Select the area light
+        and change the number of "Light Samples".
+      skippable: 0
+      points: 123
+    - identifier: arealightRender
+      name: Area Light Rendering
+      description: The downside of only taking a few samples is that the result looks
+        unrealistic, although it renders quite fast. The effect is called 'noise'.
+        This appears because it takes too few samples to make a good approximation.
+        Set the samples very low and press "Render Image".
+      skippable: 0
+      points: 109
+    - identifier: arealightRender
+      name: Area Light Rendering
+      description: The downside of many samples is that it takes very long to render.
+        For example, when using 36 samples, the raytracer effectively renders 36
+        spot lights. Increase the light samples and press "Render Image" and experience
+        the slowness...
+      skippable: 0
+      points: 134
+    - identifier: 
+      name: Area Light Rays
+      description: 'As you may have noticed, many lightsamples will also create many
+        rays: too many rays. Therefore, if a light uses 25 or more samples and all
+        the rays are of the same type, it will only show a single a single square
+        cone. This ''area-ray'' is big and therefore always transparent. It is also
+        unaffected by the radius settings.'
+      skippable: 1
+      points: 42
+    - identifier: 
+      name: 
+      description: You may press "Next Level" now to move onto the next level or
+        do some more exploring.
+      skippable: 0
+      points: 0
+  - optionalTasksStart: 7
+    tasks:
+    - identifier: 
+      name: More Advanced Raytracing
+      description: You've reached the second-to-last level! In this level, we combined
+        everything you've seen in the previous levels. It contains a mirror, a transparent
+        object and various shapes and light sources.
+      skippable: 1
+      points: 42
+    - identifier: moveCapsule
+      name: Move the capsule
+      description: Now some small tests to see if you know your way around the program!
+        First, move the capsule.
+      skippable: 0
+      points: 78
+    - identifier: changeSpotAngle
+      name: Change the spot light's spot angle
+      description: Now change the spot light's spot angle.
+      skippable: 0
+      points: 98
+    - identifier: changeSpecFloor
+      name: Change floor's specular component
+      description: Next, change the floor's specular component.
+      skippable: 0
+      points: 65
+    - identifier: dynMaxRadiusChange
+      name: Maximum dynamic radius
+      description: Next up, change the maximum dynamic radius of the rays.
+      skippable: 0
+      points: 132
+    - identifier: areaSampleChange
+      name: Area Light samples
+      description: Last but not least, change the number of light samples used by
+        the area light.
+      skippable: 0
+      points: 106
+    - identifier: 
+      name: 
+      description: You may press "Next Level" now to move onto the next level or
+        do some more exploring.
+      skippable: 0
+      points: 0
+  - optionalTasksStart: 10
+    tasks:
+    - identifier: 
+      name: Axis-Aligned Bounding Box (AABB).
+      description: In 3D space, AABBs are a data structure representing a box which
+        encapsulates the object within them fully. For any complex or basic object,
+        AABB gives us the simpler and broader shape of the object it encapsulates.
+      skippable: 1
+      points: 93
+    - identifier: showAABB
+      name: Show AABB.
+      description: On the ray tracer tab at the bottom select the button "Show AABB".
+      skippable: 0
+      points: 538
+    - identifier: 
+      name: How is AABB derived?
+      description: Now we see the AABB. The AABB is created by getting the minimum
+        and maximum value of the object on each axis (x,y,z). By combining these
+        6 values in every possible way we arive at the 8 corners that define our
+        AABB.
+      skippable: 1
+      points: 410
+    - identifier: scaleAABB
+      name: Scale AABB.
+      description: Now try to scale the object.
+      skippable: 0
+      points: 250
+    - identifier: 
+      name: Scaling explained.
+      description: We can see the previous explained properties in action. When we
+        scale the object the AABB scales with it keeping the minimum and maximum
+        points of the object within its bounds.
+      skippable: 1
+      points: 250
+    - identifier: translateAABB
+      name: Move AABB.
+      description: Now try to move the object around.
+      skippable: 0
+      points: 250
+    - identifier: 
+      name: Moving explained.
+      description: Notice that when the object is moved the AAB moves with it. Whenever
+        the location of the object is updated the location of the AABB updates as
+        well.
+      skippable: 1
+      points: 250
+    - identifier: spinAABB
+      name: Spin AABB.
+      description: On the ray tracer tab at the bottom select the button "Spin Object".
+      skippable: 0
+      points: 250
+    - identifier: 
+      name: Spin explained.
+      description: Notice that when the object is spinning  the AABB changes size
+        but always stays aligned to the 3 axes.
+      skippable: 1
+      points: 250
+    - identifier: 
+      name: Level Complete
+      description: You may press "Next Level" now to move onto the next level or
+        do some more exploring.
+      skippable: 0
+      points: 0
+  - optionalTasksStart: 6
+    tasks:
+    - identifier: 
+      name: Speed Up
+      description: The AABB is used to speed up the ray tracing process. Instead
+        of checking a ray against every single triangle of a 3D mesh we check against
+        the simple AABB first. If the ray misses the AABB we ignore the object and
+        don't check the triangles which speeds up the ray tracing process.
+      skippable: 1
+      points: 93
+    - identifier: enableRayTracerAABB
+      name: Show Rays
+      description: To see how this works go to the ray tracer tab and click the "show
+        rays" button.
+      skippable: 0
+      points: 538
+    - identifier: 
+      name: Ray AABB interaction
+      description: 'We can now see the ray interacting with the AABB. The location
+        where the ray hits the AABB is marked with a dot and in the top left we are
+        informed on the ray status.  '
+      skippable: 1
+      points: 410
+    - identifier: translateAABB2
+      name: Move AABB
+      description: 'Move the object and its AABB around to see what the effect is
+        on the ray interaction.
+
+        - Hit the AABB and not the object.
+
+        -
+        Mis the AABB completely.'
+      skippable: 0
+      points: 538
+    - identifier: 
+      name: Moveing explained
+      description: We see that by moving the object and the AABB outside of the trajectory
+        of the ray we can ignore the ray object interaction and thus speed up the
+        ray tracing process as we set out to achieve.
+      skippable: 1
+      points: 50
+    - identifier: 
+      name: Level Complete
+      description: You may press "Next Level" now to move onto the next level or
+        do some more exploring.
+      skippable: 0
+      points: 0
+  - optionalTasksStart: 8
+    tasks:
+    - identifier: 
+      name: The Octree.
+      description: Octrees are a tree data structure which is the 3D spatial partitioning
+        of an object. In it's most basic form it is practically an AABB. However
+        in this level we will discover how an octree differs from an AABB.
+      skippable: 1
+      points: 93
+    - identifier: showOctree
+      name: Show Octree.
+      description: On the ray tracer tab at the bottom select the button "Show Octree".
+      skippable: 0
+      points: 538
+    - identifier: 
+      name: How is the octree derived?
+      description: Now we see the octree. Currentetly it looks and behaves like an
+        AABB because its depth is set to 0. The currently visible part of the octree
+        is also created in the same way as an AABB is.
+      skippable: 1
+      points: 410
+    - identifier: octreeDepth1
+      name: Change octree Depth.
+      description: Now try to change the depth of the octree. Go to the ray tracer
+        tab and use the "depth slider" at the bottom.
+      skippable: 0
+      points: 250
+    - identifier: 
+      name: Depth explained.
+      description: We can think of an octree as a collection of AABBs structured
+        as a tree.  By increasing the depth with 1 we split each AABB into 8 new
+        ones and add only those to the tree that contain the object. This gives us
+        more information on where the object is which we can then use to accelerate
+        ray tracing.
+      skippable: 1
+      points: 250
+    - identifier: spinOctree
+      name: Spin Octree.
+      description: On the ray tracer tab at the bottom select the button "Spin Object".
+      skippable: 0
+      points: 250
+    - identifier: 
+      name: Spin explained.
+      description: Notice that an octree behaves the same as an AABB when the object
+        is spinning. The same is true for moving and scaling the octree.  the AABB
+        is always aligned to the 3 axes.
+      skippable: 1
+      points: 250
+    - identifier: 
+      name: Level complete.
+      description: You may press "Next Level" now to move onto the next level or
+        do some more exploring.
+      skippable: 0
+      points: 0
+  - optionalTasksStart: 6
+    tasks:
+    - identifier: 
+      name: Speed Up
+      description: Like the AABB the octree is used to speed up the ray tracing process.
+        The difference here is that when we hit the octree we check if the ray intersects
+        with an octant of the octree in which the object exists. We repeat this cycle
+        up to a depth and only then check against the triangles of the 3D mesh that
+        fall into that section.
+      skippable: 1
+      points: 93
+    - identifier: enableRayTracerOctree
+      name: Show Rays
+      description: To see how this works go to the ray tracer tab and click the "show
+        rays" button.
+      skippable: 0
+      points: 538
+    - identifier: 
+      name: Ray AABB interaction
+      description: 'We can now see the ray interacting with the octree. In the top
+        left corner we are informed of how we hit the octree and the object and how
+        many triangle calculations we could skip.  '
+      skippable: 1
+      points: 410
+    - identifier: translateOctree2
+      name: Move octree
+      description: 'Move the object and its octree around to see. What the effect
+        is on the ray interaction.
+
+        - Graze the object.
+
+        - Hit the
+        octree but not the object.
+
+        - Mis the octree completely.'
+      skippable: 0
+      points: 538
+    - identifier: 
+      name: Moveing explained
+      description: We see that for any type of interaction we reduced the needed
+        calculations significantly. Where first we needed to check against all the
+        triangles we no,w at the cost of a couple of box interaction, can ignore
+        most of them. Again speeding up the ray tracing process.
+      skippable: 1
+      points: 0
+    - identifier: 
+      name: Level Complete
+      description: This is the last tutorial level. You may press "Next Level" now
+        to move onto the sandbox level or do some more exploring.
+      skippable: 0
+      points: 0
+  - optionalTasksStart: 4
+    tasks:
+    - identifier: 
+      name: Freedom
+      description: You have reached the final level! This is a sandbox level which
+        means all tools are available to create a customized scene yourself.
+      skippable: 1
+      points: 93
+    - identifier: createObject
+      name: Creating Objects
+      description: You can now create objects. Create an object by choosing one of
+        the objects in the "Create" dropdown.
+      skippable: 0
+      points: 538
+    - identifier: deleteObject
+      name: Deleting Objects
+      description: You can now also delete any object, except for the camera. Delete
+        a non-camera object from the scene by selecting it and pressing [DEL].
+      skippable: 0
+      points: 410
+    - identifier: 
+      name: 
+      description: You are now able to create your own custom scenes. Go crazy! If
+        you would like to use Virtual Ray Tracer again but without any restrictions,
+        you can enable "Cheat Mode" in the settings.
+      skippable: 0
+      points: 0
+  - optionalTasksStart: 6
+    tasks:
+    - identifier: 
+      name: Attention to detail
+      description: "This is the texturing tutorial. If you\u2019ve worked through
+        the ray tracer tutorial, you\u2019ll recall that we only used solid colors
+        so far. However, the real world is much more detailed than solid colors.
+        That is why we use something called textures on our 3D objects."
+      skippable: 1
+      points: 0
+    - identifier: 
+      name: 3D Objects
+      description: "Before we explain how this detail is added, we will first go
+        over how a 3D object is made. As an example, we\u2019ll use the cube you
+        can see on screen."
+      skippable: 1
+      points: 0
+    - identifier: 3DObjects_verticesEdgesFaces
+      name: Vertices, edges and faces
+      description: A 3D object is made of points (vertices), connected by lines (edges),
+        to form triangles (faces). If you do this in specific ways, you can make
+        any shape you desire. Our cube has 8 corners and each corner is a vertex.
+        Select the cube and check the Show Vertices checkmark.
+      skippable: 0
+      points: 0
+    - identifier: 3DObjects_vertex
+      name: Vertex
+      description: These spheres represent a vertex. Each of these vertices is connected
+        to at least 2 others by edges. Check the Show Edges checkmark.
+      skippable: 0
+      points: 0
+    - identifier: 
+      name: Edge
+      description: The lines now visible show the edges between the vertices. Each
+        triangle you see is a face.
+      skippable: 1
+      points: 0
+    - identifier: 
+      name: 
+      description: 
+      skippable: 1
+      points: 0
+  - optionalTasksStart: 8
     tasks:
     - identifier: 
       name: Introduction
@@ -359,50 +1136,37 @@ MonoBehaviour:
         a concept called "Texture Mapping".
       skippable: 1
       points: 0
-    - identifier: 
-      name: Texture Mapping
-      description: Texture mapping means that every vertex in a 3D space has a coordinate
-        on a 2D plane. This level will show an example of how these coordinates are
-        connected. Here you see a rectangle, which will be used to display an image
-        and some objects that will have these images "wrapped" onto them.
-      skippable: 1
-      points: 0
-    - identifier: TextureProperties_Selected
+    - identifier: Texture_Selected
       name: Example
-      description: Click on the large plane. This plane will display the images used
-        on different 3D objects. Now Click on Edit next to Texture. When clicking
-        away from the object, you will need to go back here when completing the other
-        tasks in this level.
+      description: Texture mapping means that every vertex in a 3D space has a coordinate
+        on a 2D plane. We will show in an example what this looks like. Click on
+        the large plane, which we will use as a projection surface, and click on
+        "Edit" next to "Texture".
       skippable: 0
       points: 0
     - identifier: 
       name: Textures
       description: The images that are used to show specific patterns or drawings
         are called "Textures". This means that every point on a 3D object, corresponds
-        to a 2D point. This 2D coordinate is called a "UV coordinate". The colour
-        found at the UV coordinate can be used to colour objects in 3D space.
+        with a 2D point. This 2D coordinate is called a "UV coordinate". The colour
+        found at the UV coordinate can be used to colour in 3D space.
       skippable: 1
       points: 0
     - identifier: Unwrap_Transition
       name: UV Unwrapping
       description: Every vertex in a 3D object also has a 2D position. This  UV coordinate
         can either be calculated, or assigned manually. For the sphere the positions
-        are often calculated with a function. By using the Transition slider you
+        are often calculated with a function. By using the "Transition" slider you
         can see how the sphere unwraps. Set the value of the slider to 1.
       skippable: 0
       points: 0
-    - identifier: Mapping_Loop
+    - identifier: 
       name: Sphere unwrapping
-      description: When you check the Loop box, the sphere will animate from its
+      description: When you check the "Loop" box, the sphere will animate from it's
         3D coordinates to the UV coordinates and back. This will allow you to look
-        from different angles to see how the sphere unwraps. Check the Loop box.
-      skippable: 0
-      points: 0
-    - identifier: Texture_Changed
-      name: Other textures
-      description: You can also apply different textures to see how different images
-        display. Select a different texture.
-      skippable: 0
+        from different angles to see how the sphere unwraps. You can also apply different
+        textures to see how different images display.
+      skippable: 1
       points: 0
     - identifier: Pyramid_Select
       name: Manual UV
@@ -412,24 +1176,22 @@ MonoBehaviour:
       points: 0
     - identifier: 
       name: Texture Coverage
-      description: Here we have set the UV coordinates manually. When Transition
-        is at 1 and the texture is fully 2D, we can see that the image does not necessarily
-        require to cover the full image. This way only parts of the image that need
-        to be used are used. It is however preferred to use as much of the image
-        as possible for optimal detail.
+      description: Here we have set the UV coordinates manually. When looking at
+        the full projection, not the full image needs to covered. This way only parts
+        of the image that need to be used are used. It is however preferred to use
+        as much of the image as possible for optimal detail.
       skippable: 1
       points: 0
     - identifier: 
       name: 
-      description: You may press "Next Level" now to move onto the next level or
-        do some more exploring.
+      description: 
       skippable: 1
       points: 0
   - optionalTasksStart: 9
     tasks:
     - identifier: 
       name: Introduction
-      description: "So far, we\u2019ve mapped the vertices of our objects to points
+      description: "So far, we\u2019ve mapped the vertices of our cube to points
         on a texture image. But how do we get this onto the screen by ray tracing?"
       skippable: 1
       points: 0
@@ -441,9 +1203,9 @@ MonoBehaviour:
       points: 0
     - identifier: 
       name: Interpolation
-      description: "As you know, a surface is formed when 3 vertices are connected
-        to form a triangle. We can calculate the UV-coordinate for any point on a
-        triangle by interpolating between UV-coordinates of the triangle\u2019s vertices."
+      description: "The surface is formed by making triangles of vertices. We can
+        calculate the UV-coordinate for any point on this triangle by interpolating
+        between UV-coordinates of the triangle\u2019s vertices."
       skippable: 1
       points: 0
     - identifier: 
@@ -451,8 +1213,7 @@ MonoBehaviour:
       description: 'The interpolated UV-coordinates do not necessarily land in the
         center of a texture pixel. There are many ways to handle this. Each method
         gives more realistic visuals and is more costly than the last. We will explain
-        the two simplest, yet most used ones: nearest-neighbor sampling and bilinear
-        interpolation.'
+        the two simplest, yet most used ones: nearest-neighbor and bilinear interpolation.'
       skippable: 1
       points: 0
     - identifier: TextureSampling_TextureSample
@@ -462,11 +1223,11 @@ MonoBehaviour:
       skippable: 0
       points: 0
     - identifier: TextureSampling_NNInterpolate
-      name: Nearest-neighbor sampling
+      name: Nearest-neighbor interpolation
       description: "In the texture preview you can see the place on the texture where
-        you hovered on the cube. Nearest-neighbor sampling simply picks the texture
-        pixel nearest to where you hover as the ray\u2019s color. Change the Sample
-        Mode to bilinear."
+        you hovered on the cube. Nearest-neighbor interpolation simply picks the
+        texture pixel nearest to where you hover as the ray\u2019s color. Change
+        the Sample Mode to bilinear."
       skippable: 0
       points: 0
     - identifier: 
@@ -478,15 +1239,14 @@ MonoBehaviour:
       points: 0
     - identifier: 
       name: Conclusion
-      description: In conclusion, nearest-neighbor sampling rounds the UV coordinates
-        and chooses that color. Bilinear interpolation, on the other hand, gets a
-        weighted average of the colors of the 4 points surrounding it.
+      description: In conclusion, nearest-neighbor interpolation rounds the UV coordinates
+        to the nearest whole number and chooses that color, whereas bilinear interpolation
+        gets a weighted average of the colors of the 4 nearest whole numbers.
       skippable: 1
       points: 0
     - identifier: 
       name: 
-      description: You may press "Next Level" now to move onto the next level or
-        do some more exploring.
+      description: 
       skippable: 0
       points: 0
   - optionalTasksStart: 5
@@ -507,7 +1267,7 @@ MonoBehaviour:
         along with their color and some other settings, you would be done much sooner.
       skippable: 1
       points: 0
-    - identifier: ProceduralTextures_ProcBrick
+    - identifier: ProceduralTextures_ProcTex
       name: Procedural textures
       description: That is what procedural textures do. To see them in action, click
         on the cube and select the brick texture.
@@ -523,28 +1283,6 @@ MonoBehaviour:
     - identifier: 
       name: 
       description: 
-      skippable: 1
-      points: 0
-    - identifier: 
-      name: Natural textures
-      description: 'Apart from bricks, you can model functionally anything if you
-        apply some maths. To make things look less artificial like our brick wall,
-        you add multiple layers of noise. This is the same kind of noise you would
-        see on old TVs that could not find a channel, except with a very subtle pattern
-        to them. '
-      skippable: 1
-      points: 0
-    - identifier: ProceduralTextures_ProcMarble
-      name: Marble
-      description: If you combine a sine wave with two layers of this noise, you
-        can get marble and other stone like materials. Select the marble texture
-        and play around with the sliders to see what they do.
-      skippable: 0
-      points: 0
-    - identifier: 
-      name: 
-      description: You may press "Next Level" now to move onto the next level or
-        do some more exploring.
       skippable: 1
       points: 0
   Badges:
