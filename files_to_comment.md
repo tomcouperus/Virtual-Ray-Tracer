@@ -1,11 +1,11 @@
 # Files to comment
 
-- [ ] Unity/Assets/_Project/Ray Tracer/Scripts/RTSceneManager.cs
-- [ ] Unity/Assets/_Project/Ray Tracer/Scripts/UnityRayTracer.cs
-- [ ] Unity/Assets/_Project/Texturer/BilinearSampleView.cs
-- [ ] Unity/Assets/_Project/Texturer/DropdownEdit.cs
-- [ ] Unity/Assets/_Project/Texturer/Edge.cs
-- [ ] Unity/Assets/_Project/Texturer/EmptySampleView.cs
+- [x] Unity/Assets/_Project/Ray Tracer/Scripts/RTSceneManager.cs
+- [x] Unity/Assets/_Project/Ray Tracer/Scripts/UnityRayTracer.cs
+- [x] Unity/Assets/_Project/Texturer/BilinearSampleView.cs
+- [x] Unity/Assets/_Project/Texturer/DropdownEdit.cs
+- [x] Unity/Assets/_Project/Texturer/Edge.cs
+- [x] Unity/Assets/_Project/Texturer/EmptySampleView.cs
 - [ ] Unity/Assets/_Project/Texturer/GameEvent.cs
 - [ ] Unity/Assets/_Project/Texturer/GameEventListener.cs
 - [ ] Unity/Assets/_Project/Texturer/InteractableMesh.cs
@@ -17,7 +17,7 @@
 - [ ] Unity/Assets/_Project/Texturer/ProceduralMarbleTexture.cs
 - [ ] Unity/Assets/_Project/Texturer/ProceduralTexture.cs
 - [ ] Unity/Assets/_Project/Texturer/ProceduralTextureEdit.cs
-- [ ] Unity/Assets/_Project/Texturer/SampleViewer.cs
+- [x] Unity/Assets/_Project/Texturer/SampleViewer.cs
 - [ ] Unity/Assets/_Project/Texturer/TextureEdit.cs
 - [ ] Unity/Assets/_Project/Texturer/TextureManager.cs
 - [ ] Unity/Assets/_Project/Texturer/TextureMapper.cs

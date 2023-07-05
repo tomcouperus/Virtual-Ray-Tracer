@@ -229,6 +229,10 @@ namespace _Project.Ray_Tracer.Scripts
                 return interpolatedNormal;
             }
 
+            /// <summary>
+            /// Gets the color of the hit.
+            /// </summary>
+            /// <returns>The Color of the hit.</returns>
             private static Color GetHitColor(ref RaycastHit hit, ref RTMesh mesh) {
                 Color color = mesh.Color;
                 TextureSampler sampler = hit.transform.GetComponent<TextureSampler>();

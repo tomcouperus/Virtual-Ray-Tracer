@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+/// <summary>
+/// A UI class that generates its options based on a list.
+/// Any events that should trigger have to be set in the nested TMP_Dropdown object.
+/// </summary>
 public class DropdownEdit : MonoBehaviour
 {
     [SerializeField]

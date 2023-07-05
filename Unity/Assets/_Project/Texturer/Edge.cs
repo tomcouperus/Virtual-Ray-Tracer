@@ -2,19 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Represents an edge of a mesh.
+/// </summary>
 public class Edge : MonoBehaviour {
 
     public float Radius = 0.015f;
 
-    public void SetFromTo(Vector3 from, Vector3 to) {
-        Vector3 Direction = to-from;
-        transform.localPosition = from + (Direction)/2;
-        transform.up = Direction;
-        Vector3 scale = transform.localScale;
-        transform.localScale = new Vector3(scale.x, scale.y * Direction.magnitude, scale.z);
-    }
-
     private Vector3 _direction;
+    /// <summary>
+    /// Controls the direction of the edge line
+    /// </summary>
     public Vector3 Direction {
         get {return _direction;}
         set {
@@ -24,6 +22,9 @@ public class Edge : MonoBehaviour {
     }
 
     private Vector3 _position;
+    /// <summary>
+    /// Controls the position of the middle of the edge line
+    /// </summary>
     public Vector3 Position {
         get {return _position;}
         set {
@@ -33,6 +34,9 @@ public class Edge : MonoBehaviour {
     }
 
     private float _length;
+    /// <summary>
+    /// Controls the length of the edge line
+    /// </summary>
     public float Length {
         get {return _length;}
         set {

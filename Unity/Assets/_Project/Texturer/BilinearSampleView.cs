@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// SampleView for the bilinear interpolation sampling method.
+/// </summary>
 public class BilinearSampleView : SampleViewer.SampleView {
 
     [Header("Components")]
