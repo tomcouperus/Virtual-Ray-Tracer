@@ -96,6 +96,10 @@ namespace _Project.UI.Scripts.Control_Panel
             refractiveIndexEdit.Value = mesh.RefractiveIndex;
         }
 
+        /// <summary>
+        /// Shows the edits for the InteractibleMesh component, 
+        /// if it exists on the selected object.
+        /// </summary>
         private void ShowInteractibleMesh() {
             if (!iMesh) {
                 showVerticesToggle.gameObject.SetActive(false);
@@ -109,6 +113,10 @@ namespace _Project.UI.Scripts.Control_Panel
             showEdgesToggle.IsOn = iMesh.ShowEdges;
         }
 
+        /// <summary>
+        /// Shows the texture edit if the selected object has a
+        /// TextureManager component.
+        /// </summary>
         private void ShowTextureEdit() {
             if (!texManager) {
                 textureEdit.gameObject.SetActive(false);
@@ -119,6 +127,10 @@ namespace _Project.UI.Scripts.Control_Panel
             
         }
 
+        /// <summary>
+        /// Shows the sampling edits, if the selected object has a
+        /// TextureSampler component.
+        /// </summary>
         private void ShowSamplingEdits() {
             if (!texSampler || !texSampler.Texture) {
                 samplingModeEdit.gameObject.SetActive(false);
@@ -151,6 +163,10 @@ namespace _Project.UI.Scripts.Control_Panel
             Show(mesh);
         }
 
+        /// <summary>
+        /// Changes the sampling mode of the active texture sampler to the value
+        /// in the edit.
+        /// </summary>
         public void UpdateTextureSamplingMode() {
             texSampler.Mode = (SamplingMode)samplingModeEdit.Value;
         }

@@ -4,11 +4,18 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(Renderer), typeof(TextureManager))]
+/// <summary>
+/// Component that shows the sampling process
+/// </summary>
 public class TextureSampler : MonoBehaviour{
 
     [SerializeField]
     private Camera mainCamera;
 
+    /// <summary>
+    /// Active texture
+    /// </summary>
+    /// <value></value>
     public Texture2D Texture {
         get {
             Renderer renderer = GetComponent<Renderer>();
@@ -19,6 +26,10 @@ public class TextureSampler : MonoBehaviour{
 
     [SerializeField]
     private SamplingMode _mode;
+    /// <summary>
+    /// Active sampling mode
+    /// </summary>
+    /// <value></value>
     public SamplingMode Mode {
         get {return _mode;}
         set {
@@ -39,6 +50,11 @@ public class TextureSampler : MonoBehaviour{
 
     [SerializeField]
     private bool _isSampling;
+
+    /// <summary>
+    /// Is `true` if the TextureSampler is sampling.
+    /// </summary>
+    /// <value></value>
     public bool IsSampling {
         get {return _isSampling;}
         set {_isSampling = value;}
@@ -64,6 +80,12 @@ public class TextureSampler : MonoBehaviour{
         else onDisableSampling.Raise(this, null);
     }
 
+    /// <summary>
+    /// Samples the texture at the uv coordinates in a given mode.
+    /// </summary>
+    /// <param name="uv"></param>
+    /// <param name="mode"></param>
+    /// <returns></returns>
     public Color SampleTexture(Vector2 uv, SamplingMode mode) {
         if (!Texture) return Color.white;
         Color color = Color.black;
@@ -87,6 +109,11 @@ public class TextureSampler : MonoBehaviour{
         onSamplingModeChanged.Raise(this, null);
     }
 
+    /// <summary>
+    /// Determines sampling information at mouse position using a Raycast,
+    /// compiles SampleData and notifies listeners of the onTextureSampled and 
+    /// onSamplingModeChanged GameEvents.
+    /// </summary>
     private void Sample() {
         if (!IsSampling || !Texture) return;
         OnMouseOverEvent.Invoke();
@@ -147,8 +174,15 @@ public class TextureSampler : MonoBehaviour{
     }
 }
 
+/// <summary>
+/// Enum for supported sampling modes. 
+/// Done as enum and not boolean to support future additions.
+/// </summary>
 public enum SamplingMode : int {Point, Bilinear};
 
+/// <summary>
+/// Data structure that has all info for any supported sampling mode.
+/// </summary>
 public struct SampleData {
     public Color color;
     

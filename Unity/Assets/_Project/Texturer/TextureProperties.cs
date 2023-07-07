@@ -7,6 +7,9 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 using _Project.UI.Scripts.Control_Panel;
 
+/// <summary>
+/// UI class that provides access to the texture properties of an object.
+/// </summary>
 public class TextureProperties : MonoBehaviour {
 
     [Header("UV mapping")]
@@ -46,6 +49,10 @@ public class TextureProperties : MonoBehaviour {
         gameObject.SetActive(false);
     }
 
+    /// <summary>
+    /// Creates the selectors for the textures of the given TextureManager.
+    /// </summary>
+    /// <param name="textureManager"></param>
     private void CreateTextureSelects(TextureManager textureManager) {
         List<Sprite> texPreviewList = textureManager.CreateTexturePreviews();
         for (int i = 0; i < texPreviewList.Count; i++) {
@@ -63,6 +70,10 @@ public class TextureProperties : MonoBehaviour {
         }
     }
     
+    /// <summary>
+    /// Creates the selectors for the procedural textures of the given TextureManager.
+    /// </summary>
+    /// <param name="textureManager"></param>
     private void CreateProceduralTextureSelects(TextureManager textureManager) {
         List<Sprite> texPreviewList = textureManager.CreateProceduralTexturePreviews();
         if (texPreviewList.Count == 0) {
@@ -108,6 +119,9 @@ public class TextureProperties : MonoBehaviour {
             objectDropdown.gameObject.SetActive(false);
     }
 
+    /// <summary>
+    /// Removes all selectors for textures and procedural textures
+    /// </summary>
     private void Clear() {
         textureSelects.Clear();
         textureSelects.Add(nullTextureSelect);
@@ -125,10 +139,18 @@ public class TextureProperties : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Action that fires when the nullTextureSelect is selected.
+    /// </summary>
     public void SelectNoTexture() {
         textureManager.ClearTexture();
     }
 
+    /// <summary>
+    /// Goes over all texture select and selects the current one.
+    /// Hooks them up to the event chain that is fired when a single TextureSelect
+    /// is selected.
+    /// </summary>
     private void AddSelectionHighlights() {
         foreach (TextureSelect texSelect in textureSelects) {
             texSelect.AddOnSelectListener(() => {
@@ -142,6 +164,11 @@ public class TextureProperties : MonoBehaviour {
         textureSelects[textureManager.TextureIndex+1].Selected = true;
     }
 
+    /// <summary>
+    /// Shows the TextureProperties, as a response to a GameEvent.
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="data"></param>
     public void OnShowTextureProperties(Component sender, object data) {
         if (!(data is TextureManager)) return;
         textureManager = (TextureManager) data;

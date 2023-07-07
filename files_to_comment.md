@@ -21,10 +21,10 @@
 - [x] Unity/Assets/_Project/Texturer/TextureEdit.cs
 - [x] Unity/Assets/_Project/Texturer/TextureManager.cs
 - [ ] Unity/Assets/_Project/Texturer/TextureProjector.cs
-- [ ] Unity/Assets/_Project/Texturer/TextureProperties.cs
-- [ ] Unity/Assets/_Project/Texturer/TextureSampler.cs
-- [ ] Unity/Assets/_Project/Texturer/TextureSelect.cs
+- [x] Unity/Assets/_Project/Texturer/TextureProperties.cs -- Victor needs to comment his additions, as I don't know what they do.
+- [x] Unity/Assets/_Project/Texturer/TextureSampler.cs
+- [x] Unity/Assets/_Project/Texturer/TextureSelect.cs
 - [ ] Unity/Assets/_Project/Texturer/TextureWrappingEdit.cs
-- [ ] Unity/Assets/_Project/UI/Scripts/Control Panel/BoolEdit.cs
-- [ ] Unity/Assets/_Project/UI/Scripts/Control Panel/ControlPanel.cs
-- [ ] Unity/Assets/_Project/UI/Scripts/Control Panel/MeshProperties.cs
+- [x] Unity/Assets/_Project/UI/Scripts/Control Panel/BoolEdit.cs
+- [x] Unity/Assets/_Project/UI/Scripts/Control Panel/ControlPanel.cs
+- [x] Unity/Assets/_Project/UI/Scripts/Control Panel/MeshProperties.cs
