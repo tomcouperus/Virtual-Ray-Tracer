@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using _Project.UI.Scripts.Control_Panel;
 using UnityEngine;
 
+/// <summary>
+/// UI component for the ProceduralBrickTexture
+/// </summary>
 public class ProceduralBrickEdit : ProceduralTextureEdit {
 
     [SerializeField]

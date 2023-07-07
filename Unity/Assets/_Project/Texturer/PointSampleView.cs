@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// SampleView for the nearest neighbour sampling method.
+/// </summary>
 public class PointSampleView : SampleViewer.SampleView {
     [SerializeField]
     private Image resultColor;

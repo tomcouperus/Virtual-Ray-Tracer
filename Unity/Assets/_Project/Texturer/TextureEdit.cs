@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// UI component that displays the current texture of an object and has a button
+/// to open the TextureProperties
+/// 
+/// </summary>
 public class TextureEdit : MonoBehaviour {
     
     [Header("UI")]
@@ -33,6 +38,10 @@ public class TextureEdit : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Sets the current texture manager and updates the texture preview
+    /// </summary>
+    /// <param name="textureManager"></param>
     public void SetCurrentTextureManager(TextureManager textureManager) {
         currentManager = textureManager;
         UpdateTexturePreview(currentManager.CreateTexturePreview());

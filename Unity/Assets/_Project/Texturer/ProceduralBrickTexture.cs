@@ -2,6 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Procedural brick texture.
+/// 
+/// See ProceduralTexture for more info on procedural textures.
+/// </summary>
 [CreateAssetMenu(menuName = "Procedural Texture/Brick")]
 public class ProceduralBrickTexture : ProceduralTexture {
 
@@ -24,6 +29,12 @@ public class ProceduralBrickTexture : ProceduralTexture {
         return CreateTexture(BricksX, BricksY);
     }
 
+    /// <summary>
+    /// Creates a brick texture with a specified amount of bricks.
+    /// </summary>
+    /// <param name="bricksX"></param>
+    /// <param name="bricksY"></param>
+    /// <returns></returns>
     private Texture2D CreateTexture(int bricksX, int bricksY) {
         int width = BrickWidth * bricksX + MortarThickness * (bricksX-1);
         int height = BrickHeight * bricksY + MortarThickness * (bricksY-1);

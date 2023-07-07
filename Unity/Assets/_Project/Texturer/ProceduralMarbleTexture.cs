@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Procedural Texture/Marble")]
+/// <summary>
+/// Procedural marble texture.
+/// 
+/// See ProceduralTexture for more info on procedural textures.
+/// </summary>
 public class ProceduralMarbleTexture : ProceduralTexture {
 
     [SerializeField]

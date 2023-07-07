@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Creates and displays the wireframe of a mesh.
+/// </summary>
 [RequireComponent(typeof(MeshFilter))]
 public class InteractableMesh : MonoBehaviour
 {
@@ -12,6 +15,10 @@ public class InteractableMesh : MonoBehaviour
     GameObject vertices;
     [SerializeField]
     private bool _showVertices;
+    /// <summary>
+    /// If `true`, shows the vertices of the mesh with the vertexPrefab object.
+    /// </summary>
+    /// <value></value>
     public bool ShowVertices {
         get {return _showVertices;}
         set {
@@ -23,6 +30,10 @@ public class InteractableMesh : MonoBehaviour
     GameObject edges;
     [SerializeField]
     private bool _showEdges;
+    /// <summary>
+    /// If `true`, shows the edges of the mesh with the edgePrefab object.
+    /// </summary>
+    /// <value></value>
     public bool ShowEdges {
         get {return _showEdges;}
         set {
@@ -37,6 +48,9 @@ public class InteractableMesh : MonoBehaviour
         GenerateEdges();
     }
 
+    /// <summary>
+    /// Generates all vertices of a mesh.
+    /// </summary>
     void GenerateVertices() {
         vertices = new GameObject("vertices");
         ShowVertices = _showVertices;
@@ -58,6 +72,9 @@ public class InteractableMesh : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Generates the edges of a mesh.
+    /// </summary>
     void GenerateEdges() {
         edges = new GameObject("edges");
         ShowEdges = _showEdges;
@@ -68,6 +85,10 @@ public class InteractableMesh : MonoBehaviour
         int[] triangles = mesh.triangles;
 
         HashSet<Vector3> createdEdges = new HashSet<Vector3>();
+        /** Go triangle by triangle and make edges for each side of the triangle.
+          * Removes duplicates based on position, since the edges location is 
+          * placed between vertices and thus unique.
+          */
         for (int i = 0; i < triangles.Length; i += 3) {
             int vertIndexA = triangles[i];
             int vertIndexB = triangles[i+1];

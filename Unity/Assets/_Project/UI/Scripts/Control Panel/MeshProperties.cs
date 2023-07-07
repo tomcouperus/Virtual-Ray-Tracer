@@ -19,7 +19,6 @@ namespace _Project.UI.Scripts.Control_Panel
     {
         private RTMesh mesh;
         private InteractableMesh iMesh;
-        private TextureMapper texMapper;
         private TextureManager texManager;
         private TextureSampler texSampler;
 
@@ -34,10 +33,6 @@ namespace _Project.UI.Scripts.Control_Panel
         private BoolEdit showVerticesToggle;
         [SerializeField]
         private BoolEdit showEdgesToggle;
-        [SerializeField]
-        private RectTransform textureMappingButtons;
-        [SerializeField]
-        private BoolEdit showFullTextureToggle;
         
         [Header("Material settings")]
         [SerializeField] 
@@ -84,9 +79,6 @@ namespace _Project.UI.Scripts.Control_Panel
             this.iMesh = mesh.GetComponent<InteractableMesh>();
             ShowInteractibleMesh();
 
-            this.texMapper = mesh.GetComponent<TextureMapper>();
-            ShowTextureMap();
-
             this.texManager = mesh.GetComponent<TextureManager>();
             ShowTextureEdit();
             
@@ -115,19 +107,6 @@ namespace _Project.UI.Scripts.Control_Panel
 
             showVerticesToggle.IsOn = iMesh.ShowVertices;
             showEdgesToggle.IsOn = iMesh.ShowEdges;
-        }
-
-        private void ShowTextureMap() {
-            if (!texMapper) {
-                textureMappingButtons.gameObject.SetActive(false);
-                showFullTextureToggle.gameObject.SetActive(false);
-                return;
-            }
-            textureMappingButtons.gameObject.SetActive(true);
-            showFullTextureToggle.gameObject.SetActive(false);
-            texMapper.Select();
-
-            showFullTextureToggle.IsOn = texMapper.ShowFullTexture;
         }
 
         private void ShowTextureEdit() {
@@ -175,14 +154,6 @@ namespace _Project.UI.Scripts.Control_Panel
         public void UpdateTextureSamplingMode() {
             texSampler.Mode = (SamplingMode)samplingModeEdit.Value;
         }
-
-        public void TexMapperWrap() {
-            texMapper.Wrap();
-        }
-
-        public void TexMapperUnwrap() {
-            texMapper.Unwrap();
-        }
         
         private void Awake()
         {
@@ -192,7 +163,6 @@ namespace _Project.UI.Scripts.Control_Panel
 
             showVerticesToggle.OnValueChanged.AddListener((value) => {iMesh.ShowVertices = value; });
             showEdgesToggle.OnValueChanged.AddListener((value) => {iMesh.ShowEdges = value; });
-            showFullTextureToggle.OnValueChanged.AddListener(value => texMapper.ShowFullTexture = value);
 
             colorEdit.OnValueChanged.AddListener((value) => { mesh.Color = value; });
             ambientEdit.OnValueChanged.AddListener((value) => { mesh.Ambient = value; });

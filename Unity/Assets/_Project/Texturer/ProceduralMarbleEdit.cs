@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using _Project.UI.Scripts.Control_Panel;
 
+/// <summary>
+/// UI component for the ProceduralMarbleTexture
+/// </summary>
 public class ProceduralMarbleEdit : ProceduralTextureEdit {
     [SerializeField]
     private LogEdit sizeEdit;

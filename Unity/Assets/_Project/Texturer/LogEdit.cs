@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using _Project.UI.Scripts.Control_Panel;
 using UnityEngine;
 
+/// <summary>
+/// A UI class that edits a floating point value as a slider, using logarithmic steps.
+/// </summary>
 public class LogEdit : FloatEdit {
     [SerializeField]
     private float logBase = 2;

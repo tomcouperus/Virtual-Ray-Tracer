@@ -4,6 +4,10 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(Renderer))]
+/// <summary>
+/// Behaviour that manages the Texture2Ds and ProceduralTextures available 
+/// to an object.
+/// </summary>
 public class TextureManager : MonoBehaviour {
     
     [SerializeField]
@@ -17,6 +21,10 @@ public class TextureManager : MonoBehaviour {
     [SerializeField]
     private List<Texture2D> textures;
 
+    /// <summary>
+    /// The amount of Texture2Ds available.
+    /// </summary>
+    /// <value></value>
     public int TextureCount {
         get {return textures.Count;}
     }
@@ -24,10 +32,18 @@ public class TextureManager : MonoBehaviour {
     [SerializeField]
     private List<ProceduralTexture> proceduralTextures;
 
+    /// <summary>
+    /// The amount of ProceduralTextures available.
+    /// </summary>
+    /// <value></value>
     public int ProceduralTextureCount {
         get {return proceduralTextures.Count;}
     }
 
+    /// <summary>
+    /// The active texture
+    /// </summary>
+    /// <value></value>
     private Texture2D texture {
         get {
             Renderer renderer = GetComponent<Renderer>();
@@ -75,12 +91,21 @@ public class TextureManager : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Creates a Sprite from a texture to function as a texture preview.
+    /// </summary>
+    /// <param name="texture"></param>
+    /// <returns></returns>
     public static Sprite CreateTexturePreview(Texture2D texture) {
         Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero);
         sprite.name = texture.name;
         return sprite;
     }
 
+    /// <summary>
+    /// Creates Sprites for all textures
+    /// </summary>
+    /// <returns></returns>
     public List<Sprite> CreateTexturePreviews() {
         List<Sprite> sprites = new List<Sprite>();
         foreach (Texture2D tex in textures) {
@@ -89,6 +114,10 @@ public class TextureManager : MonoBehaviour {
         return sprites;
     }
 
+    /// <summary>
+    /// Creates Sprites for all procedural textures
+    /// </summary>
+    /// <returns></returns>
     public List<Sprite> CreateProceduralTexturePreviews() {
         List<Sprite> sprites = new List<Sprite>();
         foreach (ProceduralTexture prodTex in proceduralTextures) {
@@ -97,26 +126,46 @@ public class TextureManager : MonoBehaviour {
         return sprites;
     }
 
+    /// <summary>
+    /// Selects a texture and changes this on the GameObject's Renderer as well.
+    /// </summary>
+    /// <param name="index"></param>
     public void SelectTexture(int index) {
         texture = textures[index];
         _textureIndex = index;
     }
 
+    /// <summary>
+    /// Selects a procedural texture and changes this on the GameObject's Renderer as well.
+    /// </summary>
+    /// <param name="index"></param>
     public void SelectProceduralTexture(int index) {
         ProceduralTexture tex = proceduralTextures[index];
         texture = tex.CreateTexture();
         _textureIndex = index + TextureCount;
     }
 
+    /// <summary>
+    /// Gets a procedural texture by index
+    /// </summary>
+    /// <param name="index"></param>
+    /// <returns></returns>
     public ProceduralTexture GetProceduralTexture(int index) {
         return proceduralTextures[index];
     }
 
+    /// <summary>
+    /// Clears the active texture
+    /// </summary>
     public void ClearTexture() {
         texture = null;
         _textureIndex = -1;
     }
 
+    /// <summary>
+    /// Creates a preview of the active texture
+    /// </summary>
+    /// <returns></returns>
     public Sprite CreateTexturePreview() {
         if (!texture) return null;
         return CreateTexturePreview(texture);
